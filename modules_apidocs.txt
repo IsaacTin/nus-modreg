@@ -33,4 +33,4 @@ req: {
 	delModule: (include module to delete)
 }
 res: user with updated module array
-err: 404 if module to delete not found, or if no request is found
+err: 400 if module to add is already taken by user; 404 if module to delete not found, or if no request is found

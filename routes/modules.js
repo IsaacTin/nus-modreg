@@ -91,6 +91,12 @@ router.put('/:id', auth, async (req, res) => {
     const modules = user.modules;
 
     if (addModule) {
+        const index = modules.indexOf(delModule._id);
+        if (index !== -1) {
+            return res
+                .status(400)
+                .json({ msg: 'Module already taken by user' });
+        }
         user = await User.findByIdAndUpdate(
             req.user.id,
             { $set: { modules: [...modules, addModule._id] } },
