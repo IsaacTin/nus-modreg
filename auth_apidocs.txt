@@ -1,0 +1,18 @@
+Authentication API:
+
+1. Authenticate user and get JWT (POST) - /api/auth
+
+Sends the NUSNET ID and password to the database to verify, and obtain JWT for the user
+
+req: NUSNET ID and password
+res: JWT for user
+err: 400 if credentials are invalid
+
+2. Get the logged in user from the JWT (GET) - /api/auth
+
+Uses the auth middleware to obtain the user from the JWT. If successful, auth will return the user from the JWT.
+
+req: user obtained from JWT
+res: user obtained from JWT without the password
+err: 401 if no token or wrong token
+

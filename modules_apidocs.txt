@@ -1,0 +1,36 @@
+Modules API:
+
+Module-only requests:
+
+1. Add new module (POST) - /api/Modules
+
+Adds a module to the database with the following attributes:
+moduleName: String,
+moduleCode: String,
+moduleCredits: Number
+
+Module will be added to the modules cluster in the MongoDB database.
+
+req: module object
+res: newly created module
+err: 400 if atttributes are invalid or if module already exists
+
+2. Search for module from database
+
+Search either by module name, module code, or number of MCs.
+
+req: search params: moduleName and/or moduleCode and/or moduleCredits
+res: an array of modules containing search results (can be empty)
+
+User-related module requests:
+
+1. Update modules
+
+Either add or delete modules. 
+
+req: {
+	addModule: (include module to add)
+	delModule: (include module to delete)
+}
+res: user with updated module array
+err: 404 if module to delete not found, or if no request is found
