@@ -1,4 +1,3 @@
-// this is a CRUD route: Create, Read, Update, Delete
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
