@@ -24,12 +24,12 @@ const AuthState = (props) => {
 
     // load user - check which user is logged in and get user data
     const loadUser = async () => {
+        // if there is a token, it will be stored into axios default header
         if (localStorage.token) {
             setAuthToken(localStorage.token);
         }
 
         try {
-            // if user successfully logged in, JWT will be stored in local storage (see below)
             const res = await axios.get('/api/auth');
 
             dispatch({
