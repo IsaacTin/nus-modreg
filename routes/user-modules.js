@@ -9,7 +9,7 @@ const User = require('../models/User');
 // @route	GET api/modules
 // @desc	Load all of the user's modules
 // @access	Private
-router.get('/:id', auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
     const user = await User.findById(req.user.id);
     res.json(user.modules);
 });
@@ -26,7 +26,7 @@ router.put('/:id', auth, async (req, res) => {
 
     const user = await User.findByIdAndUpdate(
         req.user.id,
-        { $set: modules },
+        { $set: { modules } },
         { new: true }
     );
     res.json(user);
