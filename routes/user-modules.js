@@ -18,38 +18,45 @@ router.get('/:id', auth, async (req, res) => {
 // @desc 	Update user's modules
 //@access	Private
 router.put('/:id', auth, async (req, res) => {
-    const { addModule, delModule } = req.body;
+    const { modules } = req.body;
 
-    let user = await User.findById(req.user.id);
-    const modules = user.modules;
-
-    if (addModule) {
-        const index = modules.indexOf(delModule._id);
-        if (index !== -1) {
-            return res
-                .status(400)
-                .json({ msg: 'Module already taken by user' });
-        }
-        user = await User.findByIdAndUpdate(
-            req.user.id,
-            { $set: { modules: [...modules, addModule._id] } },
-            { new: true }
-        );
-    } else if (delModule) {
-        const index = modules.indexOf(delModule._id);
-        if (index === -1) {
-            return res.status(404).json({ msg: 'Module not found' });
-        }
-        modules.splice(index, 1);
-        user = await User.findByIdAndUpdate(
-            req.user.id,
-            { $set: { modules: modules } },
-            { new: true }
-        );
-    } else {
+    if (!modules) {
         return res.status(404).json({ msg: 'Request not found' });
     }
+
+    const user = await User.findByIdAndUpdate(
+        req.user.id,
+        { $set: modules },
+        { new: true }
+    );
     res.json(user);
+    // if (addModule) {
+    //     const index = modules.indexOf(delModule._id);
+    //     if (index !== -1) {
+    //         return res
+    //             .status(400)
+    //             .json({ msg: 'Module already taken by user' });
+    //     }
+    //     user = await User.findByIdAndUpdate(
+    //         req.user.id,
+    //         { $set: { modules: [...modules, addModule._id] } },
+    //         { new: true }
+    //     );
+    // } else if (delModule) {
+    //     const index = modules.indexOf(delModule._id);
+    //     if (index === -1) {
+    //         return res.status(404).json({ msg: 'Module not found' });
+    //     }
+    //     modules.splice(index, 1);
+    //     user = await User.findByIdAndUpdate(
+    //         req.user.id,
+    //         { $set: { modules: modules } },
+    //         { new: true }
+    //     );
+    // } else {
+    //     return res.status(404).json({ msg: 'Request not found' });
+    // }
+    // res.json(user);
 });
 
 module.exports = router;

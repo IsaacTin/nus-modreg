@@ -67,3 +67,5 @@ router.get('/', async (req, res) => {
         res.status(404).json({ msg: 'Server Error' });
     }
 });
+
+module.exports = router;
