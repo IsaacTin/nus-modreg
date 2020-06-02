@@ -18,14 +18,20 @@ router.get('/', auth, async (req, res) => {
 // @desc 	Update user's modules
 //@access	Private
 router.put('/:id', auth, async (req, res) => {
+    let user = await User.findById(req.params.id);
+
+    if (!user) {
+        return res.status(404).json({ msg: 'User not found' });
+    }
+
     const { modules } = req.body;
 
     if (!modules) {
         return res.status(404).json({ msg: 'Request not found' });
     }
 
-    const user = await User.findByIdAndUpdate(
-        req.user.id,
+    user = await User.findByIdAndUpdate(
+        req.params.id,
         { $set: { modules } },
         { new: true }
     );

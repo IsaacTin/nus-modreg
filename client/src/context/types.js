@@ -11,3 +11,7 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 // module types
 export const GET_MODULES = 'GET_MODULES';
 export const MODULE_ERROR = 'MODULE_ERROR';
+export const CONFIRM_MODULES = 'CONFIRM_MODULES';
+export const ADD_MODULE = 'ADD_MODULE';
+export const DELETE_MODULE = 'DELETE_MODULE';
+export const UPDATE_RANKINGS = 'UPDATE_RANKINGS';
