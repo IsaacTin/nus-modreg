@@ -51,14 +51,16 @@ router.post(
 // @desc	Search for module from database
 // @access	Public
 router.get('/', async (req, res) => {
-    const { moduleName, moduleCode, moduleCredits } = req.body;
+    const text = req.body.text;
 
+    // can only search by name or module code
     const searchFields = {};
-    // search module name by regex
-    if (moduleName) searchFields.moduleName = new RegExp(moduleName, 'i');
-    if (moduleCode) searchFields.moduleCode = moduleCode;
-    if (moduleCredits) searchFields.moduleCredits = moduleCredits;
-
+    // if there are 4 digits in a row, must be a module code
+    if (/\d{4}/.test(text)) {
+        searchFields.moduleCode = new RegExp(text, 'i');
+    } else {
+        searchFields.moduleName = new RegExp(text, 'i');
+    }
     try {
         const module = await Module.find(searchFields);
         res.json(module);
