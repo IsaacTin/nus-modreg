@@ -10,8 +10,13 @@ const User = require('../models/User');
 // @desc	Load all of the user's modules
 // @access	Private
 router.get('/', auth, async (req, res) => {
-    const user = await User.findById(req.user.id);
-    res.json(user.modules);
+    try {
+        const user = await User.findById(req.user.id);
+        res.json(user.modules);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
 });
 
 // @route 	PUT api/user-modules
