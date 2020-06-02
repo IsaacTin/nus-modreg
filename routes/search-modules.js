@@ -54,16 +54,13 @@ router.get('/', async (req, res) => {
     const text = req.body.text;
 
     // can only search by name or module code
-    const searchFields = {};
-    // if there are 4 digits in a row, must be a module code
-    if (/\d{4}/.test(text)) {
-        searchFields.moduleCode = new RegExp(text, 'i');
-    } else {
-        searchFields.moduleName = new RegExp(text, 'i');
-    }
+
+    const moduleCode = new RegExp(text, 'i');
+    const moduleName = new RegExp(text, 'i');
     try {
-        const module = await Module.find(searchFields);
-        res.json(module);
+        const searchResultsByName = await Module.find({ moduleName });
+        const searchResultsByCode = await Module.find({ moduleCode });
+        res.json({ modules: [...searchResultsByName, ...searchResultsByCode] });
     } catch (error) {
         console.error(error.message);
         res.status(404).json({ msg: 'Server Error' });
