@@ -6,7 +6,7 @@ const Module = require('../models/Module');
 
 // Search-related module requests
 
-// @route	POST api/modules
+// @route	POST api/search-modules
 // @desc	Add new module
 // @access	Public
 router.post(
@@ -47,7 +47,7 @@ router.post(
     }
 );
 
-// @route	GET api/modules
+// @route	GET api/search-modules
 // @desc	Search for module from database
 // @access	Public
 router.get('/', async (req, res) => {
