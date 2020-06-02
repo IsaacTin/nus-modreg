@@ -37,10 +37,18 @@ router.put('/:id', auth, async (req, res) => {
     }
 
     // verify that each module code in the array of modules actually exists
-    modules.forEach((module) => {
-        Module.findById(module).catch((err) => {
+    modules.forEach(async (module) => {
+        try {
+            await Module.findById(module);
+        } catch (error) {
+            console.error(error.message);
             return res.status(400).json({ msg: 'Bad request' });
-        });
+        }
+
+        // Module.findById(module).catch((err) => {
+        //     console.error(err.message);
+        //     return res.status(400).json({ msg: 'Bad request' });
+        // });
     });
 
     user = await User.findByIdAndUpdate(
