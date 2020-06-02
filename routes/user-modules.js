@@ -3,6 +3,7 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 
 const User = require('../models/User');
+const Module = require('../models/Module');
 
 // User-related module requests
 
@@ -34,6 +35,13 @@ router.put('/:id', auth, async (req, res) => {
     if (!modules) {
         return res.status(404).json({ msg: 'Request not found' });
     }
+
+    // verify that each module code in the array of modules actually exists
+    modules.forEach((module) => {
+        Module.findById(module).catch((err) => {
+            return res.status(400).json({ msg: 'Bad request' });
+        });
+    });
 
     user = await User.findByIdAndUpdate(
         req.params.id,
