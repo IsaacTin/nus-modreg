@@ -72,6 +72,7 @@ const ModuleState = (props) => {
     };
 
     // add a single module to the currentModules array
+    // NOTE!! adds the id to the array
     // note: this function does not deal with the API; rather it deals with the global state
     const addModule = (module) => {
         if (!module) {
