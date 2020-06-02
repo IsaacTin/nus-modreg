@@ -15,7 +15,8 @@ export default (state, action) => {
         case CLEAR_FILTER:
             return {
                 ...state,
-                filtered: null
+                filtered: null,
+                error: null
             };
         default:
             return state;

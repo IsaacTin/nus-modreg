@@ -2,59 +2,56 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import SearchContext from './searchContext';
 import searchReducer from './searchReducer';
-import {
-	FILTER_MODULES,
-	FILTER_ERROR,
-	CLEAR_FILTER
-} from '../types';
+import { FILTER_MODULES, FILTER_ERROR, CLEAR_FILTER } from '../types';
 
 const SearchState = (props) => {
-	const initialState = {
-		filtered: null,
-		error: null
-	};
+    const initialState = {
+        filtered: null,
+        error: null
+    };
 
-	const [state, dispatch] = useReducer(searchReducer, initialState);
+    const [state, dispatch] = useReducer(searchReducer, initialState);
 
-	// filter modules from database
-	const filterModules = (text) => {
-		const config = {
+    // filter modules from database
+    const filterModules = async (text) => {
+        const config = {
             headers: {
                 'Content-Type': 'application/json'
             }
-		};
-		
-		try {
-			const res = await axios.get('api/search-modules', text, config);
-			dispatch({
-				type: FILTER_MODULES,
-				payload: res.data
-			})
-		} catch (error) {
-			dispatch({
-				type: FILTER_ERROR,
-				payload: error.response.msg
-			})
-		}
-	}
+        };
 
-	// clear filter
-	const clearFilter = () => {
-		dispatch({
-			type: CLEAR_FILTER
-		})
-	}
+        try {
+            const res = await axios.get('api/search-modules', text, config);
+            dispatch({
+                type: FILTER_MODULES,
+                payload: res.data
+            });
+        } catch (error) {
+            dispatch({
+                type: FILTER_ERROR,
+                payload: error.response.msg
+            });
+        }
+    };
 
-	return (
-		<SearchContext.Provider>
-			value={{
-				filtered: state.filtered,
-				error: state.error,
-				filterModules,
-				clearFilter
-			}}
-		</SearchContext.Provider>
-	)
-}
+    // clear filter
+    const clearFilter = () => {
+        dispatch({
+            type: CLEAR_FILTER
+        });
+    };
+
+    return (
+        <SearchContext.Provider>
+            value=
+            {{
+                filtered: state.filtered,
+                error: state.error,
+                filterModules,
+                clearFilter
+            }}
+        </SearchContext.Provider>
+    );
+};
 
 export default SearchState;

@@ -2,6 +2,7 @@ import {
     GET_MODULES,
     MODULE_ERROR,
     CONFIRM_MODULES,
+    CLEAR_MODULES,
     ADD_MODULE,
     DELETE_MODULE,
     UPDATE_RANKINGS
@@ -12,8 +13,7 @@ export default (state, action) => {
         case GET_MODULES:
             return {
                 ...state,
-                confirmedModules: action.payload,
-                loading: false
+                confirmedModules: action.payload
             };
         case MODULE_ERROR:
             return {
@@ -23,28 +23,32 @@ export default (state, action) => {
         case CONFIRM_MODULES:
             return {
                 ...state,
-                confirmedModules: action.payload,
-                loading: false
+                confirmedModules: action.payload
+            };
+        case CLEAR_MODULES:
+            return {
+                ...state,
+                currentModules: null,
+                displayedModules: null,
+                confirmedModules: null,
+                error: null
             };
         case ADD_MODULE:
             return {
                 ...state,
-                currentModules: [...state.modules, action.payload._id],
-                loading: false
+                currentModules: [...state.modules, action.payload._id]
             };
         case DELETE_MODULE:
             return {
                 ...state,
                 currentModules: state.currentModules.filter(
                     (module) => module._id !== action.payload._id
-                ),
-                loading: false
+                )
             };
         case UPDATE_RANKINGS:
             return {
                 ...state,
-                currentModules: action.payload,
-                loading: false
+                currentModules: action.payload
             };
         default:
             return state;

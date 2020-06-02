@@ -6,6 +6,7 @@ import {
     GET_MODULES,
     MODULE_ERROR,
     CONFIRM_MODULES,
+    CLEAR_MODULES,
     ADD_MODULE,
     DELETE_MODULE,
     UPDATE_RANKINGS
@@ -16,7 +17,6 @@ const ModuleState = (props) => {
         currentModules: null,
         displayedModules: null,
         confirmedModules: null,
-        loading: true,
         error: null
     };
 
@@ -64,9 +64,16 @@ const ModuleState = (props) => {
         }
     };
 
+    // clear modules from current state
+    const clearModules = () => {
+        dispatch({
+            type: CLEAR_MODULES
+        });
+    };
+
     // add a single module to the currentModules array
     // note: this function does not deal with the API; rather it deals with the global state
-    const addModule = async (module) => {
+    const addModule = (module) => {
         if (!module) {
             dispatch({
                 type: MODULE_ERROR,
@@ -81,7 +88,7 @@ const ModuleState = (props) => {
     };
 
     // delete specified module
-    const deleteModule = async (module) => {
+    const deleteModule = (module) => {
         if (!module) {
             dispatch({
                 type: MODULE_ERROR,
@@ -96,7 +103,7 @@ const ModuleState = (props) => {
     };
 
     // update ranking of currentModules; takes in the array of modules that have been sorted according to their new order
-    const updateModuleRankings = async (modules) => {
+    const updateModuleRankings = (modules) => {
         if (!modules) {
             dispatch({
                 type: MODULE_ERROR,
@@ -121,6 +128,7 @@ const ModuleState = (props) => {
                 error: state.error,
                 getModules,
                 confirmModules,
+                clearModules,
                 addModule,
                 deleteModule,
                 updateModuleRankings
