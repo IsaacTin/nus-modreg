@@ -77,9 +77,8 @@ const AuthState = (props) => {
     const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
     return (
-        <AuthContext.Provider>
-            value=
-            {{
+        <AuthContext.Provider
+            value={{
                 token: state.token,
                 isAuthenticated: state.isAuthenticated,
                 loading: state.loading,
@@ -90,6 +89,8 @@ const AuthState = (props) => {
                 logout,
                 clearErrors
             }}
+        >
+            {props.children}
         </AuthContext.Provider>
     );
 };

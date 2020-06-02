@@ -118,9 +118,8 @@ const ModuleState = (props) => {
     };
 
     return (
-        <ModuleContext.Provider>
-            value=
-            {{
+        <ModuleContext.Provider
+            value={{
                 currentModules: state.currentModules,
                 displayedModules: state.displayedModules,
                 confirmedModules: state.confirmedModules,
@@ -133,6 +132,8 @@ const ModuleState = (props) => {
                 deleteModule,
                 updateModuleRankings
             }}
+        >
+            {props.children}
         </ModuleContext.Provider>
     );
 };

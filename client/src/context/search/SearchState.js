@@ -42,14 +42,15 @@ const SearchState = (props) => {
     };
 
     return (
-        <SearchContext.Provider>
-            value=
-            {{
+        <SearchContext.Provider
+            value={{
                 filtered: state.filtered,
                 error: state.error,
                 filterModules,
                 clearFilter
             }}
+        >
+            {props.children}
         </SearchContext.Provider>
     );
 };
