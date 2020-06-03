@@ -33,7 +33,7 @@ router.put('/:id', auth, async (req, res) => {
     const { modules } = req.body;
 
     if (!modules) {
-        return res.status(404).json({ msg: 'Request not found' });
+        return res.status(400).json({ msg: 'No modules to confirm' });
     }
 
     // verify that each module code in the array of modules actually exists
@@ -42,7 +42,9 @@ router.put('/:id', auth, async (req, res) => {
             await Module.findById(module);
         } catch (error) {
             console.error(error.message);
-            return res.status(400).json({ msg: 'Bad request' });
+            return res
+                .status(400)
+                .json({ msg: 'Bad request; invalid module ID provided' });
         }
 
         // Module.findById(module).catch((err) => {
@@ -56,7 +58,7 @@ router.put('/:id', auth, async (req, res) => {
         { $set: { modules } },
         { new: true }
     );
-    res.json(user);
+    res.json(user.modules);
 });
 
 module.exports = router;

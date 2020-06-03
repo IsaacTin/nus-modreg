@@ -63,7 +63,7 @@ router.get('/', async (req, res) => {
         res.json({ modules: [...searchResultsByName, ...searchResultsByCode] });
     } catch (error) {
         console.error(error.message);
-        res.status(404).json({ msg: 'Server Error' });
+        res.status(500).json({ msg: 'Server Error' });
     }
 });
 
