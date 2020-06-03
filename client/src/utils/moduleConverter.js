@@ -5,7 +5,7 @@ const moduleConverter = (id) => {
         return Module.findById(id);
     } catch (error) {
         console.log(error.message);
-        return null;
+        throw new Error('Invalid ID');
     }
 };
 
