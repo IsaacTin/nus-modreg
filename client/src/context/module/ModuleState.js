@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
-import ModuleContext from './authContext';
-import moduleReducer from './authReducer';
+import ModuleContext from './moduleContext';
+import moduleReducer from './moduleReducer';
 import {
     GET_MODULES,
     MODULE_ERROR,
@@ -49,7 +49,7 @@ const ModuleState = (props) => {
         try {
             const res = await axios.put(
                 `api/user-modules/${id}`,
-                currentModules,
+                state.currentModules,
                 config
             );
             dispatch({
@@ -78,7 +78,7 @@ const ModuleState = (props) => {
         if (!module) {
             dispatch({
                 type: MODULE_ERROR,
-                payload: error.response.sg
+                payload: 'No modules provided'
             });
         }
 
@@ -93,7 +93,7 @@ const ModuleState = (props) => {
         if (!module) {
             dispatch({
                 type: MODULE_ERROR,
-                payload: error.response.sg
+                payload: 'No module specified to delete'
             });
         }
 
@@ -108,7 +108,7 @@ const ModuleState = (props) => {
         if (!modules) {
             dispatch({
                 type: MODULE_ERROR,
-                payload: error.response.sg
+                payload: 'No modules provided'
             });
         }
 

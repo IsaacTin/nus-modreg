@@ -1,16 +1,16 @@
-import React , { useContext }from 'react';
+import React, { useContext } from 'react';
 import RankingItem from './RankingItem';
-import ModuleContext from '../../context/module/ModuleContext';
+import ModuleContext from '../../../context/module/moduleContext';
 
 const Ranking = () => {
-    moduleContext = useContext(ModuleContext);
-    const { updateModule, currentModules } = moduleContext;
-    return ( 
+    const moduleContext = useContext(ModuleContext);
+
+    return (
         <div>
             This is ranking
             <RankingItem />
         </div>
-     );
-}
- 
-export default Ranking
+    );
+};
+
+export default Ranking;

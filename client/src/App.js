@@ -11,12 +11,12 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import ModuleState from './context/module/ModuleState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
-import SearchState from './context/searc/SearchState';
+import SearchState from './context/search/SearchState';
 
 import './App.css';
 
 const App = () => {
-    return ( 
+    return (
         <AuthState>
             <ModuleState>
                 <AlertState>
@@ -27,25 +27,24 @@ const App = () => {
                                 <div className='container'>
                                     <Alerts />
                                     <Switch>
-                                        <PrivateRoute 
+                                        <PrivateRoute
                                             exact
                                             path='/'
                                             component={Home}
                                         />
-                                        //why is path small letter
-                                        <Route 
-                                            exact 
+                                        <Route
+                                            exact
                                             path='/guide'
                                             component={Guide}
                                         />
-                                        <Route 
-                                            exact 
+                                        <Route
+                                            exact
                                             path='/confirmation'
                                             component={Confirmation}
                                         />
-                                        <Route 
-                                            exact 
-                                            path='login'
+                                        <Route
+                                            exact
+                                            path='/login'
                                             component={Login}
                                         />
                                     </Switch>
@@ -56,7 +55,7 @@ const App = () => {
                 </AlertState>
             </ModuleState>
         </AuthState>
-     );
-}
- 
+    );
+};
+
 export default App;
