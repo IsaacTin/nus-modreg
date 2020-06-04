@@ -23,22 +23,24 @@ const Login = (props) => {
     }, [error, isAuthenticated, props.history]);
 
     const [user, setUser] = useState({
-        email: '',
+        nusnetID: '',
         password: ''
     });
 
-    const { email, password } = user;
+    const { nusnetID, password } = user;
 
-    const onChange = (e) =>
+    const onChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
+    };
 
     const onSubmit = (e) => {
+        console.log('onSubmit called');
         e.preventDefault();
-        if (email === '' || password === '') {
+        if (nusnetID === '' || password === '') {
             setAlert('Please fill in all fields', 'danger');
         } else {
             login({
-                email,
+                nusnetID,
                 password
             });
         }
@@ -47,15 +49,15 @@ const Login = (props) => {
     return (
         <div className='form-container'>
             <h1>
-                Account <span className='text-primary'>Login</span>
+                ModReg <span className='text-primary'>Login</span>
             </h1>
             <form onSubmit={onSubmit}>
                 <div className='form-group'>
-                    <label htmlFor='email'>Email Address</label>
+                    <label htmlFor='nusnetID'>NUSNET ID</label>
                     <input
-                        type='email'
-                        name='email'
-                        value={email}
+                        type='text'
+                        name='nusnetID'
+                        value={nusnetID}
                         onChange={onChange}
                         required
                     />

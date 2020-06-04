@@ -25,6 +25,7 @@ const AuthState = (props) => {
 
     // load user - check which user is logged in and get user data
     const loadUser = async () => {
+        console.log('loadUser called');
         // if there is a token, it will be stored into axios default header
         if (localStorage.token) {
             setAuthToken(localStorage.token);
@@ -47,6 +48,7 @@ const AuthState = (props) => {
 
     // login user
     const login = async (formData) => {
+        console.log('login called');
         const config = {
             headers: {
                 'Content-Type': 'application/json'
