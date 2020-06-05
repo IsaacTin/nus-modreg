@@ -1,14 +1,28 @@
-import React, { Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const ModuleItem = (props) => {
     const { moduleName, moduleCode, moduleCredits } = props.module;
+    const [module, setModule] = useState({});
+
+    useEffect(() => {
+        if (module) {
+            setModule(module);
+            console.log(module);
+        }
+    }, []);
+
+    const onClick = (e) => {
+        e.preventDefault();
+        console.log('click click');
+        setModule(props.module);
+    };
     return (
-        <div className='card text-left'>
+        <button className='card text-left' onClick={onClick}>
             <div>{moduleName}</div>
             <div>{moduleCode}</div>
             <div>{moduleCredits}</div>
-        </div>
+        </button>
     );
 };
 
