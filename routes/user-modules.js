@@ -11,7 +11,6 @@ const Module = require('../models/Module');
 // @desc	Load all of the user's modules
 // @access	Private
 router.get('/', auth, async (req, res) => {
-    console.log('get from api user-modules called');
     try {
         const user = await User.findById(req.user.id);
         res.json(user.modules);
