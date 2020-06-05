@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-// @route 	PUT api/user-modules
+// @route 	PUT api/user-modules/:id
 // @desc 	Update user's modules
 //@access	Private
 router.put('/:id', auth, async (req, res) => {
