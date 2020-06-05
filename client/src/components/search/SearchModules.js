@@ -25,7 +25,7 @@ const SearchModules = () => {
         }
     }, [filtered]);
 
-    if (filtered !== null && filtered.length === 0) {
+    if (filtered !== null && display.length === 0) {
         return <h4>No module found.</h4>;
     }
 

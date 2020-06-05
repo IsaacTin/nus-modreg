@@ -13,9 +13,9 @@ const ModuleItem = (props) => {
 };
 
 ModuleItem.propTypes = {
-    moduleName: PropTypes.string.isRequired,
-    moduleCode: PropTypes.string.isRequired,
-    moduleCredits: PropTypes.number.isRequired
+    moduleName: PropTypes.string,
+    moduleCode: PropTypes.string,
+    moduleCredits: PropTypes.number
 };
 
 export default ModuleItem;

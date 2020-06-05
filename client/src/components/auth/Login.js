@@ -34,7 +34,6 @@ const Login = (props) => {
     };
 
     const onSubmit = (e) => {
-        console.log('onSubmit called');
         e.preventDefault();
         if (nusnetID === '' || password === '') {
             setAlert('Please fill in all fields', 'danger');
