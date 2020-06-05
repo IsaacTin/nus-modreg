@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const ModuleItem = (props) => {
     const { moduleName, moduleCode, moduleCredits } = props.module;
     return (
-        <div className='card text-center'>
+        <div className='card text-left'>
             <div>{moduleName}</div>
             <div>{moduleCode}</div>
             <div>{moduleCredits}</div>
