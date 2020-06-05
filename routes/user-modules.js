@@ -21,6 +21,19 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
+// @route GET api/user-modules/:moduleid
+// @desc Convert module id to module object
+// @access Public
+router.get('/:moduleid', async (req, res) => {
+    try {
+        const module = await Module.findById(req.params.moduleid);
+        res.json(module);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 // @route 	PUT api/user-modules/:id
 // @desc 	Update user's modules
 //@access	Private
