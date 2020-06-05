@@ -17,14 +17,10 @@ const SearchModules = () => {
 
     return (
         <Fragment>
-            <TransitionGroup>
-                {filtered !== null &&
-                    filtered.map((module) => (
-                        <CSSTransition timeout={500} classNames='item'>
-                            <ModuleItem module={module} />
-                        </CSSTransition>
-                    ))}
-            </TransitionGroup>
+            {filtered !== null &&
+                filtered.map((module, i) => (
+                    <ModuleItem key={i} module={module} />
+                ))}
         </Fragment>
     );
 };
