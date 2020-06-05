@@ -30,12 +30,20 @@ const SearchModules = () => {
     }
 
     return (
-        <div className='grid-3'>
-            {display.length !== 0 &&
-                display.map((module) => (
-                    <ModuleItem key={module._id} module={module} />
-                ))}
-        </div>
+        <TransitionGroup>
+            <div className='grid-3'>
+                {display.length !== 0 &&
+                    display.map((module) => (
+                        <CSSTransition
+                            key={module._id}
+                            timeout={500}
+                            classNames='item'
+                        >
+                            <ModuleItem key={module._id} module={module} />
+                        </CSSTransition>
+                    ))}
+            </div>
+        </TransitionGroup>
     );
 };
 
