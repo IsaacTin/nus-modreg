@@ -14,14 +14,14 @@ const SearchState = (props) => {
 
     // filter modules from database
     const filterModules = async (text) => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
+        // const config = {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // };
 
         try {
-            const res = await axios.get('api/search-modules', text, config);
+            const res = await axios.get(`api/search-modules/${text}`);
             dispatch({
                 type: FILTER_MODULES,
                 payload: res.data

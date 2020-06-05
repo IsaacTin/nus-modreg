@@ -1,16 +1,25 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import ModuleItem from './ModuleItem';
+import SearchContext from '../../context/search/searchContext';
 import ModuleContext from '../../context/module/moduleContext';
-import SearchModuleFilter from './SearchModuleFilter';
 
 const SearchModules = () => {
+    const searchContext = useContext(SearchContext);
     const moduleContext = useContext(ModuleContext);
 
+    const { filtered } = searchContext;
     const { addModule } = moduleContext;
+
+    if (filtered !== null && filtered.length === 0) {
+        return <h4>No module found.</h4>;
+    }
+
     return (
-        <div>
-            <SearchModuleFilter />
-            This is SearchModules
-        </div>
+        <Fragment>
+            {filtered !== null &&
+                filtered.map((module) => <ModuleItem module={module} />)}
+        </Fragment>
     );
 };
 

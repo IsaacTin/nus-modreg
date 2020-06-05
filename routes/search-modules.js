@@ -50,8 +50,8 @@ router.post(
 // @route	GET api/search-modules
 // @desc	Search for module from database
 // @access	Public
-router.get('/', async (req, res) => {
-    const text = req.body.text;
+router.get('/:search', async (req, res) => {
+    const text = req.params.search;
 
     // can only search by name or module code
 
@@ -60,7 +60,14 @@ router.get('/', async (req, res) => {
     try {
         const searchResultsByName = await Module.find({ moduleName });
         const searchResultsByCode = await Module.find({ moduleCode });
-        res.json({ modules: [...searchResultsByName, ...searchResultsByCode] });
+        const filtered = [
+            ...new Set(
+                [...searchResultsByName, ...searchResultsByCode].map((module) =>
+                    module._id.toString()
+                )
+            )
+        ];
+        res.json(filtered);
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ msg: 'Server Error' });

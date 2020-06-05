@@ -1,11 +1,7 @@
 import React from 'react';
 
-const ModuleItem = () => {
-    return ( 
-        <div>
-            This is ModuleItem
-        </div>
-     );
-}
- 
+const ModuleItem = ({ module }) => {
+    return <div> {module} </div>;
+};
+
 export default ModuleItem;
