@@ -2,6 +2,7 @@ import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
+import nus_logo from './nus_logo.png';
 
 const Navbar = () => {
     const authContext = useContext(AuthContext);
@@ -24,17 +25,15 @@ const Navbar = () => {
         </Fragment>
     );
 
-    const guestLinks = (
-        <Fragment>
-            <li>
-                <Link to='/login'>Login</Link>
-            </li>
-        </Fragment>
-    );
     return (
         <div className='navbar bg-primary'>
-            <h1></h1>
-            <ul>{isAuthenticated ? authLinks : guestLinks}</ul>
+            <ul>
+                <li>
+                    <img src={nus_logo} alt='nus_logo' id='nus-logo' />
+                </li>
+                <li> {/* to include mod reg wording here*/}</li>
+            </ul>
+            <ul>{isAuthenticated && authLinks}</ul>
         </div>
     );
 };
