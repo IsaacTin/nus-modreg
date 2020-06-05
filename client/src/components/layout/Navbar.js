@@ -1,17 +1,16 @@
-import React, { Fragment ,useContext} from 'react';
+import React, { Fragment, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 
-
 const Navbar = () => {
     const authContext = useContext(AuthContext);
 
-    const {isAuthenticated, user, logout} = authContext;
+    const { isAuthenticated, user, logout } = authContext;
 
-    const onLogout= () => {
+    const onLogout = () => {
         logout();
-    }
+    };
 
     const authLinks = (
         <Fragment>
@@ -23,7 +22,7 @@ const Navbar = () => {
                 </a>
             </li>
         </Fragment>
-    )
+    );
 
     const guestLinks = (
         <Fragment>
@@ -31,12 +30,13 @@ const Navbar = () => {
                 <Link to='/login'>Login</Link>
             </li>
         </Fragment>
-    )
-    return ( 
-        <div>
-            This is navbar
+    );
+    return (
+        <div className='navbar bg-primary'>
+            <h1></h1>
+            <ul>{isAuthenticated ? authLinks : guestLinks}</ul>
         </div>
-     );
-}
- 
+    );
+};
+
 export default Navbar;
