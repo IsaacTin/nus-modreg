@@ -1,6 +1,9 @@
-const moduleConverter = (id) => {
+import axios from 'axios';
+
+const moduleConverter = async (id) => {
     try {
-        return Module.findById(id);
+        const res = await axios.get(`/api/user-modules/${id}`);
+        return res;
     } catch (error) {
         console.log(error.message);
         return null;
