@@ -16,6 +16,7 @@ export const CLEAR_MODULES = 'CLEAR_MODULES';
 export const ADD_MODULES = 'ADD_MODULES';
 export const DELETE_MODULE = 'DELETE_MODULE';
 export const UPDATE_RANKINGS = 'UPDATE_RANKINGS';
+export const SET_MODULES = 'SET_MODULES';
 // search types
 export const FILTER_MODULES = 'FILTER_MODULES';
 export const FILTER_ERROR = 'FILTER_ERROR';

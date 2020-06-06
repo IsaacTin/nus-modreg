@@ -1,18 +1,32 @@
 import React, { useContext } from 'react';
 import ModuleContext from '../../../context/module/moduleContext';
 import PropTypes from 'prop-types';
+import Trash from "./trash.png";
 
-const CartItem = () => {
+
+const CartItem = ({module}) => {
     const moduleContext = useContext(ModuleContext);
-    const { deleteModule } = moduleContext;
+    const { deleteModule,  } = moduleContext;
+    
 
-    const { _id, moduleName, moduleCode } = moduleContext;
+    const { _id, /*moduleName, moduleCode*/ } = module;
 
     const onDelete = () => {
-        deleteModule(_id);
+        console.log('delete')
+        deleteModule(_id)
+        //Can't delete
     };
 
-    return <div>This is CartItem</div>;
-};
+    return (
+        <div className="CartItem">
+            Module name: {_id}
+            <br/>
+            Module Code: {_id}{' '}
+            <br/>
+            <button className="Delete" onClick={onDelete}>
+                <img className="Trash" src={Trash} />
+            </button>
+        </div>
+    )};
 
 export default CartItem;

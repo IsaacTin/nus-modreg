@@ -5,7 +5,8 @@ import {
     CLEAR_MODULES,
     ADD_MODULES,
     DELETE_MODULE,
-    UPDATE_RANKINGS
+    UPDATE_RANKINGS,
+    SET_MODULES
 } from '../types';
 
 export default (state, action) => {
@@ -49,6 +50,11 @@ export default (state, action) => {
                 )
             };
         case UPDATE_RANKINGS:
+            return {
+                ...state,
+                currentModules: action.payload
+            };
+        case SET_MODULES:
             return {
                 ...state,
                 currentModules: action.payload
