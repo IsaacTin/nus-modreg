@@ -11,7 +11,7 @@ const SearchModules = () => {
 
     const [display, setDisplay] = useState([]);
 
-    const { filtered } = searchContext;
+    const { filtered, selection } = searchContext;
     const { addModule } = moduleContext;
 
     useEffect(() => {
@@ -30,20 +30,26 @@ const SearchModules = () => {
     }
 
     return (
-        <TransitionGroup>
-            <div className='grid-3'>
-                {display.length !== 0 &&
-                    display.map((module) => (
-                        <CSSTransition
-                            key={module._id}
-                            timeout={500}
-                            classNames='item'
-                        >
-                            <ModuleItem key={module._id} module={module} />
-                        </CSSTransition>
-                    ))}
-            </div>
-        </TransitionGroup>
+        <Fragment>
+            <TransitionGroup>
+                <div className='grid-3'>
+                    {display.length !== 0 &&
+                        display.map((module) => (
+                            <CSSTransition
+                                key={module._id}
+                                timeout={500}
+                                classNames='item'
+                            >
+                                <ModuleItem key={module._id} module={module} />
+                            </CSSTransition>
+                        ))}
+                </div>
+            </TransitionGroup>
+            <ul className='container'>
+                {selection.length !== 0 &&
+                    selection.map((module) => <li>{module}</li>)}
+            </ul>
+        </Fragment>
     );
 };
 
