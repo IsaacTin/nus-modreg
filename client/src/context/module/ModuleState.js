@@ -9,14 +9,25 @@ import {
     CLEAR_MODULES,
     ADD_MODULE,
     DELETE_MODULE,
-    UPDATE_RANKINGS
+    UPDATE_RANKINGS,
+    SET_MODULES
 } from '../types';
 
 const ModuleState = (props) => {
     const initialState = {
         currentModules: null,
         displayedModules: null,
-        confirmedModules: null,
+        confirmedModules: [
+            {
+                _id: 1
+            },
+            {
+                _id: 2
+            },
+            {
+                _id: 3
+            }
+        ],
         error: null
     };
 
@@ -116,6 +127,13 @@ const ModuleState = (props) => {
             type: UPDATE_RANKINGS,
             payload: modules
         });
+    }; 
+
+    const setModules =(modules) => {
+        dispatch({
+            type: SET_MODULES,
+            payload: modules
+        });
     };
 
     return (
@@ -131,7 +149,8 @@ const ModuleState = (props) => {
                 clearModules,
                 addModule,
                 deleteModule,
-                updateModuleRankings
+                updateModuleRankings,
+                setModules
             }}
         >
             {props.children}

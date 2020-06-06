@@ -7,13 +7,18 @@ import Confirmation from './components/pages/Confirmation';
 import Login from './components/auth/Login';
 import Alerts from './components/layout/Alert';
 import PrivateRoute from './components/routing/PrivateRoute';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 
 import ModuleState from './context/module/ModuleState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import SearchState from './context/search/SearchState';
 
+
 import './App.css';
+import Sidebar from './components/sidebar/Sidebar';
 
 const App = () => {
     return (
@@ -21,8 +26,12 @@ const App = () => {
             <ModuleState>
                 <AlertState>
                     <SearchState>
+                        <DndProvider backend={HTML5Backend}>
                         <Router>
-                            <Fragment>
+                            <div> 
+                                <Sidebar />
+                            </div>
+                            {/*<Fragment>
                                 <Navbar />
                                 <div className='container'>
                                     <Alerts />
@@ -49,8 +58,9 @@ const App = () => {
                                         />
                                     </Switch>
                                 </div>
-                            </Fragment>
+                            </Fragment>*/}
                         </Router>
+                        </DndProvider>
                     </SearchState>
                 </AlertState>
             </ModuleState>

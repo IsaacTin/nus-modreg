@@ -37,11 +37,12 @@ ul {
 }
 
 img {
-    width: 100%;
+    height: 100%;
 }
 
 /* Utilities */
 .container {
+    text-align: center;
     max-width: 1100px;
     margin: auto;
     overflow: hidden;
@@ -439,4 +440,64 @@ table th {
         text-align: center;
         justify-content: center;
     }
+    
+}
+
+.Sidebar {
+    background-color: grey;
+}
+
+.Sidebar h2 {
+    background-color: orange;
+}
+
+
+.Trash {
+    float: right;
+    width: 25px;
+    height: 25px;
+}
+
+.CartItem  {
+    text-align: center;
+    background-color: brown;
+}
+
+/*.RankingItem {
+    width: 720px;
+    border: 15px solid navy;
+    padding: 50px;
+    margin: 20px;
+    background: cyan;
+}*/
+.current {
+    background-color: #282c34;
+}
+
+.RankingItem {
+    border: 10px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    border-radius: 5px;
+    color: #282c34;
+    background: white;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.RankingItem:not(:last-of-type) {
+    margin-bottom: .5rem;
+}
+
+.RankingItem * {
+    margin:10px;
+    font-size: 1.2rem;
+}
+
+.ranking {
+    background-color: #49505e;
+    border-radius: 5px;
+    padding: .5rem;
 }
