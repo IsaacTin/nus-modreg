@@ -16,6 +16,7 @@ const ModuleItem = (props) => {
         ) {
             addSelection(props.module);
         } else {
+            // change to alert with alert context
             console.log('salah la bro');
         }
     };
