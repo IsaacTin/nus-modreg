@@ -10,7 +10,7 @@ import {
     ADD_MODULES,
     DELETE_MODULE,
     UPDATE_RANKINGS,
-    SET_MODULES
+    SET_CURRENT_MODULES
 } from '../types';
 
 const ModuleState = (props) => {
@@ -119,9 +119,9 @@ const ModuleState = (props) => {
         });
     };
 
-    const setModules = (modules) => {
+    const setCurrentModules = (modules) => {
         dispatch({
-            type: SET_MODULES,
+            type: SET_CURRENT_MODULES,
             payload: modules
         });
     };
@@ -140,7 +140,7 @@ const ModuleState = (props) => {
                 addModules,
                 deleteModule,
                 updateModuleRankings,
-                setModules
+                setCurrentModules
             }}
         >
             {props.children}
