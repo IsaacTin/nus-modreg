@@ -16,7 +16,6 @@ import AlertState from './context/alert/AlertState';
 import SearchState from './context/search/SearchState';
 
 import './App.css';
-import Sidebar from './components/sidebar/Sidebar';
 
 const App = () => {
     return (
