@@ -14,6 +14,7 @@ const SearchModules = () => {
     const { filtered, selection } = searchContext;
     const { addModule } = moduleContext;
 
+    // add comment hi
     useEffect(() => {
         if (filtered !== null) {
             const fetchDisplay = async () => {
