@@ -13,10 +13,13 @@ export const GET_MODULES = 'GET_MODULES';
 export const MODULE_ERROR = 'MODULE_ERROR';
 export const CONFIRM_MODULES = 'CONFIRM_MODULES';
 export const CLEAR_MODULES = 'CLEAR_MODULES';
-export const ADD_MODULE = 'ADD_MODULE';
+export const ADD_MODULES = 'ADD_MODULES';
 export const DELETE_MODULE = 'DELETE_MODULE';
 export const UPDATE_RANKINGS = 'UPDATE_RANKINGS';
 // search types
 export const FILTER_MODULES = 'FILTER_MODULES';
 export const FILTER_ERROR = 'FILTER_ERROR';
 export const CLEAR_FILTER = 'CLEAR_FILTER';
+export const ADD_SELECTION = 'ADD_SELECTION';
+export const DELETE_SELECTION = 'DELETE_SELECTION';
+export const CLEARALL_SELECTION = 'CLEAR_SELECTION';

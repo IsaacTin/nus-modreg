@@ -1,22 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import SearchContext from '../../context/search/searchContext';
 import PropTypes from 'prop-types';
 
 const ModuleItem = (props) => {
-    const { moduleName, moduleCode, moduleCredits } = props.module;
-    const [module, setModule] = useState({});
+    const searchContext = useContext(SearchContext);
 
-    useEffect(() => {
-        if (module) {
-            setModule(module);
-            console.log(module);
-        }
-    }, []);
+    const { moduleName, moduleCode, moduleCredits } = props.module;
+    const { addSelection, clearSelection, selection } = searchContext;
 
     const onClick = (e) => {
         e.preventDefault();
-        console.log('click click');
-        setModule(props.module);
+        if (
+            selection.length === 0 ||
+            !selection.includes(props.module._id.toString())
+        ) {
+            addSelection(props.module);
+        } else {
+            console.log('salah la bro');
+        }
     };
+
+    useEffect(() => {
+        console.log(selection);
+    });
     return (
         <button className='card text-left' onClick={onClick}>
             <div>{moduleName}</div>

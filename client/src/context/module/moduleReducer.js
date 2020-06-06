@@ -3,7 +3,7 @@ import {
     MODULE_ERROR,
     CONFIRM_MODULES,
     CLEAR_MODULES,
-    ADD_MODULE,
+    ADD_MODULES,
     DELETE_MODULE,
     UPDATE_RANKINGS
 } from '../types';
@@ -33,10 +33,13 @@ export default (state, action) => {
                 confirmedModules: null,
                 error: null
             };
-        case ADD_MODULE:
+        case ADD_MODULES:
             return {
                 ...state,
-                currentModules: [...state.modules, action.payload._id]
+                currentModules: [
+                    ...state.modules,
+                    ...action.payload.map((module) => module._id)
+                ]
             };
         case DELETE_MODULE:
             return {

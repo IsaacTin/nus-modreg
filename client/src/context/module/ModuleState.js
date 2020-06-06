@@ -7,7 +7,7 @@ import {
     MODULE_ERROR,
     CONFIRM_MODULES,
     CLEAR_MODULES,
-    ADD_MODULE,
+    ADD_MODULES,
     DELETE_MODULE,
     UPDATE_RANKINGS
 } from '../types';
@@ -74,8 +74,8 @@ const ModuleState = (props) => {
     // add a single module to the currentModules array
     // NOTE!! adds the id to the array
     // note: this function does not deal with the API; rather it deals with the global state
-    const addModule = (module) => {
-        if (!module) {
+    const addModules = (modules) => {
+        if (!modules) {
             dispatch({
                 type: MODULE_ERROR,
                 payload: 'No modules provided'
@@ -83,7 +83,7 @@ const ModuleState = (props) => {
         }
 
         dispatch({
-            type: ADD_MODULE,
+            type: ADD_MODULES,
             payload: module
         });
     };
@@ -129,7 +129,7 @@ const ModuleState = (props) => {
                 getModules,
                 confirmModules,
                 clearModules,
-                addModule,
+                addModules,
                 deleteModule,
                 updateModuleRankings
             }}
