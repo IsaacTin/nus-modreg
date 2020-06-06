@@ -15,6 +15,7 @@ const SearchModules = () => {
     const { addModule } = moduleContext;
 
     // add comment hi
+    // add comment bye
     useEffect(() => {
         if (filtered !== null) {
             const fetchDisplay = async () => {
