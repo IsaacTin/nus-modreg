@@ -17,17 +17,7 @@ const ModuleState = (props) => {
     const initialState = {
         currentModules: null,
         displayedModules: null,
-        confirmedModules: [
-            {
-                _id: 1
-            },
-            {
-                _id: 2
-            },
-            {
-                _id: 3
-            }
-        ],
+        confirmedModules: null,
         error: null
     };
 
@@ -127,9 +117,9 @@ const ModuleState = (props) => {
             type: UPDATE_RANKINGS,
             payload: modules
         });
-    }; 
+    };
 
-    const setModules =(modules) => {
+    const setModules = (modules) => {
         dispatch({
             type: SET_MODULES,
             payload: modules
