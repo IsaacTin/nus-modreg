@@ -9,7 +9,7 @@ const CartItem = ({module}) => {
     const { deleteModule,  } = moduleContext;
     
 
-    const { _id, /*moduleName, moduleCode*/ } = module;
+    const { _id, moduleName, moduleCode } = module;
 
     const onDelete = () => {
         console.log('delete')
@@ -19,9 +19,9 @@ const CartItem = ({module}) => {
 
     return (
         <div className="CartItem">
-            Module name: {_id}
+            Module name: {moduleName}
             <br/>
-            Module Code: {_id}{' '}
+            Module Code: {moduleCode}{' '}
             <br/>
             <button className="Delete" onClick={onDelete}>
                 <img className="Trash" src={Trash} />

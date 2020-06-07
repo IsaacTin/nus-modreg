@@ -3,6 +3,8 @@ import RankingItem from './RankingItem';
 import ModuleContext from '../../../context/module/moduleContext';
 import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
+import moduleArrayConverter from '../../../utils/moduleArrayConverter';
+import Cart from '../cart/Cart'
 
 const Ranking = () => {
     const moduleContext = useContext(ModuleContext);
@@ -39,7 +41,7 @@ const Ranking = () => {
                 {(provided) => (<div ref={provided.innerRef}{...provided.droppableProps}>
                     {currentModules.map(module => 
                         <RankingItem 
-                            key={module._id}
+                            key={module}
                             module={module} 
                             index={currentModules.indexOf(module)}
                             rank={currentModules.indexOf(module) + 1} />
