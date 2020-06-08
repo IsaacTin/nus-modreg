@@ -15,7 +15,7 @@ import {
 
 const ModuleState = (props) => {
     const initialState = {
-        currentModules: null,
+        currentModules: [],
         displayedModules: null,
         confirmedModules: null,
         error: null
@@ -72,7 +72,7 @@ const ModuleState = (props) => {
         });
     };
 
-    // add a single module to the currentModules array
+    // add an array of modules to the currentModules array
     // NOTE!! adds the id to the array
     // note: this function does not deal with the API; rather it deals with the global state
     const addModules = (modules) => {
@@ -85,7 +85,7 @@ const ModuleState = (props) => {
 
         dispatch({
             type: ADD_MODULES,
-            payload: module
+            payload: modules
         });
     };
 

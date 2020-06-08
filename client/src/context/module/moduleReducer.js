@@ -38,8 +38,7 @@ export default (state, action) => {
             return {
                 ...state,
                 currentModules: [
-                    ...state.modules,
-                    ...action.payload.map((module) => module._id)
+                    ...new Set([...state.currentModules, ...action.payload])
                 ]
             };
         case DELETE_MODULE:
