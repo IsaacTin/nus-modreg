@@ -76,10 +76,10 @@ const SearchModules = () => {
                         ))}
                 </div>
             </TransitionGroup>
-            <ul className='container' style={{ display: 'flex' }}>
+            <ul className='container grid-4'>
                 {displaySelection.length !== 0 &&
                     displaySelection.map((module) => (
-                        <li key={module._id} className='card'>
+                        <li key={module._id} className='card text-left'>
                             {module.moduleName}
                             {` (${module.moduleCode}) `}
                             <button

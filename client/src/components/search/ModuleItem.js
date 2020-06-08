@@ -25,7 +25,7 @@ const ModuleItem = (props) => {
         <button className='card text-left' onClick={onClick}>
             <div>{moduleName}</div>
             <div>{moduleCode}</div>
-            <div>{moduleCredits}</div>
+            <div>{`${moduleCredits} MCs`}</div>
         </button>
     );
 };
