@@ -42,6 +42,7 @@ const SearchModules = () => {
     const onClick = (e) => {
         e.preventDefault();
         addModules(selection);
+        // might need to check why error becomes undefined ah
         if (error === null || error === undefined) {
             setDisplaySelection([]);
             console.log(displaySelection);
