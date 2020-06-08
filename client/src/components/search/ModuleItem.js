@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import SearchContext from '../../context/search/searchContext';
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,7 @@ const ModuleItem = (props) => {
     const searchContext = useContext(SearchContext);
 
     const { moduleName, moduleCode, moduleCredits } = props.module;
-    const { addSelection, clearSelection, selection } = searchContext;
+    const { addSelection, selection } = searchContext;
 
     const onClick = (e) => {
         e.preventDefault();
@@ -21,9 +21,6 @@ const ModuleItem = (props) => {
         }
     };
 
-    useEffect(() => {
-        console.log(selection);
-    });
     return (
         <button className='card text-left' onClick={onClick}>
             <div>{moduleName}</div>

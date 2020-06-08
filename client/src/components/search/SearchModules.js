@@ -12,7 +12,7 @@ const SearchModules = () => {
     const [displaySearchResults, setDisplaySearchResults] = useState([]);
     const [displaySelection, setDisplaySelection] = useState([]);
 
-    const { filtered, selection } = searchContext;
+    const { filtered, selection, deleteSelection } = searchContext;
     const { addModules, error } = moduleContext;
 
     useEffect(() => {
@@ -39,8 +39,11 @@ const SearchModules = () => {
         return <h4>No module found.</h4>;
     }
 
-    const onClick = (e) => {
+    const onClickConfirm = (e) => {
         e.preventDefault();
+        if (selection.length === 0) {
+            // notify user that no modules have been selected
+        }
         addModules(selection);
         // might need to check why error becomes undefined ah
         if (error === null || error === undefined) {
@@ -50,6 +53,11 @@ const SearchModules = () => {
         } else {
             // print out the stupid error
         }
+    };
+
+    const onDelete = (e, module) => {
+        e.preventDefault();
+        deleteSelection(module);
     };
 
     return (
@@ -71,13 +79,19 @@ const SearchModules = () => {
             <ul className='container' style={{ display: 'flex' }}>
                 {displaySelection.length !== 0 &&
                     displaySelection.map((module) => (
-                        <li className='card'>
+                        <li key={module._id} className='card'>
                             {module.moduleName}
-                            {` (${module.moduleCode})`}
+                            {` (${module.moduleCode}) `}
+                            <button
+                                className='btn btn-sm btn-danger'
+                                onClick={(e) => onDelete(e, module)}
+                            >
+                                <i className='fas fa-times-circle'></i>
+                            </button>
                         </li>
                     ))}
             </ul>
-            <button className='btn btn-light' onClick={onClick}>
+            <button className='btn btn-light' onClick={onClickConfirm}>
                 Confirm Modules
             </button>
         </Fragment>
