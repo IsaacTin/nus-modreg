@@ -12,7 +12,12 @@ const SearchModules = () => {
     const [displaySearchResults, setDisplaySearchResults] = useState([]);
     const [displaySelection, setDisplaySelection] = useState([]);
 
-    const { filtered, selection, deleteSelection } = searchContext;
+    const {
+        filtered,
+        selection,
+        deleteSelection,
+        clearSelection
+    } = searchContext;
     const { addModules, error } = moduleContext;
 
     useEffect(() => {
@@ -47,6 +52,7 @@ const SearchModules = () => {
         addModules(selection);
         // might need to check why error becomes undefined ah
         if (error === null || error === undefined) {
+            clearSelection();
             setDisplaySelection([]);
             console.log(displaySelection);
             // notify user that selection has succesfully been added
