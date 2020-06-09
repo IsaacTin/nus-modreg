@@ -40,15 +40,18 @@ export default (state, action) => {
                 ...state,
                 currentModules: [
                     ...new Set([...state.currentModules, ...action.payload])
-                ]
+                ],
+                displayedModules: null
             };
         case DELETE_MODULE:
             return {
                 ...state,
                 currentModules: state.currentModules.filter(
-                    (module) => module !== action.payload),
+                    (module) => module !== action.payload
+                ),
                 displayedModules: state.displayedModules.filter(
-                    (module) => module._id !== action.payload)
+                    (module) => module._id !== action.payload
+                )
             };
         case UPDATE_RANKINGS:
             return {
@@ -62,8 +65,9 @@ export default (state, action) => {
             };
         case SET_DISPLAYED_MODULES:
             return {
-                ...state, displayedModules: action.payload
-            }
+                ...state,
+                displayedModules: action.payload
+            };
         default:
             return state;
     }
