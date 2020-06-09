@@ -12,7 +12,6 @@ const CartItem = ({module}) => {
     const { _id, moduleName, moduleCode } = module;
 
     const onDelete = () => {
-        console.log('delete')
         deleteModule(_id)
         //Can't delete
     };

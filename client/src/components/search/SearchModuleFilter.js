@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import SearchContext from '../../context/search/searchContext';
+import SearchModules from '../search/SearchModules';
+
 
 const SearchModuleFilter = () => {
     const searchContext = useContext(SearchContext);
@@ -21,14 +23,18 @@ const SearchModuleFilter = () => {
         }
     };
     return (
-        <form>
-            <input
-                ref={text}
-                type='text'
-                placeholder='Search for modules...'
-                onChange={onChange}
-            />
-        </form>
+        <div className="searchbar">
+            <form>
+                <input
+                    ref={text}
+                    type='text'
+                    placeholder='Search for modules...'
+                    onChange={onChange}
+                />
+            </form>
+            <SearchModules />
+        </div>
+        
     );
 };
 

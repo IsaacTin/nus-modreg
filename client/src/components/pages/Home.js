@@ -14,10 +14,9 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
+        <div className="homepage">
             <Nusmods />
             <SearchModuleFilter />
-            <SearchModules />
             <Sidebar />
         </div>
     );

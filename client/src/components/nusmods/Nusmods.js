@@ -2,7 +2,7 @@ import React from 'react';
 
 const Nusmods = () => {
     return ( 
-        <div>
+        <div className="nusmods">
             This is NUSmods.
         </div>
      );

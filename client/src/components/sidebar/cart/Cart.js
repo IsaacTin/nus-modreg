@@ -8,13 +8,10 @@ const Cart = () => {
     const moduleContext = useContext(ModuleContext);
 
     const {
-        currentModules,
-        getModules,
-        confirmedModules,
-        setCurrentModules
+        displayedModules,
     } = moduleContext;
 
-    const [modules, setmodules] = useState()
+    /*const [modules, setmodules] = useState()
 
     useEffect(() => {
         getModules();
@@ -27,16 +24,16 @@ const Cart = () => {
             }
         fetchModules();
         }
-    },  modules);
+    },  modules);*/
 
-    if (currentModules === null || modules === undefined) {
+    if (displayedModules === null || !displayedModules.length) {
         return <h3>No Modules selected</h3>;
     } 
     
 
     return (
         <Fragment>
-            {modules.map((module) => (
+            {displayedModules.length !== 0 && displayedModules.map((module) => (
                 <CartItem module={module} key={module._id} 
              />
             ))}
