@@ -2,7 +2,9 @@ import React, { Fragment, useContext, useRef, useState } from 'react';
 import { Draggable} from 'react-beautiful-dnd';
 
 
-const RankingItem = ({module, rank , index}) => {
+const RankingItem = ({module, rank , index, convertedModule}) => {
+
+    const {moduleName, moduleCode} = convertedModule;
 
     return (
         <Draggable 
@@ -15,9 +17,11 @@ const RankingItem = ({module, rank , index}) => {
             {...provided.dragHandleProps}
             >
             <div className="RankingItem">             
-                Module name: {module._id}
+                Module name: {moduleName}
                 <br/>
-                ModuleRank: {rank}
+                Module Code: {moduleCode}
+                <br/>
+                Module Rank: {rank}
             </div>
             </div>)}
             

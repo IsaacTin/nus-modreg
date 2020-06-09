@@ -3,10 +3,12 @@ import RankingItem from './RankingItem';
 import ModuleContext from '../../../context/module/moduleContext';
 import {DragDropContext, Droppable} from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
+import moduleArrayConverter from '../../../utils/moduleArrayConverter';
+import Cart from '../cart/Cart'
 
 const Ranking = () => {
     const moduleContext = useContext(ModuleContext);
-    const { currentModules, updateModuleRankings } = moduleContext;
+    const { currentModules, updateModuleRankings,  setDisplayedModules , displayedModules} = moduleContext;
 
     const onDragEnd=(result) => {
         const {destination, source, reason}=result;
@@ -19,12 +21,17 @@ const Ranking = () => {
             return;
         }
         const modules = Object.assign([], currentModules)
+        const convert = Object.assign([], displayedModules)
         const droppedModule = modules[source.index];
 
         modules.splice(source.index, 1);
         modules.splice(destination.index, 0, droppedModule);
+        convert.splice(source.index, 1);
+        convert.splice(destination.index, 0, displayedModules[source.index])
 
         updateModuleRankings(modules)
+        setDisplayedModules(convert)
+        
     }
 
     if(currentModules === null || currentModules.length === 0) {
@@ -39,18 +46,15 @@ const Ranking = () => {
                 {(provided) => (<div ref={provided.innerRef}{...provided.droppableProps}>
                     {currentModules.map(module => 
                         <RankingItem 
-                            key={module._id}
+                            key={module}
                             module={module} 
                             index={currentModules.indexOf(module)}
+                            convertedModule={displayedModules[currentModules.indexOf(module)]}
                             rank={currentModules.indexOf(module) + 1} />
                     )}
                     {provided.placeholder}
                     </div>)}
             </Droppable>
-
-            <button>
-                Confirm
-            </button>
         </DragDropContext>
     )
 }

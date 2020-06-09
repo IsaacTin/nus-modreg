@@ -10,7 +10,8 @@ import {
     ADD_MODULES,
     DELETE_MODULE,
     UPDATE_RANKINGS,
-    SET_CURRENT_MODULES
+    SET_CURRENT_MODULES,
+    SET_DISPLAYED_MODULES
 } from '../types';
 
 const ModuleState = (props) => {
@@ -126,6 +127,13 @@ const ModuleState = (props) => {
         });
     };
 
+    const setDisplayedModules = (modules) => {
+        dispatch({
+            type: SET_DISPLAYED_MODULES,
+            payload: modules
+        });
+    };
+
     return (
         <ModuleContext.Provider
             value={{
@@ -140,7 +148,8 @@ const ModuleState = (props) => {
                 addModules,
                 deleteModule,
                 updateModuleRankings,
-                setCurrentModules
+                setCurrentModules,
+                setDisplayedModules
             }}
         >
             {props.children}

@@ -6,7 +6,8 @@ import {
     ADD_MODULES,
     DELETE_MODULE,
     UPDATE_RANKINGS,
-    SET_CURRENT_MODULES
+    SET_CURRENT_MODULES,
+    SET_DISPLAYED_MODULES
 } from '../types';
 
 export default (state, action) => {
@@ -45,8 +46,9 @@ export default (state, action) => {
             return {
                 ...state,
                 currentModules: state.currentModules.filter(
-                    (module) => module._id !== action.payload._id
-                )
+                    (module) => module !== action.payload),
+                displayedModules: state.displayedModules.filter(
+                    (module) => module._id !== action.payload)
             };
         case UPDATE_RANKINGS:
             return {
@@ -58,6 +60,10 @@ export default (state, action) => {
                 ...state,
                 currentModules: action.payload
             };
+        case SET_DISPLAYED_MODULES:
+            return {
+                ...state, displayedModules: action.payload
+            }
         default:
             return state;
     }

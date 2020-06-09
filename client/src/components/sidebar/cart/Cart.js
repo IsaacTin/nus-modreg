@@ -1,35 +1,41 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import CartItem from './CartItem';
 import ModuleContext from '../../../context/module/moduleContext';
+import moduleArrayConverter from '../../../utils/moduleArrayConverter';
+import moduleConverter from '../../../utils/moduleConverter'
 
 const Cart = () => {
     const moduleContext = useContext(ModuleContext);
 
     const {
-        currentModules,
-        getModules,
-        confirmedModules,
-        setCurrentModules
+        displayedModules,
     } = moduleContext;
+
+    /*const [modules, setmodules] = useState()
 
     useEffect(() => {
         getModules();
-        // to debug
-        if (confirmedModules !== null) {
-            console.log('i <3 programming');
-            setCurrentModules([...confirmedModules]);
+        if(confirmedModules !== null && currentModules === null) {
+            setCurrentModules(confirmedModules);             
+            }
+        if(currentModules !== null) {
+            const fetchModules = async () => {
+                setmodules(await moduleArrayConverter(currentModules))
+            }
+        fetchModules();
         }
-        // es-lint-disable-next-line
-    }, []);
+    },  modules);*/
 
-    if (currentModules === null) {
+    if (displayedModules === null || !displayedModules.length) {
         return <h3>No Modules selected</h3>;
-    }
+    } 
+    
 
     return (
         <Fragment>
-            {currentModules.map((module) => (
-                <CartItem module={module} key={module._id} />
+            {displayedModules.length !== 0 && displayedModules.map((module) => (
+                <CartItem module={module} key={module._id} 
+             />
             ))}
         </Fragment>
     );
