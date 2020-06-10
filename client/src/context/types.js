@@ -25,3 +25,5 @@ export const CLEAR_FILTER = 'CLEAR_FILTER';
 export const ADD_SELECTION = 'ADD_SELECTION';
 export const DELETE_SELECTION = 'DELETE_SELECTION';
 export const CLEARALL_SELECTION = 'CLEAR_SELECTION';
+// layout types
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';

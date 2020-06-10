@@ -14,6 +14,7 @@ import ModuleState from './context/module/ModuleState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import SearchState from './context/search/SearchState';
+import LayoutState from './context/layout/LayoutState';
 
 import './App.css';
 
@@ -23,38 +24,40 @@ const App = () => {
             <ModuleState>
                 <AlertState>
                     <SearchState>
-                        <DndProvider backend={HTML5Backend}>
-                            <Router>
-                                <Fragment>
-                                    <Navbar />
-                                    <div className='container'>
-                                        <Alerts />
-                                        <Switch>
-                                            <PrivateRoute
-                                                exact
-                                                path='/'
-                                                component={Home}
-                                            />
-                                            <Route
-                                                exact
-                                                path='/guide'
-                                                component={Guide}
-                                            />
-                                            <Route
-                                                exact
-                                                path='/confirmation'
-                                                component={Confirmation}
-                                            />
-                                            <Route
-                                                exact
-                                                path='/login'
-                                                component={Login}
-                                            />
-                                        </Switch>
-                                    </div>
-                                </Fragment>
-                            </Router>
-                        </DndProvider>
+                        <LayoutState>
+                            <DndProvider backend={HTML5Backend}>
+                                <Router>
+                                    <Fragment>
+                                        <Navbar />
+                                        <div className='container'>
+                                            <Alerts />
+                                            <Switch>
+                                                <PrivateRoute
+                                                    exact
+                                                    path='/'
+                                                    component={Home}
+                                                />
+                                                <Route
+                                                    exact
+                                                    path='/guide'
+                                                    component={Guide}
+                                                />
+                                                <Route
+                                                    exact
+                                                    path='/confirmation'
+                                                    component={Confirmation}
+                                                />
+                                                <Route
+                                                    exact
+                                                    path='/login'
+                                                    component={Login}
+                                                />
+                                            </Switch>
+                                        </div>
+                                    </Fragment>
+                                </Router>
+                            </DndProvider>
+                        </LayoutState>
                     </SearchState>
                 </AlertState>
             </ModuleState>

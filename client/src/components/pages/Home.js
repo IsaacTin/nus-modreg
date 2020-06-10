@@ -4,9 +4,13 @@ import Sidebar from '../sidebar/Sidebar';
 import SearchModules from '../search/SearchModules';
 import Nusmods from '../nusmods/Nusmods';
 import AuthContext from '../../context/auth/authContext';
+import LayoutContext from '../../context/layout/layoutContext';
 
 const Home = () => {
     const authContext = useContext(AuthContext);
+    const layoutContext = useContext(LayoutContext);
+
+    const { isSidebarOpen } = layoutContext;
 
     useEffect(() => {
         authContext.loadUser();
@@ -14,10 +18,13 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="homepage">
-            <Nusmods />
-            <SearchModuleFilter />
+        <div id='main'>
             <Sidebar />
+            <div className={isSidebarOpen ? 'main-shift' : 'main'}>
+                <Nusmods />
+                <SearchModuleFilter />
+                <SearchModules />
+            </div>
         </div>
     );
 };
