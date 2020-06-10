@@ -7,5 +7,7 @@ export default (state, action) => {
                 ...state,
                 isSidebarOpen: !state.isSidebarOpen
             };
+        default:
+            return state;
     }
 };
