@@ -15,11 +15,17 @@ const Navbar = () => {
 
     const authLinks = (
         <Fragment>
-            <li>Hello, {user && user.name}</li>
             <li>
-                <a onClick={onLogout} href='#!'>
-                    <i className='fas fa-sign-out-alt'></i>{' '}
-                    <span className='hide-sm'>Logout</span>
+                <h4>{user && user.name}</h4>
+            </li>
+            <li className='navbar-item'>
+                <a className='icon-button' href='#!'>
+                    <i className='fas fa-shopping-cart'></i>
+                </a>
+            </li>
+            <li className='navbar-item'>
+                <a onClick={onLogout} className='icon-button' href='#!'>
+                    <i className='fas fa-sign-out-alt'></i>
                 </a>
             </li>
         </Fragment>
@@ -33,7 +39,7 @@ const Navbar = () => {
                 </li>
                 <li> {/* to include mod reg wording here*/}</li>
             </ul>
-            <ul>{isAuthenticated && authLinks}</ul>
+            <ul className='navbar-nav'>{isAuthenticated && authLinks}</ul>
         </div>
     );
 };
