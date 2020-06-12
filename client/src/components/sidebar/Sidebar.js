@@ -31,6 +31,7 @@ const Sidebar = ({ pageWrapId }) => {
     }, []);
 
     useEffect(() => {
+        // buggy; will refresh the moment currentModules becomes empty
         if (confirmedModules !== null && currentModules.length === 0) {
             setCurrentModules(confirmedModules);
         }
@@ -49,7 +50,9 @@ const Sidebar = ({ pageWrapId }) => {
             open={isSidebarOpen}
             variant={'persistent'}
         >
-            <h2>Modules</h2>
+            <div className='text-center'>
+                <h2>Your modules:</h2>
+            </div>
             <Cart />
             <button
                 className='btn btn-light'
@@ -57,12 +60,25 @@ const Sidebar = ({ pageWrapId }) => {
             >
                 Rank Modules
             </button>
-            <Modal isOpen={ModalIsOpen}>
-                <Ranking />
-                <div>
-                    <button onClick={() => setModalIsOpen(false)}>Close</button>
-                </div>
-            </Modal>
+            <div className='main-shift container-center'>
+                <Modal
+                    isOpen={ModalIsOpen}
+                    className={
+                        isSidebarOpen ? 'main-shift ranking' : 'main ranking'
+                    }
+                    overlayClassName='ranking-overlay'
+                >
+                    <Ranking />
+                    <div>
+                        <button
+                            className='btn btn-dark'
+                            onClick={() => setModalIsOpen(false)}
+                        >
+                            Close
+                        </button>
+                    </div>
+                </Modal>
+            </div>
         </Drawer>
     );
 };

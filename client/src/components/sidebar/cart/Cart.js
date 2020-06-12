@@ -14,12 +14,12 @@ const Cart = () => {
     }
 
     return (
-        <Fragment>
+        <div className='cart'>
             {displayedModules.length !== 0 &&
                 displayedModules.map((module) => (
                     <CartItem module={module} key={module._id} />
                 ))}
-        </Fragment>
+        </div>
     );
 };
 

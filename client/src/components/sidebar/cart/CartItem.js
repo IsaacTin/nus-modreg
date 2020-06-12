@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import ModuleContext from '../../../context/module/moduleContext';
 import PropTypes from 'prop-types';
-import Trash from './trash.png';
 
 const CartItem = ({ module }) => {
     const moduleContext = useContext(ModuleContext);
@@ -11,7 +10,6 @@ const CartItem = ({ module }) => {
 
     const onDelete = () => {
         deleteModule(_id);
-        //Can't delete
     };
 
     return (
@@ -19,8 +17,8 @@ const CartItem = ({ module }) => {
             Module name: {moduleName}
             <br />
             Module Code: {moduleCode} <br />
-            <button className='Delete' onClick={onDelete}>
-                <img className='Trash' src={Trash} />
+            <button className='btn btn-sm btn-light' onClick={onDelete}>
+                <i className='far fa-trash-alt'></i>{' '}
             </button>
         </div>
     );
