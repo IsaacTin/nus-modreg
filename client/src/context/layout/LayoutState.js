@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import LayoutContext from './layoutContext';
 import layoutReducer from './layoutReducer';
-import { TOGGLE_SIDEBAR } from '../types';
+import { TOGGLE_SIDEBAR, CLOSE_SIDEBAR } from '../types';
 
 const LayoutState = (props) => {
     const initialState = {
@@ -16,11 +16,18 @@ const LayoutState = (props) => {
         });
     };
 
+    const closeSidebar = () => {
+        dispatch({
+            type: CLOSE_SIDEBAR
+        });
+    };
+
     return (
         <LayoutContext.Provider
             value={{
                 isSidebarOpen: state.isSidebarOpen,
-                toggleSidebar
+                toggleSidebar,
+                closeSidebar
             }}
         >
             {props.children}

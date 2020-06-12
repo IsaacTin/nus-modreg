@@ -27,3 +27,4 @@ export const DELETE_SELECTION = 'DELETE_SELECTION';
 export const CLEARALL_SELECTION = 'CLEAR_SELECTION';
 // layout types
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';

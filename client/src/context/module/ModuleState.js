@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import ModuleContext from './moduleContext';
 import moduleReducer from './moduleReducer';
+import setAuthToken from '../../utils/setAuthToken';
 import {
     GET_MODULES,
     MODULE_ERROR,
@@ -27,7 +28,12 @@ const ModuleState = (props) => {
     // get all the confirmed modules that the user already has in the database; could return an empty array if there are no modules
     const getModules = async () => {
         try {
-            const res = await axios.get('/api/user-modules');
+            // impt to have this if the token is required
+            if (localStorage.token) {
+                setAuthToken(localStorage.token);
+            }
+
+            const res = await axios.get('api/user-modules');
             dispatch({
                 type: GET_MODULES,
                 payload: res.data
@@ -35,6 +41,7 @@ const ModuleState = (props) => {
         } catch (error) {
             dispatch({
                 type: MODULE_ERROR,
+                // potentially buggy
                 payload: error.response.msg
             });
         }

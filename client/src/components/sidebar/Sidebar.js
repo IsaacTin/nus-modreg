@@ -23,20 +23,24 @@ const Sidebar = ({ pageWrapId }) => {
         displayedModules
     } = moduleContext;
 
-    const { isSidebarOpen, toggleSidebar } = layoutContext;
+    const { isSidebarOpen } = layoutContext;
 
     useEffect(() => {
         getModules();
-        if (confirmedModules !== null && currentModules === null) {
+        // es-lint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        if (confirmedModules !== null && currentModules.length === 0) {
             setCurrentModules(confirmedModules);
         }
-        if (currentModules !== null && displayedModules === null) {
+        if (currentModules.length > 0) {
             const fetchModules = async () => {
                 setDisplayedModules(await moduleArrayConverter(currentModules));
             };
             fetchModules();
         }
-    }, [confirmedModules, currentModules, displayedModules]);
+    }, [confirmedModules, currentModules]);
 
     return (
         <Drawer

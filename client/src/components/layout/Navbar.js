@@ -11,10 +11,11 @@ const Navbar = () => {
     const layoutContext = useContext(LayoutContext);
 
     const { isAuthenticated, user, logout } = authContext;
-    const { isSidebarOpen, toggleSidebar } = layoutContext;
+    const { isSidebarOpen, toggleSidebar, closeSidebar } = layoutContext;
 
     const onLogout = () => {
         logout();
+        closeSidebar();
     };
 
     const authLinks = (

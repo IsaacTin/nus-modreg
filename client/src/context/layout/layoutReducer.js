@@ -1,4 +1,4 @@
-import { TOGGLE_SIDEBAR } from '../types';
+import { TOGGLE_SIDEBAR, CLOSE_SIDEBAR } from '../types';
 
 export default (state, action) => {
     switch (action.type) {
@@ -6,6 +6,11 @@ export default (state, action) => {
             return {
                 ...state,
                 isSidebarOpen: !state.isSidebarOpen
+            };
+        case CLOSE_SIDEBAR:
+            return {
+                ...state,
+                isSidebarOpen: false
             };
         default:
             return state;
