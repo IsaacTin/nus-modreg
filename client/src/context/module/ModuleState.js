@@ -17,7 +17,43 @@ import {
 const ModuleState = (props) => {
     const initialState = {
         currentModules: [],
-        displayedModules: null,
+        displayedModules: [
+            {
+                moduleName: "module 1",
+                moduleCode: "module 1",
+                startTime: "0800",
+                endTime: "1000",
+                day: "Monday"
+            },
+            {
+                moduleName: "module 2",
+                moduleCode: "module 2",
+                startTime: "1200",
+                endTime: "1300",
+                day: "Tuesday"
+            },
+            {
+                moduleName: "module 3",
+                moduleCode: "module 3",
+                startTime: "1600",
+                endTime: "1700",
+                day: "Wednesday"
+            },
+            {
+                moduleName: "module 4",
+                moduleCode: "module 4",
+                startTime: "0900",
+                endTime: "1000",
+                day: "Thursday"
+            },
+            {
+                moduleName: "module 5",
+                moduleCode: "module 5",
+                startTime: "0800",
+                endTime: "1000",
+                day: "Friday"
+            }
+        ],
         confirmedModules: null,
         error: null
     };
