@@ -16,6 +16,7 @@ import AlertState from './context/alert/AlertState';
 import SearchState from './context/search/SearchState';
 
 import './App.css';
+import Nusmods from './components/nusmods/Nusmods';
 
 const App = () => {
     return (
@@ -27,7 +28,8 @@ const App = () => {
                             <Router>
                                 <Fragment>
                                     <Navbar />
-                                    <div className='container'>
+                                    <Nusmods />
+                                    {/*<div className='container'>
                                         <Alerts />
                                         <Switch>
                                             <PrivateRoute
@@ -51,7 +53,7 @@ const App = () => {
                                                 component={Login}
                                             />
                                         </Switch>
-                                    </div>
+    </div>*/}
                                 </Fragment>
                             </Router>
                         </DndProvider>
