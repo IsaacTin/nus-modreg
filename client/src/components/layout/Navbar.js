@@ -25,7 +25,7 @@ const Navbar = () => {
     const authLinks = (
         <Fragment>
             <li className='nav-text'>
-                <h4>{user && user.name}</h4>
+                <div>{user && user.name}</div>
             </li>
             <li className='nav-item'>
                 <a

@@ -53,7 +53,7 @@ const Sidebar = ({ pageWrapId }) => {
             variant={'persistent'}
         >
             <div className='text-center'>
-                <h2>Your modules:</h2>
+                <h3>Your modules:</h3>
             </div>
             <Cart />
             <button
