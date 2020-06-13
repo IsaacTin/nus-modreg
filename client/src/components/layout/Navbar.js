@@ -3,19 +3,23 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 import LayoutContext from '../../context/layout/layoutContext';
+import ModuleContext from '../../context/module/moduleContext';
 import Sidebar from '../sidebar/Sidebar';
 import nus_logo from './nus_logo.png';
 
 const Navbar = () => {
     const authContext = useContext(AuthContext);
     const layoutContext = useContext(LayoutContext);
+    const moduleContext = useContext(ModuleContext);
 
     const { isAuthenticated, user, logout } = authContext;
     const { isSidebarOpen, toggleSidebar, closeSidebar } = layoutContext;
+    const { clearModules } = moduleContext;
 
     const onLogout = () => {
         logout();
         closeSidebar();
+        clearModules();
     };
 
     const authLinks = (

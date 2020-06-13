@@ -12,12 +12,13 @@ import {
     DELETE_MODULE,
     UPDATE_RANKINGS,
     SET_CURRENT_MODULES,
+    CLEAR_CURRENT_MODULES,
     SET_DISPLAYED_MODULES
 } from '../types';
 
 const ModuleState = (props) => {
     const initialState = {
-        currentModules: [],
+        currentModules: JSON.parse(localStorage.getItem('currentModules')),
         displayedModules: null,
         confirmedModules: null,
         error: null
@@ -134,6 +135,12 @@ const ModuleState = (props) => {
         });
     };
 
+    const clearCurrentModules = () => {
+        dispatch({
+            type: CLEAR_CURRENT_MODULES
+        });
+    };
+
     const setDisplayedModules = (modules) => {
         dispatch({
             type: SET_DISPLAYED_MODULES,
@@ -156,6 +163,7 @@ const ModuleState = (props) => {
                 deleteModule,
                 updateModuleRankings,
                 setCurrentModules,
+                clearCurrentModules,
                 setDisplayedModules
             }}
         >

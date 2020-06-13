@@ -7,6 +7,7 @@ import {
     DELETE_MODULE,
     UPDATE_RANKINGS,
     SET_CURRENT_MODULES,
+    CLEAR_CURRENT_MODULES,
     SET_DISPLAYED_MODULES
 } from '../types';
 
@@ -35,14 +36,23 @@ export default (state, action) => {
                 confirmedModules: null,
                 error: null
             };
+        // lai this one for localStorage
         case ADD_MODULES:
+            const updatedModules = [
+                ...new Set([...state.currentModules, ...action.payload])
+            ];
+            localStorage.setItem(
+                'currentModules',
+                JSON.stringify(updatedModules)
+            );
             return {
                 ...state,
-                currentModules: [
-                    ...new Set([...state.currentModules, ...action.payload])
-                ],
+                currentModules: JSON.parse(
+                    localStorage.getItem('currentModules')
+                ),
                 displayedModules: null
             };
+        // lai this one for localStorage
         case DELETE_MODULE:
             return {
                 ...state,
@@ -59,9 +69,25 @@ export default (state, action) => {
                 currentModules: action.payload
             };
         case SET_CURRENT_MODULES:
+            localStorage.setItem(
+                'currentModules',
+                JSON.stringify(action.payload)
+            );
             return {
                 ...state,
-                currentModules: action.payload
+                currentModules: JSON.parse(
+                    localStorage.getItem('currentModules')
+                )
+            };
+        // return {
+        //     ...state,
+        //     currentModules: action.payload
+        // };
+        case CLEAR_CURRENT_MODULES:
+            localStorage.removeItem('currentModules');
+            return {
+                ...state,
+                currentModules: null
             };
         case SET_DISPLAYED_MODULES:
             return {

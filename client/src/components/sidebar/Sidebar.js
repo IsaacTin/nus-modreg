@@ -31,17 +31,19 @@ const Sidebar = ({ pageWrapId }) => {
     }, []);
 
     useEffect(() => {
-        // buggy; will refresh the moment currentModules becomes empty
-        if (confirmedModules !== null && currentModules.length === 0) {
+        if (confirmedModules !== null && currentModules === null) {
             setCurrentModules(confirmedModules);
         }
-        if (currentModules.length > 0) {
+    }, [confirmedModules, currentModules]);
+
+    useEffect(() => {
+        if (currentModules !== null && currentModules.length > 0) {
             const fetchModules = async () => {
                 setDisplayedModules(await moduleArrayConverter(currentModules));
             };
             fetchModules();
         }
-    }, [confirmedModules, currentModules]);
+    }, [currentModules]);
 
     return (
         <Drawer
