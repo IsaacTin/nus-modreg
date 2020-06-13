@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import ModuleContext from './moduleContext';
 import moduleReducer from './moduleReducer';
+import setAuthToken from '../../utils/setAuthToken';
 import {
     GET_MODULES,
     MODULE_ERROR,
@@ -11,49 +12,14 @@ import {
     DELETE_MODULE,
     UPDATE_RANKINGS,
     SET_CURRENT_MODULES,
+    CLEAR_CURRENT_MODULES,
     SET_DISPLAYED_MODULES
 } from '../types';
 
 const ModuleState = (props) => {
     const initialState = {
-        currentModules: [],
-        displayedModules: [
-            {
-                moduleName: "module 1",
-                moduleCode: "module 1",
-                startTime: "0800",
-                endTime: "1000",
-                day: "Monday"
-            },
-            {
-                moduleName: "module 2",
-                moduleCode: "module 2",
-                startTime: "1200",
-                endTime: "1300",
-                day: "Tuesday"
-            },
-            {
-                moduleName: "module 3",
-                moduleCode: "module 3",
-                startTime: "1600",
-                endTime: "1700",
-                day: "Wednesday"
-            },
-            {
-                moduleName: "module 4",
-                moduleCode: "module 4",
-                startTime: "0900",
-                endTime: "1000",
-                day: "Thursday"
-            },
-            {
-                moduleName: "module 5",
-                moduleCode: "module 5",
-                startTime: "0800",
-                endTime: "1000",
-                day: "Friday"
-            }
-        ],
+        currentModules: JSON.parse(localStorage.getItem('currentModules')),
+        displayedModules: null,
         confirmedModules: null,
         error: null
     };
@@ -63,7 +29,12 @@ const ModuleState = (props) => {
     // get all the confirmed modules that the user already has in the database; could return an empty array if there are no modules
     const getModules = async () => {
         try {
-            const res = await axios.get('/api/user-modules');
+            // impt to have this if the token is required
+            if (localStorage.token) {
+                setAuthToken(localStorage.token);
+            }
+
+            const res = await axios.get('api/user-modules');
             dispatch({
                 type: GET_MODULES,
                 payload: res.data
@@ -71,6 +42,7 @@ const ModuleState = (props) => {
         } catch (error) {
             dispatch({
                 type: MODULE_ERROR,
+                // potentially buggy
                 payload: error.response.msg
             });
         }
@@ -163,6 +135,12 @@ const ModuleState = (props) => {
         });
     };
 
+    const clearCurrentModules = () => {
+        dispatch({
+            type: CLEAR_CURRENT_MODULES
+        });
+    };
+
     const setDisplayedModules = (modules) => {
         dispatch({
             type: SET_DISPLAYED_MODULES,
@@ -185,6 +163,7 @@ const ModuleState = (props) => {
                 deleteModule,
                 updateModuleRankings,
                 setCurrentModules,
+                clearCurrentModules,
                 setDisplayedModules
             }}
         >

@@ -54,7 +54,6 @@ const SearchModules = () => {
         if (error === null || error === undefined) {
             clearSelection();
             setDisplaySelection([]);
-            console.log(displaySelection);
             // notify user that selection has succesfully been added
         } else {
             // print out the stupid error
