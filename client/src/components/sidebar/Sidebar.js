@@ -27,7 +27,7 @@ const Sidebar = ({ pageWrapId }) => {
 
     useEffect(() => {
         getModules();
-        // es-lint-disable-next-line
+        // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
