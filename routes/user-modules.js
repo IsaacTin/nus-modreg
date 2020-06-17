@@ -4,6 +4,7 @@ const auth = require('../middleware/auth');
 
 const User = require('../models/User');
 const Module = require('../models/Module');
+const NusmodsModule = require('../models/NusmodsModule');
 
 // User-related module requests
 
@@ -25,7 +26,7 @@ router.get('/', auth, async (req, res) => {
 // @access Public
 router.get('/:moduleid', async (req, res) => {
     try {
-        const module = await Module.findById(req.params.moduleid);
+        const module = await NusmodsModule.findById(req.params.moduleid);
         res.json(module);
     } catch (error) {
         console.error(error.message);
