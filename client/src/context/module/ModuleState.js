@@ -34,7 +34,7 @@ const ModuleState = (props) => {
                 setAuthToken(localStorage.token);
             }
 
-            const res = await axios.get('api/user-modules');
+            const res = await axios.get('/api/user-modules');
             dispatch({
                 type: GET_MODULES,
                 payload: res.data
@@ -58,7 +58,7 @@ const ModuleState = (props) => {
 
         try {
             const res = await axios.put(
-                `api/user-modules/${id}`,
+                `/api/user-modules/${id}`,
                 state.currentModules,
                 config
             );

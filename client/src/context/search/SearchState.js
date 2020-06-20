@@ -8,13 +8,17 @@ import {
     CLEAR_FILTER,
     ADD_SELECTION,
     DELETE_SELECTION,
-    CLEARALL_SELECTION
+    CLEARALL_SELECTION,
+    IS_SEARCHED_TRUE,
+    IS_SEARCHED_FALSE
 } from '../types';
 
 const SearchState = (props) => {
     const initialState = {
         filtered: null,
         selection: [],
+        searchLoading: true,
+        isSearched: false,
         error: null
     };
 
@@ -22,14 +26,9 @@ const SearchState = (props) => {
 
     // filter modules from database
     const filterModules = async (text) => {
-        // const config = {
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // };
-
         try {
-            const res = await axios.get(`api/search-modules/${text}`);
+            console.log(`/api/search-modules/${text}`);
+            const res = await axios.get(`/api/search-modules/${text}`);
             dispatch({
                 type: FILTER_MODULES,
                 payload: res.data
@@ -46,6 +45,18 @@ const SearchState = (props) => {
     const clearFilter = () => {
         dispatch({
             type: CLEAR_FILTER
+        });
+    };
+
+    const isSearchedTrue = () => {
+        dispatch({
+            type: IS_SEARCHED_TRUE
+        });
+    };
+
+    const isSearchedFalse = () => {
+        dispatch({
+            type: IS_SEARCHED_FALSE
         });
     };
 
@@ -77,12 +88,16 @@ const SearchState = (props) => {
             value={{
                 filtered: state.filtered,
                 selection: state.selection,
+                searchLoading: state.searchLoading,
+                isSearched: state.isSearched,
                 error: state.error,
                 filterModules,
                 clearFilter,
                 addSelection,
                 deleteSelection,
-                clearSelection
+                clearSelection,
+                isSearchedTrue,
+                isSearchedFalse
             }}
         >
             {props.children}

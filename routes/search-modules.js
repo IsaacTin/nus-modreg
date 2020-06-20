@@ -87,24 +87,22 @@ router.get('/:search', async (req, res) => {
 
     const title = new RegExp(text, 'i');
     const moduleCode = new RegExp(text, 'i');
-    const department = new RegExp(text, 'i');
-    const faculty = new RegExp(text, 'i');
+    // const department = new RegExp(text, 'i');
+    // const faculty = new RegExp(text, 'i');
 
     try {
         const searchResultsByTitle = await NusmodsModule.find({ title });
         const searchResultsByCode = await NusmodsModule.find({ moduleCode });
-        const searchResultsByDepartment = await NusmodsModule.find({
-            department
-        });
-        const searchResultsByFaculty = await NusmodsModule.find({ faculty });
+        // const searchResultsByDepartment = await NusmodsModule.find({
+        //     department
+        // });
+        // const searchResultsByFaculty = await NusmodsModule.find({ faculty });
 
         const filtered = [
             ...new Set(
                 [
                     ...searchResultsByTitle,
-                    ...searchResultsByCode,
-                    ...searchResultsByDepartment,
-                    ...searchResultsByFaculty
+                    ...searchResultsByCode
                 ].map((module) => module._id.toString())
             )
         ];

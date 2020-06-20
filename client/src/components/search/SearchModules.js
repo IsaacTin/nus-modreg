@@ -1,6 +1,7 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ModuleItem from './ModuleItem';
+import Spinner from '../layout/Spinner';
 import SearchContext from '../../context/search/searchContext';
 import ModuleContext from '../../context/module/moduleContext';
 import moduleArrayConverter from '../../utils/moduleArrayConverter';
@@ -11,22 +12,29 @@ const SearchModules = () => {
 
     const [displaySearchResults, setDisplaySearchResults] = useState([]);
     const [displaySelection, setDisplaySelection] = useState([]);
+    const [searching, setSearching] = useState(false);
 
     const {
         filtered,
         selection,
         deleteSelection,
-        clearSelection
+        clearSelection,
+        searchLoading,
+        isSearched,
+        isSearchedFalse
     } = searchContext;
     const { addModules, error } = moduleContext;
 
     useEffect(() => {
         if (filtered !== null) {
+            setSearching(true);
             const fetchSearch = async () => {
                 setDisplaySearchResults(await moduleArrayConverter(filtered));
+                setSearching(false);
             };
             fetchSearch();
         } else {
+            isSearchedFalse();
             setDisplaySearchResults([]);
         }
 
@@ -40,7 +48,7 @@ const SearchModules = () => {
         }
     }, [filtered, selection]);
 
-    if (filtered !== null && displaySearchResults.length === 0) {
+    if (filtered !== null && displaySearchResults.length === 0 && !searching) {
         return <h4>No module found.</h4>;
     }
 
@@ -68,18 +76,25 @@ const SearchModules = () => {
     return (
         <Fragment>
             <TransitionGroup>
-                <div className='grid-3'>
-                    {displaySearchResults.length !== 0 &&
-                        displaySearchResults.map((module) => (
-                            <CSSTransition
-                                key={module._id}
-                                timeout={500}
-                                classNames='item'
-                            >
-                                <ModuleItem key={module._id} module={module} />
-                            </CSSTransition>
-                        ))}
-                </div>
+                {searching ? (
+                    <Spinner />
+                ) : (
+                    <div className='grid-3'>
+                        {displaySearchResults.length !== 0 &&
+                            displaySearchResults.map((module) => (
+                                <CSSTransition
+                                    key={module._id}
+                                    timeout={500}
+                                    classNames='item'
+                                >
+                                    <ModuleItem
+                                        key={module._id}
+                                        module={module}
+                                    />
+                                </CSSTransition>
+                            ))}
+                    </div>
+                )}
             </TransitionGroup>
             <ul className='container grid-4'>
                 {displaySelection.length !== 0 &&

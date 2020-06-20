@@ -1,8 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import CartItem from './CartItem';
 import ModuleContext from '../../../context/module/moduleContext';
-import moduleArrayConverter from '../../../utils/moduleArrayConverter';
-import moduleConverter from '../../../utils/moduleConverter';
 
 const Cart = () => {
     const moduleContext = useContext(ModuleContext);
@@ -13,6 +11,7 @@ const Cart = () => {
         return <h3>No Modules selected</h3>;
     }
 
+    console.log(displayedModules);
     return (
         <div className='cart'>
             {displayedModules.length !== 0 &&

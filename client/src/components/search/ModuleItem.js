@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const ModuleItem = (props) => {
     const searchContext = useContext(SearchContext);
 
-    const { moduleName, moduleCode, moduleCredits } = props.module;
+    const { title, moduleCode, moduleCredit } = props.module;
     const { addSelection, selection } = searchContext;
 
     const onClick = (e) => {
@@ -23,9 +23,9 @@ const ModuleItem = (props) => {
 
     return (
         <button className='card text-left' onClick={onClick}>
-            <div>{moduleName}</div>
+            <div>{title}</div>
             <div>{moduleCode}</div>
-            <div>{`${moduleCredits} MCs`}</div>
+            <div>{`${moduleCredit} MCs`}</div>
         </button>
     );
 };

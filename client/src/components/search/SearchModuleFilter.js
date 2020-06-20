@@ -1,34 +1,46 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import SearchContext from '../../context/search/searchContext';
 
 const SearchModuleFilter = () => {
     const searchContext = useContext(SearchContext);
-    const text = useRef('');
+    // const text = useRef('');
+    const [text, setText] = useState('');
 
-    const { filtered, filterModules, clearFilter } = searchContext;
-
-    useEffect(() => {
-        if (filtered === null) {
-            text.current.value = '';
-        }
-    });
+    const {
+        filtered,
+        filterModules,
+        clearFilter,
+        isSearched,
+        isSearchedTrue
+    } = searchContext;
 
     const onChange = (e) => {
-        if (text.current.value !== '') {
-            filterModules(e.target.value);
+        setText(e.target.value);
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        clearFilter();
+        isSearchedTrue();
+        if (text !== '') {
+            filterModules(text);
+            setText('');
         } else {
-            clearFilter();
+            // throw alert
         }
     };
+
     return (
         <div className='searchbar'>
-            <form>
+            <form onSubmit={onSubmit}>
                 <input
-                    ref={text}
+                    name='text'
                     type='text'
-                    placeholder='Search for modules...'
+                    placeholder='Search for modules by name or module code...'
+                    value={text}
                     onChange={onChange}
                 />
+                <input type='submit' value='Search' className='btn btn-light' />
             </form>
         </div>
     );

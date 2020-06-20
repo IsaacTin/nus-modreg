@@ -6,15 +6,16 @@ const CartItem = ({ module }) => {
     const moduleContext = useContext(ModuleContext);
     const { deleteModule } = moduleContext;
 
-    const { _id, moduleName, moduleCode } = module;
+    const { _id, title, moduleCode } = module;
 
     const onDelete = () => {
+        console.log(`id: ${_id}`);
         deleteModule(_id);
     };
 
     return (
         <div className='cart-item'>
-            Module name: {moduleName}
+            Module Name: {title}
             <br />
             Module Code: {moduleCode} <br />
             <button className='btn btn-sm btn-light' onClick={onDelete}>

@@ -36,6 +36,7 @@ const Sidebar = ({ pageWrapId }) => {
         }
     }, [confirmedModules, currentModules]);
 
+    // console.log(currentModules);
     useEffect(() => {
         if (currentModules !== null && currentModules.length > 0) {
             const fetchModules = async () => {
