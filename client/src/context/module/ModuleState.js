@@ -17,6 +17,30 @@ import {
 } from '../types';
 
 const ModuleState = (props) => {
+    // new iteration of currentModules:
+    // const currentModules = [
+    //     {
+    //         moduleCode: '',
+    //         title: '',
+    //         lessonType: '',
+    //         classNo: '',
+    //         size: 0,
+    //         timing: [
+    //             {
+    //                 startTime: '',
+    //                 endTime: '',
+    //                 day: '',
+    //                 venue: ''
+    //             },
+    //             {
+    //                 startTime: '',
+    //                 endTime: '',
+    //                 day: '',
+    //                 venue: ''
+    //             }
+    //         ]
+    //     }
+    // ];
     const initialState = {
         currentModules: JSON.parse(localStorage.getItem('currentModules')),
         displayedModules: null,
@@ -82,8 +106,7 @@ const ModuleState = (props) => {
     };
 
     // add an array of modules to the currentModules array
-    // NOTE!! adds the id to the array
-    // note: this function does not deal with the API; rather it deals with the global state
+    // NOTE!! adds the id to the array => will need to change this shit for the NUSmods API
     const addModules = (modules) => {
         if (!modules) {
             dispatch({
@@ -98,7 +121,7 @@ const ModuleState = (props) => {
         });
     };
 
-    // delete specified module
+    // delete specified module => will need to change this shit for the NUSmods API
     const deleteModule = (module) => {
         if (!module) {
             dispatch({
