@@ -54,13 +54,7 @@ const Ranking = () => {
                             <RankingItem
                                 key={index}
                                 module={module}
-                                index={currentModules.indexOf(module)}
-                                convertedModule={
-                                    displayedModules[
-                                        currentModules.indexOf(module)
-                                    ]
-                                }
-                                rank={currentModules.indexOf(module) + 1}
+                                index={index}
                             />
                         ))}
                         {provided.placeholder}

@@ -37,14 +37,14 @@ const Sidebar = ({ pageWrapId }) => {
     }, [confirmedModules, currentModules]);
 
     // console.log(currentModules);
-    useEffect(() => {
-        if (currentModules !== null && currentModules.length > 0) {
-            const fetchModules = async () => {
-                setDisplayedModules(await moduleArrayConverter(currentModules));
-            };
-            fetchModules();
-        }
-    }, [currentModules]);
+    // useEffect(() => {
+    //     if (currentModules !== null && currentModules.length > 0) {
+    //         const fetchModules = async () => {
+    //             setDisplayedModules(await moduleArrayConverter(currentModules));
+    //         };
+    //         fetchModules();
+    //     }
+    // }, [currentModules]);
 
     return (
         <Drawer

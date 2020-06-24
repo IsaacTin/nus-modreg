@@ -91,14 +91,14 @@ const SearchModules = () => {
                                         module.semesterData[0].timetable
                                             .length > 0
                                 )
-                                .map((module) => (
+                                .map((module, index) => (
                                     <CSSTransition
                                         key={module._id}
                                         timeout={500}
                                         classNames='item'
                                     >
                                         <ModuleItem
-                                            key={module.moduleCode}
+                                            key={index}
                                             module={module}
                                         />
                                     </CSSTransition>
@@ -108,8 +108,8 @@ const SearchModules = () => {
             </TransitionGroup>
             <ul className='container grid-4'>
                 {selection.length !== 0 &&
-                    selection.map((module) => (
-                        <li key={module.moduleCode} className='card text-left'>
+                    selection.map((module, index) => (
+                        <li key={index} className='card text-left'>
                             {module.title}
                             {` (${module.moduleCode}) `}
                             <br />
@@ -124,7 +124,7 @@ const SearchModules = () => {
                     ))}
             </ul>
             <button className='btn btn-light' onClick={onClickConfirm}>
-                Confirm Modules
+                Add to cart
             </button>
         </Fragment>
     );

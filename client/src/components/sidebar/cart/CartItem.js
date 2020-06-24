@@ -9,7 +9,7 @@ const CartItem = ({ module }) => {
     const { title, moduleCode } = module;
 
     const onDelete = () => {
-        // deleteModule(_id);
+        deleteModule(module);
     };
 
     return (
