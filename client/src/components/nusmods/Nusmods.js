@@ -42,15 +42,11 @@ const Nusmods = () => {
                     if (existing.length === 0) {
                         result.push(module);
                     }
-                    console.log(result);
                     setDisplayedModules(result);
                 });
             }
         }
     }, [currentModules]);
-
-    console.log(currentModules);
-    console.log(displayedModules);
 
     //const onChange = (module) => {
     /* eslint-disable */

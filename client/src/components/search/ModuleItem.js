@@ -12,53 +12,60 @@ const ModuleItem = (props) => {
 
     const [selectedModule, setSelectedModule] = useState('');
 
-    console.log(props.module);
     // might need to get from config
     const BIDDING_ROUND = 'ROUND_1';
 
-    const onClick = (e) => {
-        e.preventDefault();
-        if (
-            selection.length === 0 ||
-            !selection.includes(props.module._id.toString())
-        ) {
-            addSelection(props.module);
-        } else {
-            // change to alert with alert context
-            console.log('salah la bro');
-        }
-    };
+    // const onClick = (e) => {
+    //     e.preventDefault();
+    //     if (
+    //         selection.length === 0 ||
+    //         !selection.includes(props.module._id.toString())
+    //     ) {
+    //         addSelection(props.module);
+    //     } else {
+    //         // change to alert with alert context
+    //         console.log('salah la bro');
+    //     }
+    // };
 
     const onChange = (e) => {
-        console.log(JSON.parse(e.target.value));
         setSelectedModule(e.target.value);
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
         const jsonModule = JSON.parse(selectedModule);
-        console.log(jsonModule);
-        const formattedModule = {
-            moduleCode: moduleCode,
-            title: title,
-            lessonType: jsonModule.lessonType,
-            classNo: jsonModule.classNo,
-            size: jsonModule.size,
-            timing: [...jsonModule.venue].map((venue, index) => {
-                return {
-                    startTime: jsonModule.startTime[index],
-                    endTime: jsonModule.endTime[index],
-                    day: jsonModule.day[index],
-                    venue: venue
-                };
-            })
-        };
-        console.log(formattedModule);
-        addSelection(formattedModule);
+        const duplicates = selection.filter((lesson) => {
+            return (
+                moduleCode === lesson.moduleCode &&
+                jsonModule.lessonType === lesson.lessonType &&
+                jsonModule.classNo === lesson.classNo
+            );
+        });
+        if (duplicates.length === 0) {
+            const formattedModule = {
+                moduleCode: moduleCode,
+                title: title,
+                lessonType: jsonModule.lessonType,
+                classNo: jsonModule.classNo,
+                size: jsonModule.size,
+                timing: [...jsonModule.venue].map((venue, index) => {
+                    return {
+                        startTime: jsonModule.startTime[index],
+                        endTime: jsonModule.endTime[index],
+                        day: jsonModule.day[index],
+                        venue: venue
+                    };
+                })
+            };
+            addSelection(formattedModule);
+        } else {
+            // throw alert
+            console.log('salah bro');
+        }
     };
 
     const mergeSameClassNoTimings = (timetable) => {
-        console.log(timetable);
         const result = [];
 
         timetable.forEach((lesson) => {
@@ -95,7 +102,6 @@ const ModuleItem = (props) => {
                 result.push(formattedLesson);
             }
         });
-        console.log(result);
         return result;
     };
 
@@ -118,8 +124,6 @@ const ModuleItem = (props) => {
                 );
             }
         });
-        console.log(props.module.moduleCode);
-        console.log(mergedTimetable);
     }
 
     useEffect(() => {
