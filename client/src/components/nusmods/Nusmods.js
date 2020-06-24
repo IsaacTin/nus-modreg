@@ -28,6 +28,9 @@ const Nusmods = () => {
         }
     }, []);
 
+    console.log(currentModules);
+    console.log(displayedModules);
+
     //const onChange = (module) => {
     /* eslint-disable */
     /*let temp = []
@@ -57,54 +60,55 @@ const Nusmods = () => {
                         <Table.HeaderCell>{'1700 - 1800'}</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
-
-                <Table.Body>
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Monday'
-                                ).length !== 0
-                        )}
-                        day='Monday'
-                    />
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Tuesday'
-                                ).length !== 0
-                        )}
-                        day='Tuesday'
-                    />
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Wednesday'
-                                ).length !== 0
-                        )}
-                        day='Wednesday'
-                    />
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Thursday'
-                                ).length !== 0
-                        )}
-                        day='Thursday'
-                    />
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Friday'
-                                ).length !== 0
-                        )}
-                        day='Friday'
-                    />
-                </Table.Body>
+                {displayedModules.length > 0 && (
+                    <Table.Body>
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Monday'
+                                    ).length !== 0
+                            )}
+                            day='Monday'
+                        />
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Tuesday'
+                                    ).length !== 0
+                            )}
+                            day='Tuesday'
+                        />
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Wednesday'
+                                    ).length !== 0
+                            )}
+                            day='Wednesday'
+                        />
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Thursday'
+                                    ).length !== 0
+                            )}
+                            day='Thursday'
+                        />
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Friday'
+                                    ).length !== 0
+                            )}
+                            day='Friday'
+                        />
+                    </Table.Body>
+                )}
             </Table>
         </div>
     );
