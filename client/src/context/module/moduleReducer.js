@@ -32,7 +32,7 @@ export default (state, action) => {
             return {
                 ...state,
                 currentModules: null,
-                displayedModules: null,
+                displayedModules: [],
                 confirmedModules: null,
                 error: null
             };
@@ -49,18 +49,25 @@ export default (state, action) => {
                 ...state,
                 currentModules: JSON.parse(
                     localStorage.getItem('currentModules')
-                ),
-                displayedModules: null
+                )
             };
         // lai this one for localStorage
         case DELETE_MODULE:
+            const refreshedModules = state.currentModules.filter((module) => {
+                return (
+                    module.moduleCode !== action.payload.moduleCode ||
+                    module.classNo !== action.payload.classNo ||
+                    module.lessonType !== action.payload.lessonType
+                );
+            });
+            localStorage.setItem(
+                'currentModules',
+                JSON.stringify(refreshedModules)
+            );
             return {
                 ...state,
-                currentModules: state.currentModules.filter(
-                    (module) => module !== action.payload
-                ),
-                displayedModules: state.displayedModules.filter(
-                    (module) => module._id !== action.payload
+                currentModules: JSON.parse(
+                    localStorage.getItem('currentModules')
                 )
             };
         case UPDATE_RANKINGS:

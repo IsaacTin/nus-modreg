@@ -141,6 +141,7 @@ const ModuleState = (props) => {
     };
 
     const setDisplayedModules = (modules) => {
+        console.log(modules);
         dispatch({
             type: SET_DISPLAYED_MODULES,
             payload: modules
