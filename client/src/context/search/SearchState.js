@@ -64,7 +64,7 @@ const SearchState = (props) => {
     const addSelection = (module) => {
         dispatch({
             type: ADD_SELECTION,
-            payload: module._id
+            payload: module
         });
     };
 
@@ -72,7 +72,7 @@ const SearchState = (props) => {
     const deleteSelection = (module) => {
         dispatch({
             type: DELETE_SELECTION,
-            payload: module._id
+            payload: module
         });
     };
 

@@ -6,11 +6,10 @@ const CartItem = ({ module }) => {
     const moduleContext = useContext(ModuleContext);
     const { deleteModule } = moduleContext;
 
-    const { _id, title, moduleCode } = module;
+    const { title, moduleCode } = module;
 
     const onDelete = () => {
-        console.log(`id: ${_id}`);
-        deleteModule(_id);
+        // deleteModule(_id);
     };
 
     return (

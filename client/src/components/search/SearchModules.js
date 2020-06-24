@@ -10,8 +10,11 @@ const SearchModules = () => {
     const searchContext = useContext(SearchContext);
     const moduleContext = useContext(ModuleContext);
 
+    // displays all the search results from NUSmods API
     const [displaySearchResults, setDisplaySearchResults] = useState([]);
+    // displays the modules that have currently been added to the selection
     const [displaySelection, setDisplaySelection] = useState([]);
+    // used to toggle spinner - logic problem?
     const [searching, setSearching] = useState(false);
 
     const {
@@ -38,14 +41,14 @@ const SearchModules = () => {
             setDisplaySearchResults([]);
         }
 
-        if (selection.length !== 0) {
-            const fetchSelection = async () => {
-                setDisplaySelection(await moduleArrayConverter(selection));
-            };
-            fetchSelection();
-        } else {
-            setDisplaySelection([]);
-        }
+        // if (selection.length !== 0) {
+        //     const fetchSelection = async () => {
+        //         setDisplaySelection(await moduleArrayConverter(selection));
+        //     };
+        //     fetchSelection();
+        // } else {
+        //     setDisplaySelection([]);
+        // }
     }, [filtered, selection]);
 
     if (filtered !== null && displaySearchResults.length === 0 && !searching) {
@@ -81,27 +84,36 @@ const SearchModules = () => {
                 ) : (
                     <div className='grid-3'>
                         {displaySearchResults.length !== 0 &&
-                            displaySearchResults.map((module) => (
-                                <CSSTransition
-                                    key={module._id}
-                                    timeout={500}
-                                    classNames='item'
-                                >
-                                    <ModuleItem
+                            displaySearchResults
+                                .filter(
+                                    (module) =>
+                                        module.semesterData.length > 0 &&
+                                        module.semesterData[0].timetable
+                                            .length > 0
+                                )
+                                .map((module) => (
+                                    <CSSTransition
                                         key={module._id}
-                                        module={module}
-                                    />
-                                </CSSTransition>
-                            ))}
+                                        timeout={500}
+                                        classNames='item'
+                                    >
+                                        <ModuleItem
+                                            key={module.moduleCode}
+                                            module={module}
+                                        />
+                                    </CSSTransition>
+                                ))}
                     </div>
                 )}
             </TransitionGroup>
             <ul className='container grid-4'>
-                {displaySelection.length !== 0 &&
-                    displaySelection.map((module) => (
-                        <li key={module._id} className='card text-left'>
-                            {module.moduleName}
+                {selection.length !== 0 &&
+                    selection.map((module) => (
+                        <li key={module.moduleCode} className='card text-left'>
+                            {module.title}
                             {` (${module.moduleCode}) `}
+                            <br />
+                            {`${module.lessonType} slot: ${module.classNo}`}
                             <button
                                 className='btn btn-sm btn-danger'
                                 onClick={(e) => onDelete(e, module)}

@@ -5,18 +5,18 @@ import ModuleContext from '../../../context/module/moduleContext';
 const Cart = () => {
     const moduleContext = useContext(ModuleContext);
 
-    const { displayedModules } = moduleContext;
+    const { currentModules } = moduleContext;
 
-    if (displayedModules === null || !displayedModules.length) {
+    if (currentModules === null || !currentModules.length) {
         return <h3>No Modules selected</h3>;
     }
 
-    console.log(displayedModules);
+    console.log(currentModules);
     return (
         <div className='cart'>
-            {displayedModules.length !== 0 &&
-                displayedModules.map((module) => (
-                    <CartItem module={module} key={module._id} />
+            {currentModules.length !== 0 &&
+                currentModules.map((module) => (
+                    <CartItem module={module} key={module.moduleCode} />
                 ))}
         </div>
     );
