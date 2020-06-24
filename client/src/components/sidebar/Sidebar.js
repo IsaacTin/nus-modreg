@@ -13,6 +13,7 @@ const Sidebar = ({ pageWrapId }) => {
     const [ModalIsOpen, setModalIsOpen] = useState(false);
     const moduleContext = useContext(ModuleContext);
     const layoutContext = useContext(LayoutContext);
+    const [displayed, setDisplayed] = useState(true)
 
     const {
         currentModules,
@@ -55,7 +56,7 @@ const Sidebar = ({ pageWrapId }) => {
             <div className='text-center'>
                 <h3>Your modules:</h3>
             </div>
-            <Cart />
+            {displayed ? <Cart /> : null}
             <button
                 className='btn btn-light'
                 onClick={() => setModalIsOpen(true)}
