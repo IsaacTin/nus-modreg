@@ -6,10 +6,6 @@ import Rows from './Rows';
 const Nusmods = () => {
     const moduleContext = useContext(ModuleContext);
 
-<<<<<<< HEAD
-    const { displayedModules, currentModules, setDisplayedModules } = moduleContext;
-
-=======
     const {
         displayedModules,
         currentModules,
@@ -62,7 +58,6 @@ const Nusmods = () => {
         })
         setModules(temp)
     }*/
->>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
 
     useEffect(() => {
         if(currentModules !== null) {
@@ -109,66 +104,46 @@ const Nusmods = () => {
                 <Table.Body>
                     <Rows
                         modules={displayedModules.filter(
-<<<<<<< HEAD
-                            (module) => module.timing.filter((time) => time.day === 'Monday').length !== 0
-=======
                             (module) =>
                                 module.timing.filter(
                                     (time) => time.day === 'Monday'
                                 ).length !== 0
->>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Monday'
                     />
                     <Rows
                         modules={displayedModules.filter(
-<<<<<<< HEAD
-                            (module) => module.timing.filter((time) => time.day === 'Tuesday').length !== 0
-=======
                             (module) =>
                                 module.timing.filter(
                                     (time) => time.day === 'Tuesday'
                                 ).length !== 0
->>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Tuesday'
                     />
                     <Rows
                         modules={displayedModules.filter(
-<<<<<<< HEAD
-                            (module) => module.timing.filter((time) => time.day === 'Wednesday').length !== 0
-=======
                             (module) =>
                                 module.timing.filter(
                                     (time) => time.day === 'Wednesday'
                                 ).length !== 0
->>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Wednesday'
                     />
                     <Rows
                         modules={displayedModules.filter(
-<<<<<<< HEAD
-                            (module) => module.timing.filter((time) => time.day === 'Thursday').length !== 0
-=======
                             (module) =>
                                 module.timing.filter(
                                     (time) => time.day === 'Thursday'
                                 ).length !== 0
->>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Thursday'
                     />
                     <Rows
                         modules={displayedModules.filter(
-<<<<<<< HEAD
-                            (module) =>  module.timing.filter((time) => time.day === 'Friday').length !== 0
-=======
                             (module) =>
                                 module.timing.filter(
                                     (time) => time.day === 'Friday'
                                 ).length !== 0
->>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Friday'
                     />

@@ -29,8 +29,7 @@ const App = () => {
                             <DndProvider backend={HTML5Backend}>
                                 <Router>
                                     <Fragment>
-                                        <Nusmods />
-                                        {/*<Navbar />
+                                        <Navbar />
                                         <div className='container'>
                                             <Alerts />
                                             <Switch>
@@ -55,7 +54,7 @@ const App = () => {
                                                     component={Login}
                                                 />
                                             </Switch>
-                                        </div>*/}
+                                        </div>
                                     </Fragment>
                                 </Router>
                             </DndProvider>

@@ -18,68 +18,7 @@ import {
 
 const ModuleState = (props) => {
     const initialState = {
-<<<<<<< HEAD
-        currentModules: [{
-            moduleCode: "CS2100",
-            title: "Computer Organisation",
-            lessonType: "Lecture",
-            classNo: "08",
-            size: 30,
-            timing: [{
-                startTime: "1500",
-                endTime: "1600",
-                day: "Friday",
-                venue: "COM1-0208"
-                },
-                {
-                startTime: "1100",
-                endTime: "1200",
-                day: "Monday",
-                venue: "COM1-0208"
-                }]
-        },
-        {
-            moduleCode: "CS2100",
-            title: "Computer Organisation",
-            lessonType: "Tutorial",
-            classNo: "18",
-            size: 30,
-            timing: [{
-                startTime: "1300",
-                endTime: "1400",
-                day: "Friday",
-                venue: "COM1-0209"
-            }]
-            },
-            {
-                moduleCode: "CS2030",
-                title: "Computer Methodology II",
-                lessonType: "Laboratory",
-                classNo: "18",
-                size: 30,
-                timing: [{
-                    startTime: "1700",
-                    endTime: "1800",
-                    day: "Friday",
-                    venue: "COM1-0211"
-            }]
-        }, 
-        {
-            moduleCode: "CS2030",
-            title: "Computer Methodology II",
-            lessonType: "Laboratory",
-            classNo: "20",
-            size: 30,
-            timing: [{
-                startTime: "1400",
-                endTime: "1500",
-                day: "Tuesday",
-                venue: "COM1-0211"
-        }]
-    }],
-=======
         currentModules: JSON.parse(localStorage.getItem('currentModules')),
->>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
         displayedModules: [],
         confirmedModules: null,
         error: null
