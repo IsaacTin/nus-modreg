@@ -2,10 +2,9 @@ import React, { Fragment, useContext, useRef, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import LayoutContext from '../../../context/layout/layoutContext';
 
-const RankingItem = ({ module, rank, index, convertedModule }) => {
+const RankingItem = ({ module, index }) => {
     const layoutContext = useContext(LayoutContext);
 
-    const { moduleName, moduleCode } = convertedModule;
     const { isSidebarOpen } = layoutContext;
 
     return (
@@ -17,11 +16,11 @@ const RankingItem = ({ module, rank, index, convertedModule }) => {
                     {...provided.dragHandleProps}
                 >
                     <div className='ranking-item'>
-                        Module name: {moduleName}
+                        Module name: {module.title}
                         <br />
-                        Module Code: {moduleCode}
+                        Module Code: {module.moduleCode}
                         <br />
-                        Module Rank: {rank}
+                        Module Rank: {index + 1}
                     </div>
                 </div>
             )}
