@@ -24,13 +24,11 @@ const Nusmods = () => {
                     ? module1
                     : temp.push(module1)
             );
-            console.log(temp)
             setDisplayedModules(temp);
         }
-    }, [displayedModules, currentModules]);
+    }, [currentModules]);
 
-    console.log(currentModules);
-    console.log(displayedModules);
+    console.log(displayedModules)
 
     //const onChange = (module) => {
     /* eslint-disable */
