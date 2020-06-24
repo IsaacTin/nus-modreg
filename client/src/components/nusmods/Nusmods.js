@@ -6,8 +6,63 @@ import Rows from './Rows';
 const Nusmods = () => {
     const moduleContext = useContext(ModuleContext);
 
+<<<<<<< HEAD
     const { displayedModules, currentModules, setDisplayedModules } = moduleContext;
 
+=======
+    const {
+        displayedModules,
+        currentModules,
+        setDisplayedModules
+    } = moduleContext;
+
+    useEffect(() => {
+        // if (currentModules !== null) {
+        //     let temp = [];
+        //     currentModules.forEach((module1) =>
+        //         temp.filter(
+        //             (module2) =>
+        //                 module1.moduleCode === module2.moduleCode &&
+        //                 module1.lessonType === module2.lessonType
+        //         ).length !== 0
+        //             ? module1
+        //             : temp.push(module1)
+        //     );
+        //     console.log(temp)
+        //     setDisplayedModules(temp);
+        // }
+        if (currentModules !== null) {
+            if (currentModules.length === 0) {
+                setDisplayedModules([]);
+            } else {
+                const result = [];
+                currentModules.forEach((module) => {
+                    const existing = result.filter((lesson) => {
+                        return (
+                            lesson.moduleCode !== module.moduleCode &&
+                            lesson.lessonType !== module.lessonType
+                        );
+                    });
+                    if (existing.length === 0) {
+                        result.push(module);
+                    }
+                    setDisplayedModules(result);
+                });
+            }
+        }
+    }, [currentModules]);
+
+    //const onChange = (module) => {
+    /* eslint-disable */
+    /*let temp = []
+         console.log(temp)
+        modules.map((module1) => {
+            module1.semesterData.timetable[0].lessonType === module.semesterData.timetable[0].lessonType && module1.moduleCode === module.moduleCode 
+                ? temp.push(module) : temp.push(module1)
+        })
+        setModules(temp)
+    }*/
+>>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
 
     useEffect(() => {
         if(currentModules !== null) {
@@ -54,31 +109,66 @@ const Nusmods = () => {
                 <Table.Body>
                     <Rows
                         modules={displayedModules.filter(
+<<<<<<< HEAD
                             (module) => module.timing.filter((time) => time.day === 'Monday').length !== 0
+=======
+                            (module) =>
+                                module.timing.filter(
+                                    (time) => time.day === 'Monday'
+                                ).length !== 0
+>>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Monday'
                     />
                     <Rows
                         modules={displayedModules.filter(
+<<<<<<< HEAD
                             (module) => module.timing.filter((time) => time.day === 'Tuesday').length !== 0
+=======
+                            (module) =>
+                                module.timing.filter(
+                                    (time) => time.day === 'Tuesday'
+                                ).length !== 0
+>>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Tuesday'
                     />
                     <Rows
                         modules={displayedModules.filter(
+<<<<<<< HEAD
                             (module) => module.timing.filter((time) => time.day === 'Wednesday').length !== 0
+=======
+                            (module) =>
+                                module.timing.filter(
+                                    (time) => time.day === 'Wednesday'
+                                ).length !== 0
+>>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Wednesday'
                     />
                     <Rows
                         modules={displayedModules.filter(
+<<<<<<< HEAD
                             (module) => module.timing.filter((time) => time.day === 'Thursday').length !== 0
+=======
+                            (module) =>
+                                module.timing.filter(
+                                    (time) => time.day === 'Thursday'
+                                ).length !== 0
+>>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Thursday'
                     />
                     <Rows
                         modules={displayedModules.filter(
+<<<<<<< HEAD
                             (module) =>  module.timing.filter((time) => time.day === 'Friday').length !== 0
+=======
+                            (module) =>
+                                module.timing.filter(
+                                    (time) => time.day === 'Friday'
+                                ).length !== 0
+>>>>>>> 22af1f602f20727c66a411a394c267b3b583c5a4
                         )}
                         day='Friday'
                     />

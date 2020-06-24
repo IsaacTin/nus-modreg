@@ -28,7 +28,7 @@ const Sidebar = ({ pageWrapId }) => {
 
     useEffect(() => {
         getModules();
-        // es-lint-disable-next-line
+        // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
@@ -37,14 +37,15 @@ const Sidebar = ({ pageWrapId }) => {
         }
     }, [confirmedModules, currentModules]);
 
-    useEffect(() => {
-        if (currentModules !== null && currentModules.length > 0) {
-            const fetchModules = async () => {
-                setDisplayedModules(await moduleArrayConverter(currentModules));
-            };
-            fetchModules();
-        }
-    }, [currentModules]);
+    // console.log(currentModules);
+    // useEffect(() => {
+    //     if (currentModules !== null && currentModules.length > 0) {
+    //         const fetchModules = async () => {
+    //             setDisplayedModules(await moduleArrayConverter(currentModules));
+    //         };
+    //         fetchModules();
+    //     }
+    // }, [currentModules]);
 
     return (
         <Drawer

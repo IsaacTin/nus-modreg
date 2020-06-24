@@ -4,7 +4,9 @@ import {
     CLEAR_FILTER,
     ADD_SELECTION,
     CLEARALL_SELECTION,
-    DELETE_SELECTION
+    DELETE_SELECTION,
+    IS_SEARCHED_TRUE,
+    IS_SEARCHED_FALSE
 } from '../types';
 
 export default (state, action) => {
@@ -12,7 +14,8 @@ export default (state, action) => {
         case FILTER_MODULES:
             return {
                 ...state,
-                filtered: action.payload
+                filtered: action.payload,
+                searchLoading: false
             };
         case FILTER_ERROR:
             return {
@@ -23,7 +26,18 @@ export default (state, action) => {
             return {
                 ...state,
                 filtered: null,
-                error: null
+                error: null,
+                searchLoading: true
+            };
+        case IS_SEARCHED_TRUE:
+            return {
+                ...state,
+                isSearched: true
+            };
+        case IS_SEARCHED_FALSE:
+            return {
+                ...state,
+                isSearched: false
             };
         case ADD_SELECTION:
             return {

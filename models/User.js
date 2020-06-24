@@ -27,7 +27,7 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     modules: {
-        type: [mongoose.Schema.Types.ObjectId],
+        type: [],
         ref: 'modules'
     }
 });

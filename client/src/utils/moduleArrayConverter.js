@@ -1,4 +1,19 @@
-import moduleConverter from './moduleConverter';
+import axios from 'axios';
+
+const moduleConverter = async (id) => {
+    try {
+        const resModule = await axios.get(`/api/user-modules/${id}`);
+        // eventually get this from global config
+        const academicYear = '2019-2020';
+        const resNusmods = await axios.get(
+            `/v2/${academicYear}/modules/${resModule.data.moduleCode}.json`
+        );
+        return resNusmods.data;
+    } catch (error) {
+        console.error(error.message);
+        return null;
+    }
+};
 
 const getArrayOfModules = async (arr) => {
     return Promise.all(
