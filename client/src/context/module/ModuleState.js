@@ -17,30 +17,6 @@ import {
 } from '../types';
 
 const ModuleState = (props) => {
-    // new iteration of currentModules:
-    // const currentModules = [
-    //     {
-    //         moduleCode: '',
-    //         title: '',
-    //         lessonType: '',
-    //         classNo: '',
-    //         size: 0,
-    //         timing: [
-    //             {
-    //                 startTime: '',
-    //                 endTime: '',
-    //                 day: '',
-    //                 venue: ''
-    //             },
-    //             {
-    //                 startTime: '',
-    //                 endTime: '',
-    //                 day: '',
-    //                 venue: ''
-    //             }
-    //         ]
-    //     }
-    // ];
     const initialState = {
         currentModules: JSON.parse(localStorage.getItem('currentModules')),
         displayedModules: null,
