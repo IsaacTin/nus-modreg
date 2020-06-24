@@ -43,7 +43,7 @@ const ModuleState = (props) => {
     // ];
     const initialState = {
         currentModules: JSON.parse(localStorage.getItem('currentModules')),
-        displayedModules: null,
+        displayedModules: [],
         confirmedModules: null,
         error: null
     };
