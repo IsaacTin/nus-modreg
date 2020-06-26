@@ -42,8 +42,8 @@ const Confirmation = () => {
                                 <TableCell>{`${module.title} (${module.moduleCode})`}</TableCell>
                                 <TableCell>{module.classNo}</TableCell>
                                 <TableCell>
-                                    {module.timing.map((timeslot) => (
-                                        <div>
+                                    {module.timing.map((timeslot, index) => (
+                                        <div key={index}>
                                             {`${timeslot.venue}, ${timeslot.day} ${timeslot.startTime} - ${timeslot.endTime}`}
                                         </div>
                                     ))}
