@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Redirect, Link } from 'react-router-dom';
 import ModuleContext from '../../context/module/moduleContext';
 import AuthContext from '../../context/auth/authContext';
+import LayoutContext from '../../context/layout/layoutContext';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -13,14 +14,23 @@ import Paper from '@material-ui/core/Paper';
 const Confirmation = () => {
     const moduleContext = useContext(ModuleContext);
     const authContext = useContext(AuthContext);
+    const layoutContext = useContext(LayoutContext);
 
     const { currentModules, confirmModules } = moduleContext;
     const { user } = authContext;
+    const { closeSidebar } = layoutContext;
+
+    useEffect(() => {
+        closeSidebar();
+        // eslint-disable-next-line
+    }, []);
 
     const onClick = () => {
         confirmModules(user._id);
         console.log('modules confirmed');
     };
+
+    // disable cart the moment u enter this page
 
     return (
         <div>
