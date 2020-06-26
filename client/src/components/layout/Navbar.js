@@ -28,6 +28,16 @@ const Navbar = () => {
                 <div>{user && user.name}</div>
             </li>
             <li className='nav-item'>
+                <Link to='/' className='icon-button'>
+                    <i className='fas fa-home'></i>
+                </Link>
+            </li>
+            <li className='nav-item'>
+                <Link to='/location' className='icon-button'>
+                    <i className='fas fa-map-marked-alt'></i>
+                </Link>
+            </li>
+            <li className='nav-item'>
                 <a
                     className={
                         isSidebarOpen ? 'icon-button-selected' : 'icon-button'

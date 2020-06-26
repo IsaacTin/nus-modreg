@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Cart from './cart/Cart';
 import Ranking from './ranking/Ranking';
 import Modal from 'react-modal';
@@ -23,7 +24,7 @@ const Sidebar = ({ pageWrapId }) => {
         displayedModules
     } = moduleContext;
 
-    const { isSidebarOpen } = layoutContext;
+    const { isSidebarOpen, closeSidebar } = layoutContext;
 
     useEffect(() => {
         getModules();
@@ -56,13 +57,15 @@ const Sidebar = ({ pageWrapId }) => {
             <div className='text-center'>
                 <h3>Your modules:</h3>
             </div>
-            <Cart />
             <button
-                className='btn btn-light'
+                className='btn btn-dark'
                 onClick={() => setModalIsOpen(true)}
             >
                 Rank Modules
             </button>
+
+            <Cart />
+
             <div className='main-shift container-center'>
                 <Modal
                     isOpen={ModalIsOpen}
@@ -82,6 +85,15 @@ const Sidebar = ({ pageWrapId }) => {
                     </div>
                 </Modal>
             </div>
+            {/* might want to change this to a link that goes to a different page */}
+            <Link
+                to='/confirmation'
+                className='btn btn-primary'
+                id='checkout-btn'
+                onClick={() => closeSidebar()}
+            >
+                Checkout
+            </Link>
         </Drawer>
     );
 };

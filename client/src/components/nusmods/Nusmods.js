@@ -1,16 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
 import ModuleContext from '../../context/module/moduleContext';
+import LayoutContext from '../../context/layout/layoutContext';
 import Rows from './Rows';
 
 const Nusmods = () => {
     const moduleContext = useContext(ModuleContext);
+    const layoutContext = useContext(LayoutContext);
 
     const {
         displayedModules,
         currentModules,
         setDisplayedModules
     } = moduleContext;
+    const { isSidebarOpen } = layoutContext;
 
     useEffect(() => {
         // if (currentModules !== null) {
@@ -60,7 +63,7 @@ const Nusmods = () => {
     }*/
 
     return (
-        <div>
+        <div className={isSidebarOpen ? 'main-shift' : 'main'}>
             <Table celled definition>
                 <Table.Header>
                     <Table.Row>

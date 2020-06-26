@@ -422,7 +422,7 @@ table th {
 }
 
 .nav-item {
-    width: calc(var(--nav-size) * 0.8);
+    width: calc(var(--nav-size) * 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -587,6 +587,7 @@ img#nus-logo {
     margin: 3px;
     padding: 6px;
     text-align: left;
+    font-size: 0.95rem;
     width: var(--sidebar-width);
     background-color: rgb(189, 189, 189);
 }
@@ -662,6 +663,7 @@ img#nus-logo {
 .sidebar {
     margin-top: var(--nav-size);
     /* height: 100%; */
+    /* margin: 10px; */
     width: var(--sidebar-width);
     background-color: grey;
     justify-content: center;
@@ -670,6 +672,12 @@ img#nus-logo {
 
 .sidebar h3 {
     width: var(--sidebar-width);
+}
+
+#checkout-btn {
+    margin-top: auto;
+    margin-bottom: 10px;
+    margin-left: 5px;
 }
 
 .nusmods {
