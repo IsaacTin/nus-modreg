@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import ModuleContext from '../../../context/module/moduleContext';
-import PropTypes from 'prop-types';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const CartItem = ({ module, rank }) => {
     const moduleContext = useContext(ModuleContext);
@@ -20,15 +23,23 @@ const CartItem = ({ module, rank }) => {
             <br />
             Module Code: {moduleCode}
             <br />
+            Class Number: {classNo}
             <div style={{ fontSize: '0.85rem', marginTop: 8, marginLeft: 10 }}>
-                Class Number: {classNo}
-                <br />
-                {timing.map((timeslot) => (
-                    <div>
-                        {`${timeslot.venue}, ${timeslot.day} ${timeslot.startTime} - ${timeslot.endTime}`}
-                    </div>
-                ))}
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        Click to view class details
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        {timing.map((timeslot) => (
+                            <div>
+                                <br />
+                                {`${timeslot.venue}, ${timeslot.day} ${timeslot.startTime} - ${timeslot.endTime}`}
+                            </div>
+                        ))}
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
             </div>
+            <br />
             <button className='btn btn-sm btn-light' onClick={onDelete}>
                 <i className='far fa-trash-alt'></i>{' '}
             </button>

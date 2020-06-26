@@ -47,6 +47,8 @@ const Sidebar = ({ pageWrapId }) => {
     //     }
     // }, [currentModules]);
 
+    console.log(currentModules);
+
     return (
         <Drawer
             className='sidebar'

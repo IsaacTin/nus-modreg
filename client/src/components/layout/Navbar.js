@@ -67,7 +67,9 @@ const Navbar = () => {
             >
                 <ul>
                     <li>
-                        <img src={nus_logo} alt='nus_logo' id='nus-logo' />
+                        <Link to='/'>
+                            <img src={nus_logo} alt='nus_logo' id='nus-logo' />
+                        </Link>
                     </li>
                 </ul>
                 <ul className='navbar-nav'>{isAuthenticated && authLinks}</ul>
