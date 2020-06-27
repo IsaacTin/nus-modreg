@@ -26,7 +26,7 @@ const SearchModules = () => {
         isSearched,
         isSearchedFalse
     } = searchContext;
-    const { addModules, error } = moduleContext;
+    const { currentModules, addModules, error } = moduleContext;
 
     useEffect(() => {
         if (filtered !== null) {
@@ -60,14 +60,34 @@ const SearchModules = () => {
         if (selection.length === 0) {
             // notify user that no modules have been selected
         }
-        addModules(selection);
-        // might need to check why error becomes undefined ah
-        if (error === null || error === undefined) {
-            clearSelection();
-            setDisplaySelection([]);
-            // notify user that selection has succesfully been added
+        // check if currentModules alr has any of the modules currently being selected, else proceed
+        // maybe can change to something more efficient? lol
+        const duplicates = currentModules.filter((module) => {
+            let isDuplicate = false;
+            selection.forEach((lesson) => {
+                if (
+                    module.moduleCode === lesson.moduleCode &&
+                    module.lessonType === lesson.lessonType &&
+                    module.classNo === lesson.classNo
+                ) {
+                    isDuplicate = true;
+                }
+            });
+            return isDuplicate;
+        });
+        if (duplicates.length === 0) {
+            addModules(selection);
+            // might need to check why error becomes undefined ah
+            if (error === null || error === undefined) {
+                clearSelection();
+                setDisplaySelection([]);
+                // notify user that selection has succesfully been added
+            } else {
+                // print out the stupid error
+            }
         } else {
-            // print out the stupid error
+            console.log('there are duplicates u idiot');
+            console.log(duplicates);
         }
     };
 
@@ -93,7 +113,7 @@ const SearchModules = () => {
                                 )
                                 .map((module, index) => (
                                     <CSSTransition
-                                        key={module._id}
+                                        key={index}
                                         timeout={500}
                                         classNames='item'
                                     >
