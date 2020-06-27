@@ -224,6 +224,48 @@ img {
     outline: none;
 }
 
+.btn-module1 {
+    background: var(--light-color);
+    color: #333;
+    background-color: purple;
+}
+
+.btn-module2 {
+    background: var(--light-color);
+    color: #333;
+    background-color: rosybrown;
+}
+
+.btn-module3 {
+    background: var(--light-color);
+    color: #333;
+    background-color: skyblue;
+}
+
+.btn-module4 {
+    background: var(--light-color);
+    color: #333;
+    background-color: red;
+}
+
+.btn-module5 {
+    background: var(--light-color);
+    color: #333;
+    background-color: teal;
+}
+
+.btn-module6 {
+    background: var(--light-color);
+    color: #333;
+    background-color: yellow;
+}
+
+.btn-module7 {
+    background: var(--light-color);
+    color: #333;
+    background-color: #28a745;
+}
+
 .btn-link {
     background: none;
     padding: 0;
