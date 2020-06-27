@@ -4,7 +4,7 @@ const EmptySlot = ({startTime, endTIme}) => {
     return ( 
         <div>
             <button>
-                Empty
+                
             </button>
         </div>
      );
