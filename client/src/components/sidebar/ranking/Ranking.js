@@ -29,16 +29,13 @@ const Ranking = () => {
             return;
         }
         const modules = Object.assign([], currentModules);
-        const convert = Object.assign([], displayedModules);
         const droppedModule = modules[source.index];
 
         modules.splice(source.index, 1);
         modules.splice(destination.index, 0, droppedModule);
-        convert.splice(source.index, 1);
-        convert.splice(destination.index, 0, displayedModules[source.index]);
+      
 
         updateModuleRankings(modules);
-        setDisplayedModules(convert);
     };
 
     if (currentModules === null || currentModules.length === 0) {

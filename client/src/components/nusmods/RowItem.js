@@ -10,6 +10,8 @@ const RowItem = ({module, timing}) => {
     
     const{displayedModules, setDisplayedModules, currentModules} = moduleContext
 
+    let moduleColor = [];
+
     
     const onChange = (module) => {
          /* eslint-disable */
@@ -21,10 +23,23 @@ const RowItem = ({module, timing}) => {
         setDisplayedModules(temp)
     }
 
+    const setColor = (module) => {
+        let temp = []
+        displayedModules.map((module1) => {
+            moduleColor.filter((module2) => module1.moduleCode === module2.moduleCode).length === 0 ? temp.push(module1) : null})
+        for(let i = 0; i < temp.length; i++) {
+            if(temp[i].moduleCode === module.moduleCode) {
+                return (
+                    'btn btn-module' + (i+1).toString()
+                )
+            }
+        }
+    }
+
     return (
         <div>
             <button
-                className='btn btn-light'
+                className={setColor(module)}
                 onClick={() => setModalIsOpen(true)}
             >
             {module.moduleCode}
