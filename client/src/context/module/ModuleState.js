@@ -50,6 +50,9 @@ const ModuleState = (props) => {
 
     // confirms the current module selection and stores them in the database
     const confirmModules = async (id) => {
+        if (localStorage.token) {
+            setAuthToken(localStorage.token);
+        }
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -59,7 +62,7 @@ const ModuleState = (props) => {
         try {
             const res = await axios.put(
                 `/api/user-modules/${id}`,
-                state.currentModules,
+                { modules: state.currentModules },
                 config
             );
             dispatch({

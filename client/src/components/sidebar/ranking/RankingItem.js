@@ -1,12 +1,7 @@
-import React, { Fragment, useContext, useRef, useState } from 'react';
+import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import LayoutContext from '../../../context/layout/layoutContext';
 
 const RankingItem = ({ module, index }) => {
-    const layoutContext = useContext(LayoutContext);
-
-    const { isSidebarOpen } = layoutContext;
-
     return (
         <Draggable key={index} draggableId={index + ''} index={index}>
             {(provided) => (

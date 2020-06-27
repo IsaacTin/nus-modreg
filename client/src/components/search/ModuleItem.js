@@ -1,8 +1,7 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react';
 import SearchContext from '../../context/search/searchContext';
 import PropTypes from 'prop-types';
-import Dropdown from 'react-dropdown';
-import { Result } from 'express-validator';
+
 
 const ModuleItem = (props) => {
     const searchContext = useContext(SearchContext);
@@ -14,19 +13,6 @@ const ModuleItem = (props) => {
 
     // might need to get from config
     const BIDDING_ROUND = 'ROUND_1';
-
-    // const onClick = (e) => {
-    //     e.preventDefault();
-    //     if (
-    //         selection.length === 0 ||
-    //         !selection.includes(props.module._id.toString())
-    //     ) {
-    //         addSelection(props.module);
-    //     } else {
-    //         // change to alert with alert context
-    //         console.log('salah la bro');
-    //     }
-    // };
 
     const onChange = (e) => {
         setSelectedModule(e.target.value);

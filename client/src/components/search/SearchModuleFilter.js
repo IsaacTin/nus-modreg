@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import SearchContext from '../../context/search/searchContext';
 
 const SearchModuleFilter = () => {
@@ -7,10 +7,8 @@ const SearchModuleFilter = () => {
     const [text, setText] = useState('');
 
     const {
-        filtered,
         filterModules,
         clearFilter,
-        isSearched,
         isSearchedTrue
     } = searchContext;
 

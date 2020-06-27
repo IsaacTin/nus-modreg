@@ -1,5 +1,4 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ModuleItem from './ModuleItem';
 import Spinner from '../layout/Spinner';
 import SearchContext from '../../context/search/searchContext';
@@ -12,8 +11,6 @@ const SearchModules = () => {
 
     // displays all the search results from NUSmods API
     const [displaySearchResults, setDisplaySearchResults] = useState([]);
-    // displays the modules that have currently been added to the selection
-    const [displaySelection, setDisplaySelection] = useState([]);
     // used to toggle spinner - logic problem?
     const [searching, setSearching] = useState(false);
 
@@ -22,11 +19,9 @@ const SearchModules = () => {
         selection,
         deleteSelection,
         clearSelection,
-        searchLoading,
-        isSearched,
         isSearchedFalse
     } = searchContext;
-    const { addModules, error } = moduleContext;
+    const { currentModules, addModules, error } = moduleContext;
 
     useEffect(() => {
         if (filtered !== null) {
@@ -40,15 +35,7 @@ const SearchModules = () => {
             isSearchedFalse();
             setDisplaySearchResults([]);
         }
-
-        // if (selection.length !== 0) {
-        //     const fetchSelection = async () => {
-        //         setDisplaySelection(await moduleArrayConverter(selection));
-        //     };
-        //     fetchSelection();
-        // } else {
-        //     setDisplaySelection([]);
-        // }
+         // eslint-disable-next-line
     }, [filtered, selection]);
 
     if (filtered !== null && displaySearchResults.length === 0 && !searching) {
@@ -60,14 +47,33 @@ const SearchModules = () => {
         if (selection.length === 0) {
             // notify user that no modules have been selected
         }
-        addModules(selection);
-        // might need to check why error becomes undefined ah
-        if (error === null || error === undefined) {
-            clearSelection();
-            setDisplaySelection([]);
-            // notify user that selection has succesfully been added
+        // check if currentModules alr has any of the modules currently being selected, else proceed
+        // maybe can change to something more efficient? lol
+        const duplicates = currentModules.filter((module) => {
+            let isDuplicate = false;
+            selection.forEach((lesson) => {
+                if (
+                    module.moduleCode === lesson.moduleCode &&
+                    module.lessonType === lesson.lessonType &&
+                    module.classNo === lesson.classNo
+                ) {
+                    isDuplicate = true;
+                }
+            });
+            return isDuplicate;
+        });
+        if (duplicates.length === 0) {
+            addModules(selection);
+            // might need to check why error becomes undefined ah
+            if (error === null || error === undefined) {
+                clearSelection();
+                // notify user that selection has succesfully been added
+            } else {
+                // print out the stupid error
+            }
         } else {
-            // print out the stupid error
+            console.log('there are duplicates u idiot');
+            console.log(duplicates);
         }
     };
 
@@ -78,7 +84,6 @@ const SearchModules = () => {
 
     return (
         <Fragment>
-            <TransitionGroup>
                 {searching ? (
                     <Spinner />
                 ) : (
@@ -92,20 +97,13 @@ const SearchModules = () => {
                                             .length > 0
                                 )
                                 .map((module, index) => (
-                                    <CSSTransition
-                                        key={module._id}
-                                        timeout={500}
-                                        classNames='item'
-                                    >
                                         <ModuleItem
                                             key={index}
                                             module={module}
                                         />
-                                    </CSSTransition>
                                 ))}
                     </div>
                 )}
-            </TransitionGroup>
             <ul className='container grid-4'>
                 {selection.length !== 0 &&
                     selection.map((module, index) => (

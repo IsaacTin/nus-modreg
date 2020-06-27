@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import CartItem from './CartItem';
 import ModuleContext from '../../../context/module/moduleContext';
 
@@ -11,12 +11,11 @@ const Cart = () => {
         return <h3>No Modules selected</h3>;
     }
 
-    console.log(currentModules);
     return (
         <div className='cart'>
             {currentModules.length !== 0 &&
-                currentModules.map((module) => (
-                    <CartItem module={module} key={module.moduleCode} />
+                currentModules.map((module, index) => (
+                    <CartItem module={module} key={index} rank={index + 1} />
                 ))}
         </div>
     );

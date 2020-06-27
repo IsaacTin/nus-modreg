@@ -224,6 +224,48 @@ img {
     outline: none;
 }
 
+.btn-module1 {
+    background: var(--light-color);
+    color: #333;
+    background-color: purple;
+}
+
+.btn-module2 {
+    background: var(--light-color);
+    color: #333;
+    background-color: rosybrown;
+}
+
+.btn-module3 {
+    background: var(--light-color);
+    color: #333;
+    background-color: skyblue;
+}
+
+.btn-module4 {
+    background: var(--light-color);
+    color: #333;
+    background-color: red;
+}
+
+.btn-module5 {
+    background: var(--light-color);
+    color: #333;
+    background-color: teal;
+}
+
+.btn-module6 {
+    background: var(--light-color);
+    color: #333;
+    background-color: yellow;
+}
+
+.btn-module7 {
+    background: var(--light-color);
+    color: #333;
+    background-color: #28a745;
+}
+
 .btn-link {
     background: none;
     padding: 0;
@@ -422,7 +464,7 @@ table th {
 }
 
 .nav-item {
-    width: calc(var(--nav-size) * 0.8);
+    width: calc(var(--nav-size) * 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -574,6 +616,7 @@ img#nus-logo {
 }
 
 .cart {
+    overflow: auto;
     padding: 0;
     margin: 0;
     display: flex;
@@ -587,6 +630,7 @@ img#nus-logo {
     margin: 3px;
     padding: 6px;
     text-align: left;
+    font-size: 0.95rem;
     width: var(--sidebar-width);
     background-color: rgb(189, 189, 189);
 }
@@ -662,6 +706,7 @@ img#nus-logo {
 .sidebar {
     margin-top: var(--nav-size);
     /* height: 100%; */
+    /* margin: 10px; */
     width: var(--sidebar-width);
     background-color: grey;
     justify-content: center;
@@ -670,6 +715,12 @@ img#nus-logo {
 
 .sidebar h3 {
     width: var(--sidebar-width);
+}
+
+#checkout-btn {
+    margin-top: auto;
+    margin-bottom: 10px;
+    margin-left: 5px;
 }
 
 .nusmods {

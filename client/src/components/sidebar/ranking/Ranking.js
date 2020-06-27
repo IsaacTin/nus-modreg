@@ -1,18 +1,14 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext } from 'react';
 import RankingItem from './RankingItem';
 import ModuleContext from '../../../context/module/moduleContext';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { useParams } from 'react-router-dom';
-import moduleArrayConverter from '../../../utils/moduleArrayConverter';
-import Cart from '../cart/Cart';
+
 
 const Ranking = () => {
     const moduleContext = useContext(ModuleContext);
     const {
         currentModules,
         updateModuleRankings,
-        setDisplayedModules,
-        displayedModules
     } = moduleContext;
 
     const onDragEnd = (result) => {
@@ -29,16 +25,13 @@ const Ranking = () => {
             return;
         }
         const modules = Object.assign([], currentModules);
-        const convert = Object.assign([], displayedModules);
         const droppedModule = modules[source.index];
 
         modules.splice(source.index, 1);
         modules.splice(destination.index, 0, droppedModule);
-        convert.splice(source.index, 1);
-        convert.splice(destination.index, 0, displayedModules[source.index]);
+      
 
         updateModuleRankings(modules);
-        setDisplayedModules(convert);
     };
 
     if (currentModules === null || currentModules.length === 0) {

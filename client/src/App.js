@@ -5,6 +5,7 @@ import Home from './components/pages/Home';
 import Guide from './components/pages/Guide';
 import Confirmation from './components/pages/Confirmation';
 import Login from './components/auth/Login';
+import Location from './components/pages/Location';
 import Alerts from './components/layout/Alert';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { DndProvider } from 'react-dnd';
@@ -17,7 +18,6 @@ import SearchState from './context/search/SearchState';
 import LayoutState from './context/layout/LayoutState';
 
 import './App.css';
-import Nusmods from './components/nusmods/Nusmods';
 
 const App = () => {
     return (
@@ -43,7 +43,7 @@ const App = () => {
                                                     path='/guide'
                                                     component={Guide}
                                                 />
-                                                <Route
+                                                <PrivateRoute
                                                     exact
                                                     path='/confirmation'
                                                     component={Confirmation}
@@ -52,6 +52,11 @@ const App = () => {
                                                     exact
                                                     path='/login'
                                                     component={Login}
+                                                />
+                                                <PrivateRoute
+                                                    exact
+                                                    path='/location'
+                                                    component={Location}
                                                 />
                                             </Switch>
                                         </div>
