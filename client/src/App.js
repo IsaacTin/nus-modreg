@@ -18,7 +18,6 @@ import SearchState from './context/search/SearchState';
 import LayoutState from './context/layout/LayoutState';
 
 import './App.css';
-import Nusmods from './components/nusmods/Nusmods';
 
 const App = () => {
     return (

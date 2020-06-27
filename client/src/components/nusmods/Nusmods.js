@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
 import ModuleContext from '../../context/module/moduleContext';
 import LayoutContext from '../../context/layout/layoutContext';
@@ -35,6 +35,7 @@ const Nusmods = () => {
                 setDisplayedModules(result);
             }
         }
+         // eslint-disable-next-line
     }, [currentModules]);
 
 

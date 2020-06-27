@@ -1,10 +1,8 @@
-import React, { Fragment, useContext, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 import LayoutContext from '../../context/layout/layoutContext';
 import ModuleContext from '../../context/module/moduleContext';
-import Sidebar from '../sidebar/Sidebar';
 import nus_logo from './nus_logo.png';
 
 const Navbar = () => {

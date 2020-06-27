@@ -56,11 +56,11 @@ const RowItem = ({module, timing}) => {
                 className='main ranking'
             >
             <div>
-            {currentModules.map((module1) => {
+            {currentModules.map((module1, index) => {
                 if(module1.lessonType === module.lessonType 
                     && module1.moduleCode === module.moduleCode && module1.classNo !== module.classNo)
                 return (
-                    <div>
+                    <div key={index}>
                         <button onClick={() => onChange(module1)} >
                             {module1.moduleCode}
                             <br />

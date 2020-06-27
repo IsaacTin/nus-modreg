@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import CartItem from './CartItem';
 import ModuleContext from '../../../context/module/moduleContext';
 

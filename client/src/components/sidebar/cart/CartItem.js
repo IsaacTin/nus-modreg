@@ -30,8 +30,8 @@ const CartItem = ({ module, rank }) => {
                         Click to view class details
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        {timing.map((timeslot) => (
-                            <div>
+                        {timing.map((timeslot, index) => (
+                            <div key={index}>
                                 <br />
                                 {`${timeslot.venue}, ${timeslot.day} ${timeslot.startTime} - ${timeslot.endTime}`}
                             </div>

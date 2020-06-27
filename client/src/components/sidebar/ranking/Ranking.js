@@ -1,10 +1,8 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext } from 'react';
 import RankingItem from './RankingItem';
 import ModuleContext from '../../../context/module/moduleContext';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { useParams } from 'react-router-dom';
-import moduleArrayConverter from '../../../utils/moduleArrayConverter';
-import Cart from '../cart/Cart';
+
 
 const Ranking = () => {
     const moduleContext = useContext(ModuleContext);
