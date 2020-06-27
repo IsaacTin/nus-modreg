@@ -28,6 +28,16 @@ const Navbar = () => {
                 <div>{user && user.name}</div>
             </li>
             <li className='nav-item'>
+                <Link to='/' className='icon-button'>
+                    <i className='fas fa-home'></i>
+                </Link>
+            </li>
+            <li className='nav-item'>
+                <Link to='/location' className='icon-button'>
+                    <i className='fas fa-map-marked-alt'></i>
+                </Link>
+            </li>
+            <li className='nav-item'>
                 <a
                     className={
                         isSidebarOpen ? 'icon-button-selected' : 'icon-button'
@@ -57,7 +67,9 @@ const Navbar = () => {
             >
                 <ul>
                     <li>
-                        <img src={nus_logo} alt='nus_logo' id='nus-logo' />
+                        <Link to='/'>
+                            <img src={nus_logo} alt='nus_logo' id='nus-logo' />
+                        </Link>
                     </li>
                 </ul>
                 <ul className='navbar-nav'>{isAuthenticated && authLinks}</ul>

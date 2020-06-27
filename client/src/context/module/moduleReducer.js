@@ -29,6 +29,7 @@ export default (state, action) => {
                 confirmedModules: action.payload
             };
         case CLEAR_MODULES:
+            localStorage.removeItem('currentModules');
             return {
                 ...state,
                 currentModules: null,

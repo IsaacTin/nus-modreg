@@ -14,8 +14,8 @@ const Cart = () => {
     return (
         <div className='cart'>
             {currentModules.length !== 0 &&
-                currentModules.map((module) => (
-                    <CartItem module={module} key={module.moduleCode} />
+                currentModules.map((module, index) => (
+                    <CartItem module={module} key={index} rank={index + 1} />
                 ))}
         </div>
     );
