@@ -11,8 +11,6 @@ const Ranking = () => {
     const {
         currentModules,
         updateModuleRankings,
-        setDisplayedModules,
-        displayedModules
     } = moduleContext;
 
     const onDragEnd = (result) => {

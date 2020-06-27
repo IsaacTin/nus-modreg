@@ -11,7 +11,6 @@ const Cart = () => {
         return <h3>No Modules selected</h3>;
     }
 
-    console.log(currentModules);
     return (
         <div className='cart'>
             {currentModules.length !== 0 &&
