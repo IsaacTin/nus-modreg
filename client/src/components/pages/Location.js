@@ -9,7 +9,7 @@ const Location = () => {
         <div>
             <Sidebar />
             <div className={isSidebarOpen ? 'main-shift' : 'main'}>
-                This is location bitchesss
+                This is location 
             </div>
         </div>
     );

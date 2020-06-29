@@ -69,7 +69,14 @@ export default (state, action) => {
                 ...state,
                 currentModules: JSON.parse(
                     localStorage.getItem('currentModules')
-                )
+                ),
+                displayedModules: state.displayedModules.filter((module) => {
+                    return (
+                        module.moduleCode !== action.payload.moduleCode ||
+                        module.classNo !== action.payload.classNo ||
+                        module.lessonType !== action.payload.lessonType
+                    );
+                })
             };
         case UPDATE_RANKINGS:
             return {

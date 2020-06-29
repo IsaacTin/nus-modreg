@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import ModuleContext from '../../context/module/moduleContext';
 
 
-const RowItem = ({module, timing}) => {
+const RowItem = ({module, day}) => {
     const [ModalIsOpen, setModalIsOpen] = useState(false);
     
     const moduleContext = useContext(ModuleContext);
@@ -12,7 +12,7 @@ const RowItem = ({module, timing}) => {
 
     let moduleColor = [];
 
-    
+   
     const onChange = (module) => {
          /* eslint-disable */
         let temp = []
@@ -21,6 +21,7 @@ const RowItem = ({module, timing}) => {
                 ? temp.push(module) : temp.push(module1)
         })
         setDisplayedModules(temp)
+        setModalIsOpen(false);
     }
 
     const setColor = (module) => {
@@ -34,6 +35,18 @@ const RowItem = ({module, timing}) => {
                 )
             }
         }
+    }
+
+    const selected = (module) => {
+        const color = displayedModules.filter((module1) => {
+            return (
+                module.moduleCode === module1.moduleCode &&
+                module.lessonType === module1.lessonType &&
+                module.classNo === module1.classNo
+            )
+        }).length > 0 
+        ? 'selected' : 'unselected'
+        return color
     }
 
     return (
@@ -58,10 +71,10 @@ const RowItem = ({module, timing}) => {
             <div>
             {currentModules.map((module1, index) => {
                 if(module1.lessonType === module.lessonType 
-                    && module1.moduleCode === module.moduleCode && module1.classNo !== module.classNo)
+                    && module1.moduleCode === module.moduleCode) 
                 return (
-                    <div key={index}>
-                        <button onClick={() => onChange(module1)} >
+                    <div key={index} >
+                        <button onClick={() => onChange(module1)} className={selected(module1)}>
                             {module1.moduleCode}
                             <br />
                             {module1.lessonType === "Tutorial" ? 'TUT' : 
@@ -69,18 +82,18 @@ const RowItem = ({module, timing}) => {
                                     module1.lessonType === "Lecture" ? 'LEC' :
                                         module1.lessonType === "Recitation" ? 'REC' : ""}[{module1.classNo}]
                             <br/>
+                            {module1.timing.map((timeslot, index) => (
+                                <div key={index}>
+                                    {`${timeslot.day}, ${timeslot.startTime} - ${timeslot.endTime}`}
+                                </div>
+                            ))}
+                            {`Module rank: ${index + 1}`}
                         </button>
                     </div>
                 )
             })}
             </div>
             <div>
-            <button
-                className='btn btn-dark'
-                onClick={() => setModalIsOpen(false)}
-            >
-                Close
-            </button>
             </div>
             </Modal>
         </div>

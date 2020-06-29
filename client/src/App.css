@@ -224,10 +224,12 @@ img {
     outline: none;
 }
 
+
+
 .btn-module1 {
     background: var(--light-color);
     color: #333;
-    background-color: purple;
+    background-color: lightpink;
 }
 
 .btn-module2 {
@@ -731,4 +733,33 @@ img#nus-logo {
 
 .searchbar {
     grid-area: search;
+}
+
+.unselected {
+    border: 3px solid rgb(124, 124, 124);
+    border-radius: 15px;
+    margin: 3px;
+    padding: 6px;
+    text-align: left;
+    width: 75%;
+    background-color: rgb(189, 189, 189);
+}
+
+.selected {
+    border: 3px solid rgb(124, 124, 124);
+    border-radius: 15px;
+    margin: 3px;
+    padding: 6px;
+    text-align: left;
+    width: 75%;
+    background-color: rgb(189, 189, 189);
+    filter: brightness(1.2);
+}
+
+.selected:hover {
+    opacity: 0.8;
+}
+
+.unselected:hover {
+    opacity: 0.8;
 }

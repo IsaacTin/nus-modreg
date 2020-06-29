@@ -12,7 +12,6 @@ const Sidebar = () => {
     const [ModalIsOpen, setModalIsOpen] = useState(false);
     const moduleContext = useContext(ModuleContext);
     const layoutContext = useContext(LayoutContext);
-    const [displayed, setDisplayed] = useState(true)
 
     const {
         currentModules,

@@ -49,6 +49,7 @@ const Nusmods = () => {
                         ? module1 : temp.push(module1))
             setDisplayedModules(temp)
         }
+        // eslint-disable-next-line
     }, [])
 
     //const onChange = (module) => {
