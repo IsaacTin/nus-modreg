@@ -67,6 +67,23 @@ const RowItem = ({ module, day }) => {
         }
     };
 
+    const getLessonType = (lessonName) => {
+        switch (lessonName) {
+            case 'Tutorial':
+                return 'TUT';
+            case 'Laboratory':
+                return 'LAB';
+            case 'Lecture':
+                return 'LEC';
+            case 'Sectional Teaching':
+                return 'SEC';
+            case 'Recitation':
+                return 'REC';
+            default:
+                return '';
+        }
+    };
+
     const selected = (module) => {
         const color =
             displayedModules.filter((module1) => {
@@ -89,19 +106,7 @@ const RowItem = ({ module, day }) => {
             >
                 {module.moduleCode}
                 <br />
-                {module.lessonType === 'Tutorial'
-                    ? 'TUT'
-                    : module.lessonType === 'Laboratory'
-                    ? 'LAB'
-                    : module.lessonType === 'Lecture'
-                    ? 'LEC'
-                    : module.lessonType === 'Sectional Teaching'
-                    ? 'SEC'
-                    : module.lessonType === 'Recitation'
-                    ? 'REC'
-                    : ''}
-
-                {` [${module.classNo}]`}
+                {`${getLessonType(module.lessonType)} [${module.classNo}]`}
                 <br />
                 {module.timing[0].venue}
             </button>
@@ -120,18 +125,8 @@ const RowItem = ({ module, day }) => {
                                     >
                                         {module1.moduleCode}
                                         <br />
-                                        {module1.lessonType === 'Tutorial'
-                                            ? 'TUT'
-                                            : module1.lessonType ===
-                                              'Laboratory'
-                                            ? 'LAB'
-                                            : module1.lessonType === 'Lecture'
-                                            ? 'LEC'
-                                            : module1.lessonType ===
-                                              'Recitation'
-                                            ? 'REC'
-                                            : ''}
-                                        [{module1.classNo}]
+                                        {getLessonType(module1.lessonType)}[
+                                        {module1.classNo}]
                                         <br />
                                         {module1.timing.map(
                                             (timeslot, index) => (
@@ -145,8 +140,13 @@ const RowItem = ({ module, day }) => {
                                 </div>
                             );
                     })}
+                    <button
+                        className='btn btn-dark'
+                        onClick={() => setModalIsOpen(false)}
+                    >
+                        Close
+                    </button>
                 </div>
-                <div></div>
             </Modal>
         </div>
     );
