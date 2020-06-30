@@ -233,46 +233,105 @@ img {
     outline: none;
 }
 
-.btn-module1 {
-    background: var(--light-color);
-    color: #333;
-    background-color: lightpink;
+/* timetable module colors */
+
+.btn-module {
+    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 900;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-module2 {
-    background: var(--light-color);
-    color: #333;
-    background-color: rosybrown;
+.module-red {
+    color: #931316;
+    background-color: #f2777a;
+    border-bottom: 3px solid #e91a1f;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-module3 {
+.module-orange {
     background: var(--light-color);
-    color: #333;
-    background-color: skyblue;
+    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #7e3204;
+    background-color: #f99157;
+    border-bottom: 3px solid #e25608;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-module4 {
+.module-yellow {
     background: var(--light-color);
-    color: #333;
-    background-color: red;
+    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #996600;
+    background-color: #ffcc65;
+    border-bottom: 3px solid #ffaa00;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-module5 {
+.module-green {
     background: var(--light-color);
-    color: #333;
-    background-color: teal;
+    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #336633;
+    background-color: #99cc99;
+    border-bottom: 3px solid #55aa55;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-module6 {
+.module-cyan {
     background: var(--light-color);
-    color: #333;
-    background-color: yellow;
+    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #1a4d4d;
+    background-color: #66cccc;
+    border-bottom: 3px solid #339999;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-module7 {
+.module-darkblue {
     background: var(--light-color);
-    color: #333;
-    background-color: #28a745;
+    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #1b334d;
+    background-color: #6699cc;
+    border-bottom: 3px solid #336699;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.module-purple {
+    background: var(--light-color);
+    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #653366;
+    background-color: #cc99cc;
+    border-bottom: 3px solid #aa55aa;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.module-brown {
+    background: var(--light-color);
+    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #582e19;
+    background-color: #d27b53;
+    border-bottom: 3px solid #974b28;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .btn-link {
