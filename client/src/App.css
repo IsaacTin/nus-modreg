@@ -70,8 +70,17 @@ img {
 
 .container-center {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.centered {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
 }
 
 /* Text Styles*/
@@ -223,8 +232,6 @@ img {
     transition: opacity 0.2s ease-in;
     outline: none;
 }
-
-
 
 .btn-module1 {
     background: var(--light-color);
