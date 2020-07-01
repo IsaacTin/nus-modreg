@@ -9,7 +9,7 @@ const Location = () => {
         <div>
             <Sidebar />
             <div className={isSidebarOpen ? 'main-shift' : 'main'}>
-                Location planning with Google Maps API
+                This is location 
             </div>
         </div>
     );

@@ -135,7 +135,10 @@ const ModuleItem = (props) => {
                                     key={timeslot.classNo}
                                     value={JSON.stringify(timeslot)}
                                 >
-                                    {`Class ${timeslot.classNo}:`}
+                                    {`${timeslot.lessonType === "Tutorial" ? 'TUT' : 
+                                        timeslot.lessonType === "Laboratory" ? 'LAB':
+                                            timeslot.lessonType === "Lecture" ? 'LEC' :
+                                                timeslot.lessonType === "Recitation" ? 'REC' : ""} [${timeslot.classNo}]`} 
                                     {timeslot.venue.map((venue, index) => {
                                         let separator;
 

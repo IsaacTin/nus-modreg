@@ -23,7 +23,10 @@ const CartItem = ({ module, rank }) => {
             <br />
             Module Code: {moduleCode}
             <br />
-            Class Number: {classNo}
+            {module.lessonType === "Tutorial" ? 'TUT' : 
+                                module.lessonType === "Laboratory" ? 'LAB':
+                                    module.lessonType === "Lecture" ? 'LEC' :
+                                        module.lessonType === "Recitation" ? 'REC' : ""} {classNo}
             <div style={{ fontSize: '0.85rem', marginTop: 8, marginLeft: 10 }}>
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
