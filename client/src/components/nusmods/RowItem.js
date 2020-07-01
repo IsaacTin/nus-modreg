@@ -116,7 +116,7 @@ const RowItem = ({ module, timing }) => {
                     </button>
                 </div>
             </Modal>
-        </div>
+        </Table.Cell>
     );
 };
 
