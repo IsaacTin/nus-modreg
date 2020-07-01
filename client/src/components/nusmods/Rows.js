@@ -14,9 +14,28 @@ const Rows = ({ modules, day }) => {
     let present8 = false;
     let present9 = false;
     let present10 = false;
+
+    const dayShorthand = (day) => {
+        switch (day) {
+            case 'Monday':
+                return 'MON';
+            case 'Tuesday':
+                return 'TUES';
+            case 'Wednesday':
+                return 'WED';
+            case 'Thursday':
+                return 'THURS';
+            case 'Friday':
+                return 'FRI';
+            default:
+                return '';
+        }
+    };
     return (
         <Table.Row>
-            <Table.Cell>{day}</Table.Cell>
+            <Table.Cell textAlign='center' verticalAlign='middle' active>
+                {dayShorthand(day)}
+            </Table.Cell>
             <Table.Cell>
                 {modules.map((module) =>
                     module.timing.filter(

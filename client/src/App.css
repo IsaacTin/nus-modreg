@@ -29,6 +29,7 @@ body {
     line-height: 1.6;
     background-color: #fff;
     color: #333;
+    /* height: 100%; */
 }
 
 a {
@@ -237,6 +238,8 @@ img {
 
 .btn-module {
     padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    margin: 0;
+    border: 0;
     text-align: left;
     font-size: 0.8rem;
     font-weight: 900;
@@ -500,10 +503,11 @@ table th {
     /* position: fixed; */
     justify-content: space-between;
     align-items: center;
-    padding: 0.7rem 1.5rem;
+    padding: 0.7rem 1.5rem 0.7rem 0.8rem;
     z-index: 1;
     width: 100%;
-    border-bottom: solid 1px var(--primary-color);
+    border-bottom: solid 1px #ad5a00;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
     opacity: 1;
     margin-bottom: 1rem;
 }
@@ -515,10 +519,11 @@ table th {
     /* position: fixed; */
     justify-content: space-between;
     align-items: center;
-    padding: 0.7rem 1.5rem;
+    padding: 0.7rem 1.5rem 0.7rem 0.8rem;
     z-index: 1;
     width: calc(100% - var(--sidebar-width));
-    border-bottom: solid 1px var(--primary-color);
+    border-bottom: solid 1px #ad5a00;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
     opacity: 1;
     margin-bottom: 1rem;
 }
@@ -602,7 +607,7 @@ table th {
 img#nus-logo {
     height: 35px;
     width: auto;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     align-self: center;
     justify-content: center;
 }
@@ -791,13 +796,19 @@ img#nus-logo {
     margin-left: 5px;
 }
 
-.nusmods {
-    height: 100%;
-    grid-area: timetable;
-    background-color: cyan;
+.home-grid {
+    display: grid;
+    grid-template-areas:
+        'timetable'
+        'timetable'
+        'search';
 }
 
-.searchbar {
+.timetable {
+    grid-area: timetable;
+}
+
+.search {
     grid-area: search;
 }
 
