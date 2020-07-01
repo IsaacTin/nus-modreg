@@ -237,6 +237,8 @@ img {
 /* timetable module colors */
 
 .btn-module {
+    height: 70px;
+    width: 110px;
     padding: 0.6rem 2.8rem 0.4rem 0.6rem;
     margin: 0;
     border: 0;
@@ -254,11 +256,6 @@ img {
 }
 
 .module-orange {
-    background: var(--light-color);
-    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
-    text-align: left;
-    font-size: 0.8rem;
-    font-weight: 900;
     color: #7e3204;
     background-color: #f99157;
     border-bottom: 3px solid #e25608;
@@ -266,11 +263,6 @@ img {
 }
 
 .module-yellow {
-    background: var(--light-color);
-    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
-    text-align: left;
-    font-size: 0.8rem;
-    font-weight: 900;
     color: #996600;
     background-color: #ffcc65;
     border-bottom: 3px solid #ffaa00;
@@ -278,11 +270,6 @@ img {
 }
 
 .module-green {
-    background: var(--light-color);
-    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
-    text-align: left;
-    font-size: 0.8rem;
-    font-weight: 900;
     color: #336633;
     background-color: #99cc99;
     border-bottom: 3px solid #55aa55;
@@ -290,11 +277,6 @@ img {
 }
 
 .module-cyan {
-    background: var(--light-color);
-    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
-    text-align: left;
-    font-size: 0.8rem;
-    font-weight: 900;
     color: #1a4d4d;
     background-color: #66cccc;
     border-bottom: 3px solid #339999;
@@ -302,11 +284,6 @@ img {
 }
 
 .module-darkblue {
-    background: var(--light-color);
-    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
-    text-align: left;
-    font-size: 0.8rem;
-    font-weight: 900;
     color: #1b334d;
     background-color: #6699cc;
     border-bottom: 3px solid #336699;
@@ -314,11 +291,6 @@ img {
 }
 
 .module-purple {
-    background: var(--light-color);
-    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
-    text-align: left;
-    font-size: 0.8rem;
-    font-weight: 900;
     color: #653366;
     background-color: #cc99cc;
     border-bottom: 3px solid #aa55aa;
@@ -326,11 +298,6 @@ img {
 }
 
 .module-brown {
-    background: var(--light-color);
-    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
-    text-align: left;
-    font-size: 0.8rem;
-    font-weight: 900;
     color: #582e19;
     background-color: #d27b53;
     border-bottom: 3px solid #974b28;
