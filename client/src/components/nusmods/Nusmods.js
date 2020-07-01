@@ -68,7 +68,16 @@ const Nusmods = () => {
 
     return (
         <div className='timetable'>
-            <Table celled definition collapsing striped compact size='small'>
+            <Table
+                celled
+                definition
+                collapsing
+                striped
+                compact
+                size='small'
+                textAlign='center'
+                verticalAlign='middle'
+            >
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell />

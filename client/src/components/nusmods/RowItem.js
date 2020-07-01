@@ -79,6 +79,8 @@ const RowItem = ({ module, day }) => {
                 return 'SEC';
             case 'Recitation':
                 return 'REC';
+            case 'Seminar-Style Module Class':
+                return 'SEM';
             default:
                 return '';
         }
