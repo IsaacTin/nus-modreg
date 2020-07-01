@@ -763,3 +763,19 @@ img#nus-logo {
 .unselected:hover {
     opacity: 0.8;
 }
+
+.tableCell {
+    display: inline-block;
+    background: white;
+    color: #333;
+    size: 100%;
+    height: 90px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: opacity 0.2s ease-in;
+    outline: none;
+    
+}

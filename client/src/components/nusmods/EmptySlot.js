@@ -1,11 +1,14 @@
 import React from 'react'
+import { Table } from 'semantic-ui-react';
+
 
 const EmptySlot = ({startTime, endTIme}) => {
     return ( 
-        <div>
-            <button>
+        <Table.Cell >
+            <button className="tableCell">
+                
             </button>
-        </div>
+        </Table.Cell>
      );
 }
  

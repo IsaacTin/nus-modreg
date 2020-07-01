@@ -1,6 +1,8 @@
 import React, { useContext , useState } from 'react';
 import Modal from 'react-modal';
 import ModuleContext from '../../context/module/moduleContext';
+import { Table } from 'semantic-ui-react';
+
 
 
 const RowItem = ({module, day}) => {
@@ -50,7 +52,7 @@ const RowItem = ({module, day}) => {
     }
 
     return (
-        <div>
+        <Table.Cell>
             <button
                 className={setColor(module)}
                 onClick={() => setModalIsOpen(true)}
@@ -96,7 +98,7 @@ const RowItem = ({module, day}) => {
             <div>
             </div>
             </Modal>
-        </div>
+        </Table.Cell>
     )
 }
 
