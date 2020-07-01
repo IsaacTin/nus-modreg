@@ -74,6 +74,7 @@ const Nusmods = () => {
                 collapsing
                 striped
                 compact
+                fixed
                 size='small'
                 textAlign='center'
                 verticalAlign='middle'

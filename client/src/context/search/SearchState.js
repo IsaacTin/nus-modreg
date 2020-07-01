@@ -10,12 +10,21 @@ import {
     DELETE_SELECTION,
     CLEARALL_SELECTION,
     IS_SEARCHED_TRUE,
-    IS_SEARCHED_FALSE
+    IS_SEARCHED_FALSE,
+    ADD_TIME_FILTER,
+    DELETE_TIME_FILTER
 } from '../types';
 
 const SearchState = (props) => {
     const initialState = {
         filtered: null,
+        timeFilter: [
+            { startTime: [], endTime: [] },
+            { startTime: [], endTime: [] },
+            { startTime: [], endTime: [] },
+            { startTime: [], endTime: [] },
+            { startTime: [], endTime: [] }
+        ],
         selection: [],
         searchLoading: true,
         isSearched: false,
@@ -39,6 +48,20 @@ const SearchState = (props) => {
                 payload: error.response.msg
             });
         }
+    };
+
+    const addTimeFilter = (day, startTime, endTime) => {
+        dispatch({
+            type: ADD_TIME_FILTER,
+            payload: [day, startTime, endTime]
+        });
+    };
+
+    const deleteTimeFilter = (day, startTime, endTime) => {
+        dispatch({
+            type: DELETE_TIME_FILTER,
+            payload: [day, startTime, endTime]
+        });
     };
 
     // clear filter
@@ -87,11 +110,14 @@ const SearchState = (props) => {
         <SearchContext.Provider
             value={{
                 filtered: state.filtered,
+                timeFilter: state.timeFilter,
                 selection: state.selection,
                 searchLoading: state.searchLoading,
                 isSearched: state.isSearched,
                 error: state.error,
                 filterModules,
+                addTimeFilter,
+                deleteTimeFilter,
                 clearFilter,
                 addSelection,
                 deleteSelection,

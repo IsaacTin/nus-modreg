@@ -56,7 +56,7 @@ const Rows = ({ modules, day }) => {
                 {present1 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'0800'} endTime={'0900'} />
+                    <EmptySlot startTime={'0800'} endTime={'0900'} day={day} />
                 )}
             </Table.Cell>
             <Table.Cell>
@@ -79,7 +79,7 @@ const Rows = ({ modules, day }) => {
                 {present2 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'0900'} endTime={'1000'} />
+                    <EmptySlot startTime={'0900'} endTime={'1000'} day={day} />
                 )}
             </Table.Cell>
             <Table.Cell>
@@ -102,7 +102,7 @@ const Rows = ({ modules, day }) => {
                 {present3 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'1000'} endTime={'1100'} />
+                    <EmptySlot startTime={'1000'} endTime={'1100'} day={day} />
                 )}
             </Table.Cell>
             <Table.Cell>
@@ -125,7 +125,7 @@ const Rows = ({ modules, day }) => {
                 {present4 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'1100'} endTime={'1200'} />
+                    <EmptySlot startTime={'1100'} endTime={'1200'} day={day} />
                 )}
             </Table.Cell>
             <Table.Cell>
@@ -148,7 +148,7 @@ const Rows = ({ modules, day }) => {
                 {present5 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'1200'} endTime={'1300'} />
+                    <EmptySlot startTime={'1200'} endTime={'1300'} day={day} />
                 )}
             </Table.Cell>
             <Table.Cell>
@@ -171,7 +171,7 @@ const Rows = ({ modules, day }) => {
                 {present6 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'1300'} endTime={'1400'} />
+                    <EmptySlot startTime={'1300'} endTime={'1400'} day={day} />
                 )}
             </Table.Cell>
             <Table.Cell>
@@ -194,7 +194,7 @@ const Rows = ({ modules, day }) => {
                 {present7 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'1400'} endTime={'1500'} />
+                    <EmptySlot startTime={'1400'} endTime={'1500'} day={day} />
                 )}
             </Table.Cell>
             <Table.Cell>
@@ -217,7 +217,7 @@ const Rows = ({ modules, day }) => {
                 {present8 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'1500'} endTime={'1600'} />
+                    <EmptySlot startTime={'1500'} endTime={'1600'} day={day} />
                 )}
             </Table.Cell>
             <Table.Cell>
@@ -240,7 +240,7 @@ const Rows = ({ modules, day }) => {
                 {present9 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'1600'} endTime={'1700'} />
+                    <EmptySlot startTime={'1600'} endTime={'1700'} day={day} />
                 )}
             </Table.Cell>
             <Table.Cell>
@@ -263,7 +263,7 @@ const Rows = ({ modules, day }) => {
                 {present10 ? (
                     ''
                 ) : (
-                    <EmptySlot startTime={'1700'} endTime={'1800'} />
+                    <EmptySlot startTime={'1700'} endTime={'1800'} day={day} />
                 )}
             </Table.Cell>
         </Table.Row>
