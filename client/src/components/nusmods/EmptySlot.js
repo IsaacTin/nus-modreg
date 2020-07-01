@@ -5,7 +5,7 @@ import { Table } from 'semantic-ui-react';
 const EmptySlot = ({startTime, endTIme}) => {
     return ( 
         <Table.Cell >
-            <button className="tableCell">
+            <button>
                 
             </button>
         </Table.Cell>
