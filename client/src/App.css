@@ -229,7 +229,7 @@ img {
 .btn-module1 {
     background: var(--light-color);
     color: #333;
-    background-color: lightpink;
+    background-color: rgb(255, 0, 255);
 }
 
 .btn-module2 {
