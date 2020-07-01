@@ -22,7 +22,7 @@ const EmptySlot = ({ startTime, endTime, day }) => {
                 }`}
                 onClick={onClick}
             >
-                search for this timing
+                add timing to search
             </button>
         </div>
     );

@@ -1,11 +1,14 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import ModuleItem from './ModuleItem';
 import Spinner from '../layout/Spinner';
+import Alert from '../layout/Alert';
+import AlerContext from '../../context/alert/alertContext';
 import SearchContext from '../../context/search/searchContext';
 import ModuleContext from '../../context/module/moduleContext';
 import moduleArrayConverter from '../../utils/moduleArrayConverter';
 
 const SearchModules = () => {
+    const alertContext = useContext(AlerContext);
     const searchContext = useContext(SearchContext);
     const moduleContext = useContext(ModuleContext);
 
@@ -14,6 +17,7 @@ const SearchModules = () => {
     // used to toggle spinner - logic problem?
     const [searching, setSearching] = useState(false);
 
+    const { setAlert } = alertContext;
     const {
         filtered,
         selection,
@@ -35,7 +39,7 @@ const SearchModules = () => {
             isSearchedFalse();
             setDisplaySearchResults([]);
         }
-         // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [filtered, selection]);
 
     if (filtered !== null && displaySearchResults.length === 0 && !searching) {
@@ -46,6 +50,7 @@ const SearchModules = () => {
         e.preventDefault();
         if (selection.length === 0) {
             // notify user that no modules have been selected
+            setAlert('No modules selected', 'danger');
         }
         // check if currentModules alr has any of the modules currently being selected, else proceed
         // maybe can change to something more efficient? lol
@@ -72,8 +77,10 @@ const SearchModules = () => {
                 // print out the stupid error
             }
         } else {
-            console.log('there are duplicates u idiot');
-            console.log(duplicates);
+            setAlert(
+                'Module with specified time slot is already in cart',
+                'danger'
+            );
         }
     };
 
@@ -84,26 +91,23 @@ const SearchModules = () => {
 
     return (
         <Fragment>
-                {searching ? (
-                    <Spinner />
-                ) : (
-                    <div className='grid-3'>
-                        {displaySearchResults.length !== 0 &&
-                            displaySearchResults
-                                .filter(
-                                    (module) =>
-                                        module.semesterData.length > 0 &&
-                                        module.semesterData[0].timetable
-                                            .length > 0
-                                )
-                                .map((module, index) => (
-                                        <ModuleItem
-                                            key={index}
-                                            module={module}
-                                        />
-                                ))}
-                    </div>
-                )}
+            <Alert />
+            {searching ? (
+                <Spinner />
+            ) : (
+                <div className='grid-3'>
+                    {displaySearchResults.length !== 0 &&
+                        displaySearchResults
+                            .filter(
+                                (module) =>
+                                    module.semesterData.length > 0 &&
+                                    module.semesterData[0].timetable.length > 0
+                            )
+                            .map((module, index) => (
+                                <ModuleItem key={index} module={module} />
+                            ))}
+                </div>
+            )}
             <ul className='container grid-4'>
                 {selection.length !== 0 &&
                     selection.map((module, index) => (

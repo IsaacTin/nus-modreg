@@ -1,12 +1,15 @@
-import React, { useContext, useState, useEffect, Fragment } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
+import Select from 'react-select';
+import AlertContext from '../../context/alert/alertContext';
 import SearchContext from '../../context/search/searchContext';
 import PropTypes from 'prop-types';
 
-
 const ModuleItem = (props) => {
+    const alertContext = useContext(AlertContext);
     const searchContext = useContext(SearchContext);
 
     const { title, moduleCode, moduleCredit, semesterData } = props.module;
+    const { setAlert } = alertContext;
     const { addSelection, selection } = searchContext;
 
     const [selectedModule, setSelectedModule] = useState('');
@@ -14,40 +17,43 @@ const ModuleItem = (props) => {
     // might need to get from config
     const BIDDING_ROUND = 'ROUND_1';
 
-    const onChange = (e) => {
-        setSelectedModule(e.target.value);
-    };
+    const onChange = (e) => setSelectedModule(e.value);
 
     const onSubmit = (e) => {
         e.preventDefault();
-        const jsonModule = JSON.parse(selectedModule);
-        const duplicates = selection.filter((lesson) => {
-            return (
-                moduleCode === lesson.moduleCode &&
-                jsonModule.lessonType === lesson.lessonType &&
-                jsonModule.classNo === lesson.classNo
-            );
-        });
-        if (duplicates.length === 0) {
-            const formattedModule = {
-                moduleCode: moduleCode,
-                title: title,
-                lessonType: jsonModule.lessonType,
-                classNo: jsonModule.classNo,
-                size: jsonModule.size,
-                timing: [...jsonModule.venue].map((venue, index) => {
-                    return {
-                        startTime: jsonModule.startTime[index],
-                        endTime: jsonModule.endTime[index],
-                        day: jsonModule.day[index],
-                        venue: venue
-                    };
-                })
-            };
-            addSelection(formattedModule);
+        if (selectedModule === '') {
+            console.log('no timing selected');
+            setAlert('No timeslot selected', 'danger');
         } else {
-            // throw alert
-            console.log('salah bro');
+            const jsonModule = JSON.parse(selectedModule);
+            const duplicates = selection.filter((lesson) => {
+                return (
+                    moduleCode === lesson.moduleCode &&
+                    jsonModule.lessonType === lesson.lessonType &&
+                    jsonModule.classNo === lesson.classNo
+                );
+            });
+            if (duplicates.length === 0) {
+                const formattedModule = {
+                    moduleCode: moduleCode,
+                    title: title,
+                    lessonType: jsonModule.lessonType,
+                    classNo: jsonModule.classNo,
+                    size: jsonModule.size,
+                    timing: [...jsonModule.venue].map((venue, index) => {
+                        return {
+                            startTime: jsonModule.startTime[index],
+                            endTime: jsonModule.endTime[index],
+                            day: jsonModule.day[index],
+                            venue: venue
+                        };
+                    })
+                };
+                addSelection(formattedModule);
+            } else {
+                // throw alert
+                console.log('salah bro');
+            }
         }
     };
 
@@ -112,12 +118,48 @@ const ModuleItem = (props) => {
         });
     }
 
-    useEffect(() => {
-        if (mergedTimetable) {
-            setSelectedModule(JSON.stringify(mergedTimetable[0]));
+    // useEffect(() => {
+    //     if (mergedTimetable) {
+    //         setSelectedModule(JSON.stringify(mergedTimetable[0]));
+    //     }
+    //     //eslint-disable-next-line
+    // }, []);
+
+    const stringOptions = mergedTimetable.map((timeslot) => {
+        let lessonName;
+        switch (timeslot.lessonType) {
+            case 'Tutorial':
+                lessonName = 'TUT';
+                break;
+            case 'Laboratory':
+                lessonName = 'LAB';
+                break;
+            case 'Lecture':
+                lessonName = 'LEC';
+                break;
+            case 'Sectional Teaching':
+                lessonName = 'SEC';
+                break;
+            case 'Recitation':
+                lessonName = 'REC';
+                break;
+            case 'Seminar-Style Module Class':
+                lessonName = 'SEM';
+                break;
+            default:
+                lessonName = '';
         }
-        //eslint-disable-next-line
-    }, []);
+        let option = `${lessonName} [${timeslot.classNo}]: `;
+        timeslot.venue.forEach((venue, index) => {
+            let separator;
+            index !== timeslot.venue.length - 1
+                ? (separator = ';')
+                : (separator = '');
+
+            option += ` ${venue} ${timeslot.day[index]} ${timeslot.startTime[index]} - ${timeslot.endTime[index]}${separator}`;
+        });
+        return { value: JSON.stringify(timeslot), label: option };
+    });
 
     return (
         <div className='card text-left'>
@@ -129,16 +171,25 @@ const ModuleItem = (props) => {
                     {/* might wanna change the word 'classes' to a conditional */}
                     <label>{`Timeslot for classes:`}</label>
                     <form onSubmit={onSubmit}>
-                        <select value={selectedModule} onChange={onChange}>
+                        {/* <select value={selectedModule} onChange={onChange}>
                             {mergedTimetable.map((timeslot) => (
                                 <option
                                     key={timeslot.classNo}
                                     value={JSON.stringify(timeslot)}
                                 >
-                                    {`${timeslot.lessonType === "Tutorial" ? 'TUT' : 
-                                        timeslot.lessonType === "Laboratory" ? 'LAB':
-                                            timeslot.lessonType === "Lecture" ? 'LEC' :
-                                                timeslot.lessonType === "Recitation" ? 'REC' : ""} [${timeslot.classNo}]`} 
+                                    {`${
+                                        timeslot.lessonType === 'Tutorial'
+                                            ? 'TUT'
+                                            : timeslot.lessonType ===
+                                              'Laboratory'
+                                            ? 'LAB'
+                                            : timeslot.lessonType === 'Lecture'
+                                            ? 'LEC'
+                                            : timeslot.lessonType ===
+                                              'Recitation'
+                                            ? 'REC'
+                                            : ''
+                                    } [${timeslot.classNo}]`}
                                     {timeslot.venue.map((venue, index) => {
                                         let separator;
 
@@ -150,7 +201,13 @@ const ModuleItem = (props) => {
                                     })}
                                 </option>
                             ))}
-                        </select>
+                        </select> */}
+                        <Select
+                            placeholder='Select Class Slot'
+                            defaultValue={selectedModule}
+                            options={stringOptions}
+                            onChange={onChange}
+                        />
                         <input
                             type='submit'
                             value='Add module'
