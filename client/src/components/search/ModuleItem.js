@@ -1,12 +1,14 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react';
+import AlertContext from '../../context/alert/alertContext';
 import SearchContext from '../../context/search/searchContext';
 import PropTypes from 'prop-types';
 
-
 const ModuleItem = (props) => {
+    const alertContext = useContext(AlertContext);
     const searchContext = useContext(SearchContext);
 
     const { title, moduleCode, moduleCredit, semesterData } = props.module;
+    const { setAlert } = alertContext;
     const { addSelection, selection } = searchContext;
 
     const [selectedModule, setSelectedModule] = useState('');
@@ -47,7 +49,20 @@ const ModuleItem = (props) => {
             addSelection(formattedModule);
         } else {
             // throw alert
-            console.log('salah bro');
+            let duplicatedModules = '';
+            duplicates.forEach((mod, index) => {
+                duplicatedModules += `${mod.moduleCode} (Class Slot ${mod.classNo})`;
+                if (index !== duplicates.length - 1) {
+                    duplicatedModules += ', ';
+                }
+            });
+            setAlert(
+                `${duplicatedModules} ${
+                    duplicates.length === 1 ? 'has' : 'have'
+                } already been selected.`,
+                'danger'
+            );
+            console.log(duplicates);
         }
     };
 
