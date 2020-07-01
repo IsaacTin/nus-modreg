@@ -35,13 +35,49 @@ const Nusmods = () => {
                 setDisplayedModules(result);
             }
         }
-         // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [currentModules]);
 
+    useEffect(() => {
+        if (currentModules !== null) {
+            let temp = [];
+            currentModules.forEach((module1) =>
+                temp.filter(
+                    (module2) =>
+                        module1.moduleCode === module2.moduleCode &&
+                        module1.lessonType === module2.lessonType
+                ).length !== 0
+                    ? module1
+                    : temp.push(module1)
+            );
+            setDisplayedModules(temp);
+        }
+        // eslint-disable-next-line
+    }, []);
+
+    //const onChange = (module) => {
+    /* eslint-disable */
+    /*let temp = []
+         console.log(temp)
+        modules.map((module1) => {
+            module1.semesterData.timetable[0].lessonType === module.semesterData.timetable[0].lessonType && module1.moduleCode === module.moduleCode 
+                ? temp.push(module) : temp.push(module1)
+        })
+        setModules(temp)
+    }*/
 
     return (
-        <div className={isSidebarOpen ? 'main-shift' : 'main'}>
-            <Table celled definition>
+        <div className='timetable'>
+            <Table
+                celled
+                definition
+                collapsing
+                striped
+                compact
+                size='small'
+                textAlign='center'
+                verticalAlign='middle'
+            >
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell />

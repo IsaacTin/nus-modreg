@@ -11,9 +11,12 @@ const RankingItem = ({ module, index }) => {
                     {...provided.dragHandleProps}
                 >
                     <div className='ranking-item'>
-                        Module name: {module.title}
-                        <br />
                         Module Code: {module.moduleCode}
+                        <br />
+                        Lesson: {`${module.lessonType === "Tutorial" ? 'TUT' : 
+                                    module.lessonType === "Laboratory" ? 'LAB':
+                                        module.lessonType === "Lecture" ? 'LEC' :
+                                            module.lessonType === "Recitation" ? 'REC' : ""} [${module.classNo}]`}
                         <br />
                         Module Rank: {index + 1}
                     </div>

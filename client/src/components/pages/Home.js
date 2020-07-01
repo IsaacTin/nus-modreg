@@ -18,12 +18,14 @@ const Home = () => {
     }, []);
 
     return (
-        <div id='main'>
+        <div id='main' className='home-grid'>
             <Sidebar />
             <div className={isSidebarOpen ? 'main-shift' : 'main'}>
-                <Nusmods />
-                <SearchModuleFilter />
-                <SearchModules />
+                <Nusmods className='timetable' />
+                <div className='search'>
+                    <SearchModuleFilter />
+                    <SearchModules />
+                </div>
             </div>
         </div>
     );
