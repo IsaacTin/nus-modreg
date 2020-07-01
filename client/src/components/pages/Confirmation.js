@@ -1,5 +1,5 @@
-import React, { Fragment, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import ModuleContext from '../../context/module/moduleContext';
 import AuthContext from '../../context/auth/authContext';
 import LayoutContext from '../../context/layout/layoutContext';
@@ -26,14 +26,19 @@ const Confirmation = () => {
         // eslint-disable-next-line
     }, []);
 
-    const onClick = () => {
+    const [redirect, setRedirect] = useState(false);
+
+    const onConfirm = () => {
         confirmModules(user._id);
         console.log('modules confirmed');
+        setRedirect(true);
     };
 
     // disable cart the moment u enter this page
 
-    return (
+    return redirect ? (
+        <Redirect to='/confirmed' />
+    ) : (
         <Fragment>
             <Sidebar />
             <div className={isSidebarOpen ? 'main-shift' : 'main'}>
@@ -68,8 +73,14 @@ const Confirmation = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <Link to='/' className='btn btn-primary' onClick={onClick}>
+                <br />
+                <button className='btn btn-primary' onClick={onConfirm}>
                     Confirm Modules
+                </button>{' '}
+                <br />
+                <br />
+                <Link to='/' className='btn btn-light'>
+                    Go back
                 </Link>
             </div>
         </Fragment>

@@ -31,6 +31,11 @@ const Navbar = () => {
                 </Link>
             </li>
             <li className='nav-item'>
+                <Link to='/guide' className='icon-button'>
+                    <i className='fas fa-info-circle'></i>
+                </Link>
+            </li>
+            <li className='nav-item'>
                 <Link to='/location' className='icon-button'>
                     <i className='fas fa-map-marked-alt'></i>
                 </Link>

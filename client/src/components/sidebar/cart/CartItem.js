@@ -4,6 +4,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Paper from '@material-ui/core/Paper';
 
 const CartItem = ({ module, rank }) => {
     const moduleContext = useContext(ModuleContext);
@@ -23,26 +24,31 @@ const CartItem = ({ module, rank }) => {
             <br />
             Module Code: {moduleCode}
             <br />
-            {module.lessonType === "Tutorial" ? 'TUT' : 
-                                module.lessonType === "Laboratory" ? 'LAB':
-                                    module.lessonType === "Lecture" ? 'LEC' :
-                                        module.lessonType === "Recitation" ? 'REC' : ""} {classNo}
-            <div style={{ fontSize: '0.85rem', marginTop: 8, marginLeft: 10 }}>
-                <ExpansionPanel>
+            {module.lessonType === 'Tutorial'
+                ? 'TUT'
+                : module.lessonType === 'Laboratory'
+                ? 'LAB'
+                : module.lessonType === 'Lecture'
+                ? 'LEC'
+                : module.lessonType === 'Recitation'
+                ? 'REC'
+                : ''}
+            {`[${classNo}]`}
+            <div style={{ fontSize: '0.85rem', marginTop: 5, marginBottom: 8 }}>
+                <ExpansionPanel component={Paper}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        Click to view class details
+                        View class details
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         {timing.map((timeslot, index) => (
                             <div key={index}>
-                                <br />
                                 {`${timeslot.venue}, ${timeslot.day} ${timeslot.startTime} - ${timeslot.endTime}`}
+                                <br />
                             </div>
                         ))}
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </div>
-            <br />
             <button className='btn btn-sm btn-light' onClick={onDelete}>
                 <i className='far fa-trash-alt'></i>{' '}
             </button>
