@@ -1,14 +1,11 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import ModuleItem from './ModuleItem';
-import Alert from '../layout/Alert';
 import Spinner from '../layout/Spinner';
-import AlertContext from '../../context/alert/alertContext';
 import SearchContext from '../../context/search/searchContext';
 import ModuleContext from '../../context/module/moduleContext';
 import moduleArrayConverter from '../../utils/moduleArrayConverter';
 
 const SearchModules = () => {
-    const alertContext = useContext(AlertContext);
     const searchContext = useContext(SearchContext);
     const moduleContext = useContext(ModuleContext);
 
@@ -17,7 +14,6 @@ const SearchModules = () => {
     // used to toggle spinner - logic problem?
     const [searching, setSearching] = useState(false);
 
-    const { setAlert } = alertContext;
     const {
         filtered,
         selection,
@@ -39,7 +35,7 @@ const SearchModules = () => {
             isSearchedFalse();
             setDisplaySearchResults([]);
         }
-        // eslint-disable-next-line
+         // eslint-disable-next-line
     }, [filtered, selection]);
 
     if (filtered !== null && displaySearchResults.length === 0 && !searching) {
@@ -76,19 +72,7 @@ const SearchModules = () => {
                 // print out the stupid error
             }
         } else {
-            let duplicatedModules = '';
-            duplicates.forEach((mod, index) => {
-                duplicatedModules += `${mod.moduleCode} (Class Slot ${mod.classNo})`;
-                if (index !== duplicates.length - 1) {
-                    duplicatedModules += ', ';
-                }
-            });
-            setAlert(
-                `${duplicatedModules} ${
-                    duplicates.length === 1 ? 'is' : 'are'
-                } already in the cart!`,
-                'danger'
-            );
+            console.log('there are duplicates u idiot');
             console.log(duplicates);
         }
     };
@@ -100,23 +84,26 @@ const SearchModules = () => {
 
     return (
         <Fragment>
-            <Alert />
-            {searching ? (
-                <Spinner />
-            ) : (
-                <div className='grid-3'>
-                    {displaySearchResults.length !== 0 &&
-                        displaySearchResults
-                            .filter(
-                                (module) =>
-                                    module.semesterData.length > 0 &&
-                                    module.semesterData[0].timetable.length > 0
-                            )
-                            .map((module, index) => (
-                                <ModuleItem key={index} module={module} />
-                            ))}
-                </div>
-            )}
+                {searching ? (
+                    <Spinner />
+                ) : (
+                    <div className='grid-3'>
+                        {displaySearchResults.length !== 0 &&
+                            displaySearchResults
+                                .filter(
+                                    (module) =>
+                                        module.semesterData.length > 0 &&
+                                        module.semesterData[0].timetable
+                                            .length > 0
+                                )
+                                .map((module, index) => (
+                                        <ModuleItem
+                                            key={index}
+                                            module={module}
+                                        />
+                                ))}
+                    </div>
+                )}
             <ul className='container grid-4'>
                 {selection.length !== 0 &&
                     selection.map((module, index) => (
