@@ -255,10 +255,6 @@ img {
 
 .module-orange {
     background: var(--light-color);
-<<<<<<< HEAD
-    color: #333;
-    background-color: rgb(255, 0, 255);
-=======
     padding: 0.6rem 2.8rem 0.4rem 0.6rem;
     text-align: left;
     font-size: 0.8rem;
@@ -267,7 +263,6 @@ img {
     background-color: #f99157;
     border-bottom: 3px solid #e25608;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
->>>>>>> isaac
 }
 
 .module-yellow {
