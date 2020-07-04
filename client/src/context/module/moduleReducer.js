@@ -24,9 +24,11 @@ export default (state, action) => {
                 error: action.payload
             };
         case CONFIRM_MODULES:
+            localStorage.removeItem('currentModules');
             return {
                 ...state,
-                confirmedModules: action.payload
+                confirmedModules: action.payload,
+                currentModules: null
             };
         case CLEAR_MODULES:
             localStorage.removeItem('currentModules');
@@ -79,10 +81,6 @@ export default (state, action) => {
                 })
             };
         case UPDATE_RANKINGS:
-            return {
-                ...state,
-                currentModules: action.payload
-            };
         case SET_CURRENT_MODULES:
             localStorage.setItem(
                 'currentModules',
