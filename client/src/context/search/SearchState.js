@@ -12,7 +12,8 @@ import {
     IS_SEARCHED_TRUE,
     IS_SEARCHED_FALSE,
     ADD_TIME_FILTER,
-    DELETE_TIME_FILTER
+    DELETE_TIME_FILTER,
+    CLEAR_ALL_TIME_FILTERS
 } from '../types';
 
 const SearchState = (props) => {
@@ -64,6 +65,12 @@ const SearchState = (props) => {
         });
     };
 
+    const clearAllTimeFilters = () => {
+        dispatch({
+            type: CLEAR_ALL_TIME_FILTERS
+        });
+    };
+
     // clear filter
     const clearFilter = () => {
         dispatch({
@@ -95,7 +102,7 @@ const SearchState = (props) => {
     const deleteSelection = (module) => {
         dispatch({
             type: DELETE_SELECTION,
-            payload: module
+            payload: { moduleCode: module.moduleCode, classNo: module.classNo }
         });
     };
 
@@ -118,6 +125,7 @@ const SearchState = (props) => {
                 filterModules,
                 addTimeFilter,
                 deleteTimeFilter,
+                clearAllTimeFilters,
                 clearFilter,
                 addSelection,
                 deleteSelection,
