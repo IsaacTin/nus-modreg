@@ -8,7 +8,6 @@ import Confirmation from './components/pages/Confirmation';
 import Confirmed from './components/pages/Confirmed';
 import Login from './components/auth/Login';
 import Location from './components/pages/Location';
-import Alerts from './components/layout/Alert';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 import { DndProvider } from 'react-dnd';

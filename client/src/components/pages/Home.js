@@ -19,7 +19,6 @@ const Home = () => {
 
     return (
         <div id='main' className='home-grid'>
-            <Sidebar />
             <div className={isSidebarOpen ? 'main-shift' : 'main'}>
                 <Nusmods className='timetable' />
                 <div className='search'>
@@ -27,6 +26,7 @@ const Home = () => {
                     <SearchModules />
                 </div>
             </div>
+            <Sidebar />
         </div>
     );
 };
