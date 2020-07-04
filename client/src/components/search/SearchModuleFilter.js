@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
+import TimeFilters from './TimeFilters';
 import SearchContext from '../../context/search/searchContext';
-import { Input, Icon, Button } from 'semantic-ui-react';
+import { Input, Icon } from 'semantic-ui-react';
 
 const SearchModuleFilter = () => {
     const searchContext = useContext(SearchContext);
@@ -45,6 +46,8 @@ const SearchModuleFilter = () => {
                     value={text}
                     onChange={onChange}
                 />
+                <TimeFilters />
+                {/* add cards for time filters too */}
                 <br />
                 <input type='submit' value='Search' className='btn btn-dark' />
                 <button className='btn btn-light' onClick={() => setText('')}>

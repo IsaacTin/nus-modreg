@@ -6,6 +6,7 @@ import AlerContext from '../../context/alert/alertContext';
 import SearchContext from '../../context/search/searchContext';
 import ModuleContext from '../../context/module/moduleContext';
 import moduleArrayConverter from '../../utils/moduleArrayConverter';
+import classNameConverter from '../../utils/classNameConverter';
 
 const SearchModules = () => {
     const alertContext = useContext(AlerContext);
@@ -20,6 +21,7 @@ const SearchModules = () => {
     const { setAlert } = alertContext;
     const {
         filtered,
+        clearFilter,
         selection,
         deleteSelection,
         clearSelection,
@@ -70,8 +72,9 @@ const SearchModules = () => {
         if (duplicates.length === 0) {
             addModules(selection);
             // might need to check why error becomes undefined ah
-            if (error === null || error === undefined) {
+            if (error === null) {
                 clearSelection();
+                clearFilter();
                 // notify user that selection has succesfully been added
             } else {
                 // print out the stupid error
@@ -108,14 +111,15 @@ const SearchModules = () => {
                             ))}
                 </div>
             )}
+            {/* perhaps abstract out the below code? */}
             <ul className='container grid-4'>
                 {selection.length !== 0 &&
                     selection.map((module, index) => (
                         <li key={index} className='card text-left'>
-                            {module.title}
-                            {` (${module.moduleCode}) `}
+                            {`${module.moduleCode}: ${classNameConverter(
+                                module.lessonType
+                            )} [${module.classNo}]`}
                             <br />
-                            {`${module.lessonType} slot: ${module.classNo}`}
                             <button
                                 className='btn btn-sm btn-danger'
                                 onClick={(e) => onDelete(e, module)}
@@ -125,9 +129,11 @@ const SearchModules = () => {
                         </li>
                     ))}
             </ul>
-            <button className='btn btn-light' onClick={onClickConfirm}>
-                Add to cart
-            </button>
+            {displaySearchResults.length > 0 && (
+                <button className='btn btn-light' onClick={onClickConfirm}>
+                    Add to cart
+                </button>
+            )}
         </Fragment>
     );
 };

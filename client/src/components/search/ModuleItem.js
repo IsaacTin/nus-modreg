@@ -82,6 +82,28 @@ const ModuleItem = (props) => {
                     day: [...result[existingIndex].day, lesson.day],
                     venue: [...result[existingIndex].venue, lesson.venue]
                 };
+
+                // sort according to days
+                result[existingIndex].day.sort((classDayA, classDayB) => {
+                    const sortByDay = (day) => {
+                        switch (day) {
+                            case 'Monday':
+                                return 1;
+                            case 'Tuesday':
+                                return 2;
+                            case 'Wednesday':
+                                return 3;
+                            case 'Thursday':
+                                return 4;
+                            case 'Friday':
+                                return 5;
+                            default:
+                                return 0;
+                        }
+                    };
+                    console.log('wassup im sorting');
+                    return sortByDay(classDayA) - sortByDay(classDayB);
+                });
             } else {
                 // if not, then convert all of them into arrays
                 const formattedLesson = {
@@ -94,6 +116,7 @@ const ModuleItem = (props) => {
                 result.push(formattedLesson);
             }
         });
+
         return result;
     };
 
@@ -149,22 +172,21 @@ const ModuleItem = (props) => {
             default:
                 lessonName = '';
         }
-        let option = `${lessonName} [${timeslot.classNo}]: `;
+        let option = `${lessonName} [${timeslot.classNo}]:`;
         timeslot.venue.forEach((venue, index) => {
             let separator;
             index !== timeslot.venue.length - 1
-                ? (separator = ';')
+                ? (separator = ' and')
                 : (separator = '');
 
-            option += ` ${venue} ${timeslot.day[index]} ${timeslot.startTime[index]} - ${timeslot.endTime[index]}${separator}`;
+            option += ` ${timeslot.day[index]}, ${timeslot.startTime[index]} - ${timeslot.endTime[index]} at ${venue} ${separator}`;
         });
         return { value: JSON.stringify(timeslot), label: option };
     });
 
     return (
         <div className='card text-left'>
-            <div>{title}</div>
-            <div>{moduleCode}</div>
+            <div>{`${title} (${moduleCode})`}</div>
             <div>{`${moduleCredit} MCs`}</div>
             {mergedTimetable && (
                 <Fragment>
