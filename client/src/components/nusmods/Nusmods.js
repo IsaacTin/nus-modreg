@@ -1,19 +1,19 @@
 import React, { useContext, useEffect } from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Responsive } from 'semantic-ui-react';
 import ModuleContext from '../../context/module/moduleContext';
-import LayoutContext from '../../context/layout/layoutContext';
+import SearchContext from '../../context/search/searchContext';
 import Rows from './Rows';
 
 const Nusmods = () => {
     const moduleContext = useContext(ModuleContext);
-    const layoutContext = useContext(LayoutContext);
+    const searchContext = useContext(SearchContext);
 
     const {
         displayedModules,
         currentModules,
         setDisplayedModules
     } = moduleContext;
-    const { isSidebarOpen } = layoutContext;
+    const { clearAllTimeFilters } = searchContext;
 
     useEffect(() => {
         if (currentModules !== null) {
@@ -55,6 +55,10 @@ const Nusmods = () => {
         // eslint-disable-next-line
     }, []);
 
+    const onClick = () => {
+        clearAllTimeFilters();
+    };
+
     //const onChange = (module) => {
     /* eslint-disable */
     /*let temp = []
@@ -67,82 +71,91 @@ const Nusmods = () => {
     }*/
 
     return (
-        <div className='timetable'>
-            <Table
-                celled
-                definition
-                collapsing
-                striped
-                compact
-                fixed
-                size='small'
-                textAlign='center'
-                verticalAlign='middle'
-            >
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell />
-                        <Table.HeaderCell>{'0800 - 0900'}</Table.HeaderCell>
-                        <Table.HeaderCell>{'0900 - 1000'}</Table.HeaderCell>
-                        <Table.HeaderCell>{'1000 - 1100'}</Table.HeaderCell>
-                        <Table.HeaderCell>{'1100 - 1200'}</Table.HeaderCell>
-                        <Table.HeaderCell>{'1200 - 1300'}</Table.HeaderCell>
-                        <Table.HeaderCell>{'1300 - 1400'}</Table.HeaderCell>
-                        <Table.HeaderCell>{'1400 - 1500'}</Table.HeaderCell>
-                        <Table.HeaderCell>{'1500 - 1600'}</Table.HeaderCell>
-                        <Table.HeaderCell>{'1600 - 1700'}</Table.HeaderCell>
-                        <Table.HeaderCell>{'1700 - 1800'}</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
+        <div>
+            <br />
+            <button className='btn btn-light' onClick={onClick}>
+                Clear all time filters
+            </button>
+            <br />
+            <br />
+            <Responsive>
+                <Table
+                    celled
+                    definition
+                    collapsing
+                    striped
+                    compact
+                    fixed
+                    size='small'
+                    textAlign='center'
+                    verticalAlign='middle'
+                    className='timetable'
+                >
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell />
+                            <Table.HeaderCell>{'0800 - 0900'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'0900 - 1000'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'1000 - 1100'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'1100 - 1200'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'1200 - 1300'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'1300 - 1400'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'1400 - 1500'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'1500 - 1600'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'1600 - 1700'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'1700 - 1800'}</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                <Table.Body>
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Monday'
-                                ).length !== 0
-                        )}
-                        day='Monday'
-                    />
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Tuesday'
-                                ).length !== 0
-                        )}
-                        day='Tuesday'
-                    />
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Wednesday'
-                                ).length !== 0
-                        )}
-                        day='Wednesday'
-                    />
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Thursday'
-                                ).length !== 0
-                        )}
-                        day='Thursday'
-                    />
-                    <Rows
-                        modules={displayedModules.filter(
-                            (module) =>
-                                module.timing.filter(
-                                    (time) => time.day === 'Friday'
-                                ).length !== 0
-                        )}
-                        day='Friday'
-                    />
-                </Table.Body>
-            </Table>
+                    <Table.Body>
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Monday'
+                                    ).length !== 0
+                            )}
+                            day='Monday'
+                        />
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Tuesday'
+                                    ).length !== 0
+                            )}
+                            day='Tuesday'
+                        />
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Wednesday'
+                                    ).length !== 0
+                            )}
+                            day='Wednesday'
+                        />
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Thursday'
+                                    ).length !== 0
+                            )}
+                            day='Thursday'
+                        />
+                        <Rows
+                            modules={displayedModules.filter(
+                                (module) =>
+                                    module.timing.filter(
+                                        (time) => time.day === 'Friday'
+                                    ).length !== 0
+                            )}
+                            day='Friday'
+                        />
+                    </Table.Body>
+                </Table>
+            </Responsive>
         </div>
     );
 };

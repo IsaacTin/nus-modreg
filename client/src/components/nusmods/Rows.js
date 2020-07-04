@@ -31,12 +31,152 @@ const Rows = ({ modules, day }) => {
                 return '';
         }
     };
+
+    const getRows = () => {
+        // const filterByDay = (arr) => {
+        //     return arr.filter(
+        //         (module) =>
+        //             module.timing.length !== 0 && module.timing[0].day === day
+        //     );
+        // };
+        const modulesByDay = [];
+        modules.forEach((module) => {
+            module.timing
+                .filter((time) => time.day === day)
+                .forEach((module) => modulesByDay.push(module));
+        });
+
+        const conflictSlots = [];
+        // console.log(`modulesByDay:`);
+        // console.log(modulesByDay);
+
+        for (let i = 0; i < modulesByDay.length; i++) {
+            for (let j = i + 1; j < modulesByDay.length; j++) {
+                const firstModule = modulesByDay[i];
+                const secondModule = modulesByDay[j];
+                // console.log(firstModule);
+                // console.log(secondModule);
+
+                if (
+                    firstModule.startTime <= secondModule.startTime &&
+                    firstModule.endTime >= secondModule.endTime
+                ) {
+                    // can carry on here
+                    conflictSlots.push({
+                        slot1: firstModule,
+                        slot2: secondModule
+                    });
+                }
+            }
+        }
+
+        // console.log(conflictSlots);
+    };
+
+    getRows();
+
+    const getTableCells = () => {
+        let numColumns = 10;
+        let count = 0;
+        let cellStartTime = '0800';
+        let cellEndTime;
+        const tableCells = [];
+
+        // console.log(`modules for ${day}:`);
+        // console.log(modules);
+
+        while (count < numColumns) {
+            const cellModules = [...modules].filter(
+                (module) =>
+                    module.timing.filter(
+                        (time) =>
+                            time.day === day && time.startTime === cellStartTime
+                    ).length !== 0
+            );
+
+            // console.log(day);
+            // console.log(cellStartTime);
+            // console.log(cellEndTime);
+            // console.log(`count: ${count}`);
+            // console.log(cellModules);
+
+            // takes in two numbers and converts to string
+            const timeToString = (startTime, timeToAdd) => {
+                let result = startTime + timeToAdd;
+                result =
+                    result < 1000 ? `0${result.toString()}` : result.toString();
+                return result;
+            };
+
+            if (cellModules.length === 0) {
+                cellEndTime = timeToString(+cellStartTime, 100);
+            }
+
+            tableCells.push(
+                cellModules.length !== 0 ? (
+                    cellModules.map((cellModule) => {
+                        let numCells;
+                        cellModule.timing
+                            .filter((moduleTiming) => moduleTiming.day === day)
+                            .forEach((moduleTiming) => {
+                                const cellDuration =
+                                    (+moduleTiming.endTime -
+                                        +moduleTiming.startTime) /
+                                    100;
+                                // console.log(`cellDuration: ${cellDuration}`);
+                                numCells = cellDuration.toString();
+                                if (cellDuration > 1) {
+                                    numColumns -= cellDuration - 1;
+                                    cellEndTime = timeToString(
+                                        +cellStartTime,
+                                        cellDuration * 100
+                                    );
+                                } else {
+                                    cellEndTime = timeToString(
+                                        +cellStartTime,
+                                        100
+                                    );
+                                }
+                            });
+                        return (
+                            <Table.Cell colSpan={numCells}>
+                                <RowItem
+                                    day={day}
+                                    module={cellModule}
+                                    key={cellModule.classNo}
+                                />
+                            </Table.Cell>
+                        );
+                    })
+                ) : (
+                    <Table.Cell>
+                        <EmptySlot
+                            day={day}
+                            startTime={cellStartTime}
+                            endTime={cellEndTime}
+                        />
+                    </Table.Cell>
+                )
+            );
+            cellStartTime = cellEndTime;
+            count++;
+        }
+        return tableCells;
+    };
+
     return (
         <Table.Row>
-            <Table.Cell textAlign='center' verticalAlign='middle' active>
+            <Table.Cell
+                textAlign='center'
+                verticalAlign='middle'
+                active
+                collapsing
+            >
                 {dayShorthand(day)}
             </Table.Cell>
-            <Table.Cell>
+            {getTableCells()}
+
+            {/* <Table.Cell>
                 {modules.map((module) =>
                     module.timing.filter(
                         (time) => time.startTime === '0800' && time.day === day
@@ -265,7 +405,7 @@ const Rows = ({ modules, day }) => {
                 ) : (
                     <EmptySlot startTime={'1700'} endTime={'1800'} day={day} />
                 )}
-            </Table.Cell>
+            </Table.Cell> */}
         </Table.Row>
     );
 };

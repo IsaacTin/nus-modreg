@@ -237,13 +237,14 @@ img {
 /* timetable module colors */
 
 .btn-module {
-    height: 70px;
-    width: 110px;
-    padding: 0.6rem 2.8rem 0.4rem 0.6rem;
+    height: 100%;
+    width: 100%;
+    padding: 0.6em 2.8em 0.4em 0.8em;
     margin: 0;
     border: 0;
     text-align: left;
-    font-size: 0.75rem;
+    /* font-size: 0.75rem; */
+    font-size: 1.35vh;
     font-weight: 900;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -784,6 +785,8 @@ img#nus-logo {
 
 .ui.table.timetable {
     grid-area: timetable;
+    width: 100%;
+    margin: auto;
 }
 
 .ui.table {
