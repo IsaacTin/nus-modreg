@@ -33,7 +33,7 @@ const CartItem = ({ module, rank }) => {
                 : module.lessonType === 'Recitation'
                 ? 'REC'
                 : ''}
-            {`[${classNo}]`}
+            {` [${classNo}]`}
             <div style={{ fontSize: '0.85rem', marginTop: 5, marginBottom: 8 }}>
                 <ExpansionPanel component={Paper}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>

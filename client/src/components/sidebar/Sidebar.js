@@ -7,7 +7,6 @@ import Drawer from '@material-ui/core/Drawer';
 import ModuleContext from '../../context/module/moduleContext';
 import LayoutContext from '../../context/layout/layoutContext';
 
-
 const Sidebar = () => {
     const [ModalIsOpen, setModalIsOpen] = useState(false);
     const moduleContext = useContext(ModuleContext);
@@ -17,7 +16,7 @@ const Sidebar = () => {
         currentModules,
         getModules,
         confirmedModules,
-        setCurrentModules,
+        setCurrentModules
     } = moduleContext;
 
     const { isSidebarOpen, closeSidebar } = layoutContext;
@@ -31,7 +30,7 @@ const Sidebar = () => {
         if (confirmedModules !== null && currentModules === null) {
             setCurrentModules(confirmedModules);
         }
-         // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [confirmedModules, currentModules]);
 
     return (
