@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import SearchContext from '../../context/search/searchContext';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const TimeFilters = () => {
     const searchContext = useContext(SearchContext);
-    const { timeFilter } = searchContext;
+    const { timeFilter, clearTimeFilterByDay } = searchContext;
 
     const convertDayFromIndex = (index) => {
         switch (index) {
@@ -22,32 +24,52 @@ const TimeFilters = () => {
         }
     };
 
+    const onClick = (e, day) => {
+        e.preventDefault();
+        clearTimeFilterByDay(day);
+    };
+
     return (
-        <div className='grid-4'>
+        <Fragment>
             Time Filters
-            <br />
-            {timeFilter
-                .map((dayFilter) =>
-                    dayFilter.startTime.length > 0 ? dayFilter : null
-                )
-                .map((dayFilter, dfIndex) => {
-                    if (dayFilter !== null) {
-                        return (
-                            <div key={dfIndex} className='card'>
-                                {`${convertDayFromIndex(
-                                    dfIndex
-                                )}: ${dayFilter.startTime.map(
-                                    (slotStartTime, slotIndex) => {
-                                        return `${slotStartTime} - ${dayFilter.endTime[slotIndex]}`;
-                                    }
-                                )}`}
-                            </div>
-                        );
-                    } else {
-                        return null;
-                    }
-                })}
-        </div>
+            <div className='grid-5'>
+                {timeFilter
+                    .map((dayFilter) =>
+                        dayFilter.startTime.length > 0 ? dayFilter : null
+                    )
+                    .map((dayFilter, dfIndex) => {
+                        if (dayFilter !== null) {
+                            return (
+                                <div key={dfIndex} className='time-card'>
+                                    <IconButton
+                                        size='small'
+                                        edge='start'
+                                        onClick={(e) =>
+                                            onClick(
+                                                e,
+                                                convertDayFromIndex(dfIndex)
+                                            )
+                                        }
+                                    >
+                                        <DeleteIcon />
+                                    </IconButton>
+                                    <div className='time-card-text'>
+                                        {` ${convertDayFromIndex(
+                                            dfIndex
+                                        )}: ${dayFilter.startTime
+                                            .map((slotStartTime, slotIndex) => {
+                                                return `${slotStartTime} - ${dayFilter.endTime[slotIndex]}`;
+                                            })
+                                            .join(', ')}`}
+                                    </div>
+                                </div>
+                            );
+                        } else {
+                            return null;
+                        }
+                    })}
+            </div>
+        </Fragment>
     );
 };
 

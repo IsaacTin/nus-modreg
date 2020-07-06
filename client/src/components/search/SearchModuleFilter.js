@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import TimeFilters from './TimeFilters';
 import SearchContext from '../../context/search/searchContext';
 import { Input, Icon } from 'semantic-ui-react';
+import IconButton from '@material-ui/core/IconButton';
 
 const SearchModuleFilter = () => {
     const searchContext = useContext(SearchContext);
@@ -40,14 +41,15 @@ const SearchModuleFilter = () => {
                 <Input
                     fluid
                     type='text'
-                    icon={<Icon name='search' />}
                     iconPosition='left'
                     placeholder='Search for modules by name or code'
                     value={text}
                     onChange={onChange}
-                />
+                >
+                    <Icon name='search' />
+                    <input />
+                </Input>
                 <TimeFilters />
-                {/* add cards for time filters too */}
                 <br />
                 <input type='submit' value='Search' className='btn btn-dark' />
                 <button className='btn btn-light' onClick={() => setText('')}>

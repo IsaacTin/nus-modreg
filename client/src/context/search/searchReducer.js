@@ -9,31 +9,30 @@ import {
     IS_SEARCHED_FALSE,
     ADD_TIME_FILTER,
     DELETE_TIME_FILTER,
-    CLEAR_ALL_TIME_FILTERS
+    CLEAR_ALL_TIME_FILTERS,
+    CLEAR_TIME_FILTER_BY_DAY
 } from '../types';
+
+const getDayIndex = (day) => {
+    switch (day) {
+        case 'Monday':
+            return 0;
+        case 'Tuesday':
+            return 1;
+        case 'Wednesday':
+            return 2;
+        case 'Thursday':
+            return 3;
+        case 'Friday':
+            return 4;
+        default:
+            return -1;
+    }
+};
 
 const addTimeFilter = (timings, timeFilter) => {
     let result = [...timeFilter];
-    let dayIndex;
-    switch (timings[0]) {
-        case 'Monday':
-            dayIndex = 0;
-            break;
-        case 'Tuesday':
-            dayIndex = 1;
-            break;
-        case 'Wednesday':
-            dayIndex = 2;
-            break;
-        case 'Thursday':
-            dayIndex = 3;
-            break;
-        case 'Friday':
-            dayIndex = 4;
-            break;
-        default:
-            dayIndex = -1;
-    }
+    const dayIndex = getDayIndex(timings[0]);
 
     // remove duplicates
     result[dayIndex].startTime.push(timings[1]);
@@ -67,27 +66,8 @@ const addTimeFilter = (timings, timeFilter) => {
 };
 
 const deleteTimeFilter = (timings, timeFilter) => {
-    let dayIndex;
+    const dayIndex = getDayIndex(timings[0]);
     const result = [...timeFilter];
-    switch (timings[0]) {
-        case 'Monday':
-            dayIndex = 0;
-            break;
-        case 'Tuesday':
-            dayIndex = 1;
-            break;
-        case 'Wednesday':
-            dayIndex = 2;
-            break;
-        case 'Thursday':
-            dayIndex = 3;
-            break;
-        case 'Friday':
-            dayIndex = 4;
-            break;
-        default:
-            dayIndex = -1;
-    }
 
     const filtered = [...timeFilter];
 
@@ -183,6 +163,12 @@ const deleteTimeFilter = (timings, timeFilter) => {
     return filtered;
 };
 
+const clearTimeFilterByDay = (day, timeFilter) => {
+    const dayIndex = getDayIndex(day);
+    timeFilter[dayIndex] = { startTime: [], endTime: [] };
+    return timeFilter;
+};
+
 export default (state, action) => {
     switch (action.type) {
         case FILTER_MODULES:
@@ -205,6 +191,14 @@ export default (state, action) => {
             return {
                 ...state,
                 timeFilter: deleteTimeFilter(action.payload, state.timeFilter)
+            };
+        case CLEAR_TIME_FILTER_BY_DAY:
+            return {
+                ...state,
+                timeFilter: clearTimeFilterByDay(
+                    action.payload,
+                    state.timeFilter
+                )
             };
         case CLEAR_ALL_TIME_FILTERS:
             return {

@@ -13,7 +13,8 @@ import {
     IS_SEARCHED_FALSE,
     ADD_TIME_FILTER,
     DELETE_TIME_FILTER,
-    CLEAR_ALL_TIME_FILTERS
+    CLEAR_ALL_TIME_FILTERS,
+    CLEAR_TIME_FILTER_BY_DAY
 } from '../types';
 
 const SearchState = (props) => {
@@ -62,6 +63,13 @@ const SearchState = (props) => {
         dispatch({
             type: DELETE_TIME_FILTER,
             payload: [day, startTime, endTime]
+        });
+    };
+
+    const clearTimeFilterByDay = (day) => {
+        dispatch({
+            type: CLEAR_TIME_FILTER_BY_DAY,
+            payload: day
         });
     };
 
@@ -125,6 +133,7 @@ const SearchState = (props) => {
                 filterModules,
                 addTimeFilter,
                 deleteTimeFilter,
+                clearTimeFilterByDay,
                 clearAllTimeFilters,
                 clearFilter,
                 addSelection,

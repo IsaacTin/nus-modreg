@@ -31,6 +31,7 @@ const EmptySlot = ({ startTime, endTime, day }) => {
         }
 
         if (timeFilter[dayIndex].startTime.length === 0) {
+            console.log('kini bo liao');
             setSelected(false);
         } else {
             timeFilter[dayIndex].startTime.forEach((filterStartTime, index) => {
