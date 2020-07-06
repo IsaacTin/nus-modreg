@@ -139,7 +139,7 @@ const Rows = ({ modules, day }) => {
                                 }
                             });
                         return (
-                            <Table.Cell colSpan={numCells}>
+                            <Table.Cell colSpan={numCells} key={count}>
                                 <RowItem
                                     day={day}
                                     module={cellModule}
@@ -149,7 +149,7 @@ const Rows = ({ modules, day }) => {
                         );
                     })
                 ) : (
-                    <Table.Cell>
+                    <Table.Cell key={count}>
                         <EmptySlot
                             day={day}
                             startTime={cellStartTime}
