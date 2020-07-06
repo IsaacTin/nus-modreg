@@ -73,9 +73,9 @@ const Nusmods = () => {
     return (
         <div>
             <br />
-            <button className='btn btn-light' onClick={onClick}>
+            {/* <button className='btn btn-light' onClick={onClick}>
                 Clear all time filters
-            </button>
+            </button> */}
             <br />
             <br />
             <Responsive>
