@@ -1,13 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import Sidebar from '../sidebar/Sidebar';
 import LayoutContext from '../../context/layout/layoutContext';
-import MainMap from '../Map/MainMap';
-import MapMenu from '../Map/MapMenu';
-import MapTable from '../Map/MapTable';
+import MainMap from '../map/MainMap';
+import MapMenu from '../map/MapMenu';
+import MapTable from '../map/MapTable';
 import MapContext from '../../context/map/mapContext';
 import ModuleContext from '../../context/module/moduleContext';
 import coordsArrayConverter from '../../utils/coordsArrayConverter';
-
 
 const Location = () => {
     const layoutContext = useContext(LayoutContext);
@@ -17,21 +16,24 @@ const Location = () => {
     const { setCoords, day, currentCoords } = useContext(MapContext);
 
     useEffect(() => {
-        if(displayedModules.length !== 0 && day !== null) {
+        if (displayedModules.length !== 0 && day !== null) {
             let temp = [];
-            displayedModules.forEach(module => {
-                if(module.timing.filter((timeslot) => timeslot.day === day).length !== 0) {
-                    temp.push(module)
+            displayedModules.forEach((module) => {
+                if (
+                    module.timing.filter((timeslot) => timeslot.day === day)
+                        .length !== 0
+                ) {
+                    temp.push(module);
                 }
             });
-            console.log(temp)
+            console.log(temp);
             const fetchCoords = async () => {
                 setCoords(await coordsArrayConverter(temp, day));
             };
             fetchCoords();
         }
-         // eslint-disable-next-line
-    }, [displayedModules, day])
+        // eslint-disable-next-line
+    }, [displayedModules, day]);
 
     return (
         <div>
