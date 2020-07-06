@@ -42,7 +42,7 @@ const EmptySlot = ({ startTime, endTime, day }) => {
                     setSelected(false);
             });
         }
-    }, [timeFilter]);
+    }, [JSON.stringify(timeFilter)]);
     const onClick = () => {
         setSelected(!selected);
         console.log(`${day}, ${startTime} - ${endTime}`);
