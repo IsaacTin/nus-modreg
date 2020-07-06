@@ -5,7 +5,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const TimeFilters = () => {
     const searchContext = useContext(SearchContext);
-    const { timeFilter, clearTimeFilterByDay } = searchContext;
+    const {
+        timeFilter,
+        clearTimeFilterByDay,
+        clearAllTimeFilters
+    } = searchContext;
 
     const convertDayFromIndex = (index) => {
         switch (index) {
@@ -31,7 +35,20 @@ const TimeFilters = () => {
 
     return (
         <Fragment>
-            Time Filters
+            {timeFilter.filter(
+                (day) => day.startTime.length !== 0 && day.endTime.length !== 0
+            ).length > 0 && (
+                <div>
+                    Time Filters
+                    <br />
+                    <button
+                        className='btn btn-light'
+                        onClick={clearAllTimeFilters}
+                    >
+                        Clear filters
+                    </button>
+                </div>
+            )}
             <div className='grid-5'>
                 {timeFilter
                     .map((dayFilter) =>

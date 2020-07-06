@@ -114,34 +114,35 @@ const RowItem = ({ module, day }) => {
             </button>
             <Modal isOpen={ModalIsOpen} className='main ranking'>
                 <div>
-                    {currentModules.map((module1, index) => {
-                        if (
-                            module1.lessonType === module.lessonType &&
-                            module1.moduleCode === module.moduleCode
-                        )
-                            return (
-                                <div key={index}>
-                                    <button
-                                        onClick={() => onChange(module1)}
-                                        className={selected(module1)}
-                                    >
-                                        {module1.moduleCode}
-                                        <br />
-                                        {getLessonType(module1.lessonType)}[
-                                        {module1.classNo}]
-                                        <br />
-                                        {module1.timing.map(
-                                            (timeslot, index) => (
-                                                <div key={index}>
-                                                    {`${timeslot.day}, ${timeslot.startTime} - ${timeslot.endTime}`}
-                                                </div>
-                                            )
-                                        )}
-                                        {`Module rank: ${index + 1}`}
-                                    </button>
-                                </div>
-                            );
-                    })}
+                    {currentModules !== null &&
+                        currentModules.map((module1, index) => {
+                            if (
+                                module1.lessonType === module.lessonType &&
+                                module1.moduleCode === module.moduleCode
+                            )
+                                return (
+                                    <div key={index}>
+                                        <button
+                                            onClick={() => onChange(module1)}
+                                            className={selected(module1)}
+                                        >
+                                            {module1.moduleCode}
+                                            <br />
+                                            {getLessonType(module1.lessonType)}[
+                                            {module1.classNo}]
+                                            <br />
+                                            {module1.timing.map(
+                                                (timeslot, index) => (
+                                                    <div key={index}>
+                                                        {`${timeslot.day}, ${timeslot.startTime} - ${timeslot.endTime}`}
+                                                    </div>
+                                                )
+                                            )}
+                                            {`Module rank: ${index + 1}`}
+                                        </button>
+                                    </div>
+                                );
+                        })}
                     <button
                         className='btn btn-dark'
                         onClick={() => setModalIsOpen(false)}
