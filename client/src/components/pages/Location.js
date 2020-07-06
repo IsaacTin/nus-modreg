@@ -14,7 +14,12 @@ const Location = () => {
     const { isSidebarOpen } = layoutContext;
 
     const { displayedModules } = useContext(ModuleContext);
-    const { setCoords, day, currentCoords } = useContext(MapContext);
+    const { setCoords, day, getBusStops } = useContext(MapContext);
+
+    useEffect(() => {
+        getBusStops();
+    // eslint-disable-next-line
+    }, [])
 
     useEffect(() => {
         if(displayedModules.length !== 0 && day !== null) {
@@ -32,6 +37,7 @@ const Location = () => {
         }
          // eslint-disable-next-line
     }, [displayedModules, day])
+
 
     return (
         <div>

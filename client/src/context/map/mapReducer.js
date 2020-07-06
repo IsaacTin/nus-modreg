@@ -3,6 +3,7 @@ import {
     SET_FIRST_LOCATION,
     SET_SECOND_LOCATION,
     SET_DAY,
+    GET_BUS_STOPS,
 } from '../types';
 
 export default (state, action) => {
@@ -26,6 +27,11 @@ export default (state, action) => {
             return {
                 ...state,
                 day: action.payload
+            }
+        case GET_BUS_STOPS:
+            return {
+                ...state,
+                busStops: action.payload
             }
         default:
             return state;

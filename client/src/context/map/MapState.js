@@ -1,12 +1,14 @@
 import React, { useReducer } from 'react';
 import MapContext from './mapContext';
-import mapReducer from './mapReducer'
+import mapReducer from './mapReducer';
+import axios from 'axios';
 
 import {
     SET_COORDS,
     SET_FIRST_LOCATION,
     SET_SECOND_LOCATION,
-    SET_DAY
+    SET_DAY,
+    GET_BUS_STOPS,
 } from '../types';
 
 const MapState = (props) => {
@@ -14,6 +16,7 @@ const MapState = (props) => {
         currentCoords: [],
         firstLocation: null,
         secondLocation: null,
+        busStops: [],
         day: null
     }
 
@@ -23,6 +26,15 @@ const MapState = (props) => {
         dispatch({
             type: SET_COORDS,
             payload: venues
+        })
+    }
+
+    const getBusStops = async () => {
+        const res = await axios.get('/api/bus-stops');
+        console.log(res.data);
+        dispatch({
+            type: GET_BUS_STOPS,
+            payload: res.data
         })
     }
 
@@ -53,11 +65,13 @@ const MapState = (props) => {
                 currentCoords: state.currentCoords,
                 firstLocation: state.firstLocation,
                 secondLocation: state.secondLocation,
+                busStops: state.busStops,
                 day: state.day,
                 setCoords,
                 setFirstLocation,
                 setSecondLocation,
-                setDay
+                setDay,
+                getBusStops
             }}
         >
         {props.children}

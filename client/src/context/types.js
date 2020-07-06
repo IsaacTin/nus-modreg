@@ -39,4 +39,5 @@ export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
 export const SET_COORDS = 'SET_COORDS';
 export const SET_FIRST_LOCATION = 'SET_FIRST_LOCATION';
 export const SET_SECOND_LOCATION = 'SET_SECOND_LOCATION';
-export const SET_DAY = 'SET_DAY'
+export const SET_DAY = 'SET_DAY';
+export const GET_BUS_STOPS = 'GET_BUS_STOPS';
