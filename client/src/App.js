@@ -18,6 +18,7 @@ import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import SearchState from './context/search/SearchState';
 import LayoutState from './context/layout/LayoutState';
+import MapState from './context/map/MapState';
 
 import './App.css';
 
@@ -28,47 +29,49 @@ const App = () => {
                 <AlertState>
                     <SearchState>
                         <LayoutState>
-                            <DndProvider backend={HTML5Backend}>
-                                <Router>
-                                    <Fragment>
-                                        <Navbar />
-                                        <div className='container'>
-                                            <Switch>
-                                                <PrivateRoute
-                                                    exact
-                                                    path='/'
-                                                    component={Home}
-                                                />
-                                                <Route
-                                                    exact
-                                                    path='/guide'
-                                                    component={Guide}
-                                                />
-                                                <PrivateRoute
-                                                    exact
-                                                    path='/confirmation'
-                                                    component={Confirmation}
-                                                />
-                                                <PrivateRoute
-                                                    exact
-                                                    path='/confirmed'
-                                                    component={Confirmed}
-                                                />
-                                                <Route
-                                                    exact
-                                                    path='/login'
-                                                    component={Login}
-                                                />
-                                                <PrivateRoute
-                                                    exact
-                                                    path='/location'
-                                                    component={Location}
-                                                />
-                                            </Switch>
-                                        </div>
-                                    </Fragment>
-                                </Router>
-                            </DndProvider>
+                            <MapState>
+                                <DndProvider backend={HTML5Backend}>
+                                    <Router>
+                                        <Fragment>
+                                            <Navbar />
+                                            <div className='container'>
+                                                <Switch>
+                                                    <PrivateRoute
+                                                        exact
+                                                        path='/'
+                                                        component={Home}
+                                                    />
+                                                    <Route
+                                                        exact
+                                                        path='/guide'
+                                                        component={Guide}
+                                                    />
+                                                    <PrivateRoute
+                                                        exact
+                                                        path='/confirmation'
+                                                        component={Confirmation}
+                                                    />
+                                                    <PrivateRoute
+                                                        exact
+                                                        path='/confirmed'
+                                                        component={Confirmed}
+                                                    />
+                                                    <Route
+                                                        exact
+                                                        path='/login'
+                                                        component={Login}
+                                                    />
+                                                    <PrivateRoute
+                                                        exact
+                                                        path='/location'
+                                                        component={Location}
+                                                    />
+                                                </Switch>
+                                            </div>
+                                        </Fragment>
+                                    </Router>
+                                </DndProvider>
+                            </MapState>
                         </LayoutState>
                     </SearchState>
                 </AlertState>

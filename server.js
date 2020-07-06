@@ -16,6 +16,7 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/search-modules', require('./routes/search-modules'));
 app.use('/api/user-modules', require('./routes/user-modules'));
+app.use('/api/venues', require('./routes/venues'));
 
 // look for an environment variable called PORT first, if not then use port 5000
 const PORT = process.env.PORT || 5000;
