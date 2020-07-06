@@ -4,16 +4,16 @@ import RowItem from './RowItem';
 import EmptySlot from './EmptySlot';
 
 const Rows = ({ modules, day }) => {
-    let present1 = false;
-    let present2 = false;
-    let present3 = false;
-    let present4 = false;
-    let present5 = false;
-    let present6 = false;
-    let present7 = false;
-    let present8 = false;
-    let present9 = false;
-    let present10 = false;
+    // let present1 = false;
+    // let present2 = false;
+    // let present3 = false;
+    // let present4 = false;
+    // let present5 = false;
+    // let present6 = false;
+    // let present7 = false;
+    // let present8 = false;
+    // let present9 = false;
+    // let present10 = false;
 
     const dayShorthand = (day) => {
         switch (day) {
