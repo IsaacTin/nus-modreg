@@ -68,7 +68,29 @@ const Nusmods = () => {
                 ? temp.push(module) : temp.push(module1)
         })
         setModules(temp)
-    }*/
+	}*/
+
+    const getTableHeaders = () => {
+        const tableHeaders = [];
+        const addTime = (startTime) => {
+            let result = startTime + 100;
+            result =
+                result < 1000 ? `0${result.toString()}` : result.toString();
+            return result;
+        };
+        let startTime = '0800';
+        let endTime = '0900';
+        for (let i = 0; i < 10; i++) {
+            tableHeaders.push(
+                <Table.HeaderCell style={{ fontSize: '0.9rem' }}>
+                    {`${startTime}  -  ${endTime}`}
+                </Table.HeaderCell>
+            );
+            startTime = endTime;
+            endTime = addTime(+endTime);
+        }
+        return tableHeaders;
+    };
 
     return (
         <div>
@@ -94,7 +116,7 @@ const Nusmods = () => {
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell />
-                            <Table.HeaderCell>{'0800 - 0900'}</Table.HeaderCell>
+                            {/* <Table.HeaderCell>{'0800 - 0900'}</Table.HeaderCell>
                             <Table.HeaderCell>{'0900 - 1000'}</Table.HeaderCell>
                             <Table.HeaderCell>{'1000 - 1100'}</Table.HeaderCell>
                             <Table.HeaderCell>{'1100 - 1200'}</Table.HeaderCell>
@@ -103,7 +125,8 @@ const Nusmods = () => {
                             <Table.HeaderCell>{'1400 - 1500'}</Table.HeaderCell>
                             <Table.HeaderCell>{'1500 - 1600'}</Table.HeaderCell>
                             <Table.HeaderCell>{'1600 - 1700'}</Table.HeaderCell>
-                            <Table.HeaderCell>{'1700 - 1800'}</Table.HeaderCell>
+                            <Table.HeaderCell>{'1700 - 1800'}</Table.HeaderCell> */}
+                            {getTableHeaders()}
                         </Table.Row>
                     </Table.Header>
 

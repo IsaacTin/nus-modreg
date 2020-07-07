@@ -103,6 +103,7 @@ const SearchModules = () => {
                         displaySearchResults
                             .filter(
                                 (module) =>
+                                    module !== null &&
                                     module.semesterData.length > 0 &&
                                     module.semesterData[0].timetable.length > 0
                             )
