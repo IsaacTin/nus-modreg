@@ -861,3 +861,16 @@ img#nus-logo {
 .unselected:hover {
     opacity: 0.8;
 }
+
+.map h1 {
+    position: absolute;
+    top: 12rem;
+    left: 8rem;
+    color: #281414;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    text-align: start;
+    background: rgba(255, 255, 255, 0.8)
+}
