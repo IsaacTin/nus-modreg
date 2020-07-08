@@ -72,17 +72,7 @@ const Navbar = () => {
                 >
                     {/* <i className='fas fa-bars'></i> */} <Menu />
                 </a>
-                {
-                    <CSSTransition
-                        in={isMenuOpen}
-                        unmountOnExit
-                        timeout={300}
-                        appear
-                        classNames='menu-primary'
-                    >
-                        <NavMenu />
-                    </CSSTransition>
-                }
+                {<NavMenu isMenuOpen={isMenuOpen} />}
             </li>
         </Fragment>
     );
