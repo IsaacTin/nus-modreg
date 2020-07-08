@@ -35,6 +35,8 @@ export const IS_SEARCHED_TRUE = 'IS_SEARCHED_TRUE';
 // layout types
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
+export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const CLOSE_MENU = 'CLOSE_MENU';
 // map types
 export const SET_COORDS = 'SET_COORDS';
 export const SET_FIRST_LOCATION = 'SET_FIRST_LOCATION';

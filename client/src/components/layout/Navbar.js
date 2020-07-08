@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import NavMenu from './NavMenu';
 import AuthContext from '../../context/auth/authContext';
@@ -15,10 +15,14 @@ const Navbar = () => {
     const moduleContext = useContext(ModuleContext);
 
     const { isAuthenticated, user, logout } = authContext;
-    const { isSidebarOpen, toggleSidebar, closeSidebar } = layoutContext;
+    const {
+        isSidebarOpen,
+        isMenuOpen,
+        toggleSidebar,
+        closeSidebar,
+        toggleMenu
+    } = layoutContext;
     const { clearModules } = moduleContext;
-
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const onLogout = () => {
         logout();
@@ -64,7 +68,7 @@ const Navbar = () => {
             </li> */}
             <li>
                 <a
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    onClick={toggleMenu}
                     href='#!'
                     className={`nav-menu-icon${
                         isMenuOpen ? ' menu-selected' : ''
