@@ -6,6 +6,8 @@ import Nusmods from '../nusmods/Nusmods';
 import AuthContext from '../../context/auth/authContext';
 import LayoutContext from '../../context/layout/layoutContext';
 
+import { CSSTransition } from 'react-transition-group';
+
 const Home = () => {
     const authContext = useContext(AuthContext);
     const layoutContext = useContext(LayoutContext);
@@ -18,16 +20,24 @@ const Home = () => {
     }, []);
 
     return (
-        <div id='main' className='home-grid'>
-            <div className={isSidebarOpen ? 'main-shift' : 'main'}>
-                <Nusmods className='timetable' />
-                <div className='search'>
-                    <SearchModuleFilter />
-                    <SearchModules />
+        <CSSTransition
+            in={isSidebarOpen}
+            appear
+            timeout={300}
+            classNames='shift'
+        >
+            <div className={isSidebarOpen ? 'shift' : ''}>
+                <div className='home-grid'>
+                    <Nusmods className='timetable' />
+                    <div className='search'>
+                        <SearchModuleFilter />
+                        <SearchModules />
+                    </div>
                 </div>
+
+                <Sidebar />
             </div>
-            <Sidebar />
-        </div>
+        </CSSTransition>
     );
 };
 

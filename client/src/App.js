@@ -34,6 +34,7 @@ const App = () => {
                                     <Router>
                                         <Fragment>
                                             <Navbar />
+
                                             <div className='container'>
                                                 <Switch>
                                                     <PrivateRoute

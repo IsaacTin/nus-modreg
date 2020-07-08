@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import Drawer from '@material-ui/core/Drawer';
 import ModuleContext from '../../context/module/moduleContext';
 import LayoutContext from '../../context/layout/layoutContext';
+import arrayMove from 'array-move';
 
 const Sidebar = () => {
     const [ModalIsOpen, setModalIsOpen] = useState(false);
@@ -16,7 +17,8 @@ const Sidebar = () => {
         currentModules,
         getModules,
         confirmedModules,
-        setCurrentModules
+        setCurrentModules,
+        updateModuleRankings
     } = moduleContext;
 
     const { isSidebarOpen, closeSidebar } = layoutContext;
@@ -33,11 +35,18 @@ const Sidebar = () => {
         // eslint-disable-next-line
     }, [confirmedModules, currentModules]);
 
+    const onSortEnd = ({ oldIndex, newIndex }) => {
+        console.log(`oldIndex: ${oldIndex}`);
+        console.log(`newIndex: ${newIndex}`);
+        updateModuleRankings(arrayMove(currentModules, oldIndex, newIndex));
+    };
+
     return (
         <Drawer
             className='sidebar'
             anchor={'right'}
             open={isSidebarOpen}
+            transitionDuration={300}
             variant={'persistent'}
         >
             <div className='text-center'>
@@ -55,13 +64,17 @@ const Sidebar = () => {
             <div className='main-shift container-center'>
                 <Modal
                     isOpen={ModalIsOpen}
-                    className={
-                        isSidebarOpen ? 'main-shift ranking' : 'main ranking'
-                    }
+                    className='ranking'
                     overlayClassName='ranking-overlay'
                 >
-                    <Ranking />
-                    <div>
+                    <div className='ranking-container'>
+                        <h2>Rankings</h2>
+                        <Ranking
+                            axis='xy'
+                            onSortEnd={onSortEnd}
+                            modules={currentModules}
+                        />
+                        <br />
                         <button
                             className='btn btn-dark'
                             onClick={() => setModalIsOpen(false)}
@@ -71,7 +84,6 @@ const Sidebar = () => {
                     </div>
                 </Modal>
             </div>
-            {/* might want to change this to a link that goes to a different page */}
             <Link
                 to='/confirmation'
                 className='btn btn-primary'

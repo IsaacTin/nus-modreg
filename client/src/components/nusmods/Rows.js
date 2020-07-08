@@ -4,17 +4,6 @@ import RowItem from './RowItem';
 import EmptySlot from './EmptySlot';
 
 const Rows = ({ modules, day }) => {
-    // let present1 = false;
-    // let present2 = false;
-    // let present3 = false;
-    // let present4 = false;
-    // let present5 = false;
-    // let present6 = false;
-    // let present7 = false;
-    // let present8 = false;
-    // let present9 = false;
-    // let present10 = false;
-
     const dayShorthand = (day) => {
         switch (day) {
             case 'Monday':
@@ -33,12 +22,6 @@ const Rows = ({ modules, day }) => {
     };
 
     const getRows = () => {
-        // const filterByDay = (arr) => {
-        //     return arr.filter(
-        //         (module) =>
-        //             module.timing.length !== 0 && module.timing[0].day === day
-        //     );
-        // };
         const modulesByDay = [];
         modules.forEach((module) => {
             module.timing
@@ -47,15 +30,13 @@ const Rows = ({ modules, day }) => {
         });
 
         const conflictSlots = [];
-        // console.log(`modulesByDay:`);
-        // console.log(modulesByDay);
+        console.log(`modulesByDay for ${day}`);
+        console.log(modulesByDay);
 
         for (let i = 0; i < modulesByDay.length; i++) {
             for (let j = i + 1; j < modulesByDay.length; j++) {
                 const firstModule = modulesByDay[i];
                 const secondModule = modulesByDay[j];
-                // console.log(firstModule);
-                // console.log(secondModule);
 
                 if (
                     firstModule.startTime <= secondModule.startTime &&
@@ -70,7 +51,7 @@ const Rows = ({ modules, day }) => {
             }
         }
 
-        // console.log(conflictSlots);
+        console.log(conflictSlots);
     };
 
     getRows();
@@ -131,6 +112,10 @@ const Rows = ({ modules, day }) => {
                                         +cellStartTime,
                                         cellDuration * 100
                                     );
+                                    // cellEndTime = timeToString(
+                                    //     +cellStartTime,
+                                    //     100
+                                    // );
                                 } else {
                                     cellEndTime = timeToString(
                                         +cellStartTime,
@@ -158,6 +143,7 @@ const Rows = ({ modules, day }) => {
                     </Table.Cell>
                 )
             );
+            // testing
             cellStartTime = cellEndTime;
             count++;
         }
