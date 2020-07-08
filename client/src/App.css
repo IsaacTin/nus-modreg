@@ -692,6 +692,7 @@ table th {
     height: 50px;
     display: flex;
     align-items: center;
+    justify-content: left;
     border-radius: 10px;
     background-color: var(--primary-color);
     border-bottom: solid 1px #333;
