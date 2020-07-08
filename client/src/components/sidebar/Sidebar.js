@@ -46,6 +46,7 @@ const Sidebar = () => {
             className='sidebar'
             anchor={'right'}
             open={isSidebarOpen}
+            transitionDuration={300}
             variant={'persistent'}
         >
             <div className='text-center'>

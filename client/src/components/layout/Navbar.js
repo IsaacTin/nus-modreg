@@ -71,40 +71,51 @@ const Navbar = () => {
                     }`}
                 >
                     {/* <i className='fas fa-bars'></i> */} <Menu />
-                    {
-                        <CSSTransition
-                            in={isMenuOpen}
-                            unmountOnExit
-                            timeout={400}
-                            appear
-                            classNames='menu-primary'
-                        >
-                            <NavMenu />
-                        </CSSTransition>
-                    }
                 </a>
+                {
+                    <CSSTransition
+                        in={isMenuOpen}
+                        unmountOnExit
+                        timeout={300}
+                        appear
+                        classNames='menu-primary'
+                    >
+                        <NavMenu />
+                    </CSSTransition>
+                }
             </li>
         </Fragment>
     );
 
     return (
         <Fragment>
-            <div
-                className={
-                    isSidebarOpen
-                        ? 'navbar-shift bg-primary'
-                        : 'navbar bg-primary'
-                }
+            <CSSTransition
+                in={isSidebarOpen}
+                timeout={300}
+                appear
+                classNames='shift'
             >
-                <ul>
-                    <li>
-                        <Link to='/'>
-                            <img src={nus_logo} alt='nus_logo' id='nus-logo' />
-                        </Link>
-                    </li>
-                </ul>
-                <ul className='navbar-nav'>{isAuthenticated && authLinks}</ul>
-            </div>
+                <div
+                    className={`navbar bg-primary ${
+                        isSidebarOpen ? ' shift' : ''
+                    }`}
+                >
+                    <ul>
+                        <li>
+                            <Link to='/'>
+                                <img
+                                    src={nus_logo}
+                                    alt='nus_logo'
+                                    id='nus-logo'
+                                />
+                            </Link>
+                        </li>
+                    </ul>
+                    <ul className='navbar-nav'>
+                        {isAuthenticated && authLinks}
+                    </ul>
+                </div>
+            </CSSTransition>
         </Fragment>
     );
 };
