@@ -76,7 +76,7 @@ const Navbar = () => {
                 >
                     {/* <i className='fas fa-bars'></i> */} <Menu />
                 </a>
-                {<NavMenu isMenuOpen={isMenuOpen} />}
+                {<NavMenu />}
             </li>
         </Fragment>
     );

@@ -17,6 +17,7 @@ const NavMenu = () => {
 
     const onLogout = () => {
         logout();
+        closeMenu();
         closeSidebar();
         clearModules();
     };
@@ -43,13 +44,7 @@ const NavMenu = () => {
                     </Link>
                 </li>
                 <li className='menu-item'>
-                    <a
-                        onClick={() => {
-                            closeMenu();
-                            logout();
-                        }}
-                        href='#!'
-                    >
+                    <a onClick={onLogout} href='#!'>
                         <i className='fas fa-sign-out-alt'></i>
                         Logout
                     </a>
