@@ -35,7 +35,7 @@ const App = () => {
                                         <Fragment>
                                             <Navbar />
 
-                                            <div>
+                                            <div className='container'>
                                                 <Switch>
                                                     <PrivateRoute
                                                         exact

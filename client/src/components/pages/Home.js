@@ -27,7 +27,7 @@ const Home = () => {
             classNames='shift'
         >
             <div className={isSidebarOpen ? 'shift' : ''}>
-                <div className='container home-grid'>
+                <div className='home-grid'>
                     <Nusmods className='timetable' />
                     <div className='search'>
                         <SearchModuleFilter />
