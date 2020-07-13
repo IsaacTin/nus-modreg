@@ -50,10 +50,10 @@ const SearchModules = () => {
 
     const onClickConfirm = (e) => {
         e.preventDefault();
-        if (selection.length === 0) {
-            // notify user that no modules have been selected
-            setAlert('No modules selected', 'danger');
-        }
+        // if (selection.length === 0) {
+        //     // notify user that no modules have been selected
+        //     setAlert('No modules selected', 'danger');
+        // }
         // check if currentModules alr has any of the modules currently being selected, else proceed
         // maybe can change to something more efficient? lol
         const duplicates = currentModules.filter((module) => {
@@ -98,18 +98,32 @@ const SearchModules = () => {
             {searching ? (
                 <Spinner />
             ) : (
-                <div className='grid-3'>
-                    {displaySearchResults.length !== 0 &&
-                        displaySearchResults
-                            .filter(
-                                (module) =>
-                                    module !== null &&
-                                    module.semesterData.length > 0 &&
-                                    module.semesterData[0].timetable.length > 0
-                            )
-                            .map((module, index) => (
-                                <ModuleItem key={index} module={module} />
-                            ))}
+                <div
+                    className={`search-results-container ${
+                        displaySearchResults.length !== 0
+                            ? ' search-border '
+                            : ''
+                    }`}
+                >
+                    {displaySearchResults.length !== 0 && (
+                        <div id='search-header'>
+                            <h4>Search results</h4>
+                        </div>
+                    )}
+                    <div className='search-results-content grid-4'>
+                        {displaySearchResults.length !== 0 &&
+                            displaySearchResults
+                                .filter(
+                                    (module) =>
+                                        module !== null &&
+                                        module.semesterData.length > 0 &&
+                                        module.semesterData[0].timetable
+                                            .length > 0
+                                )
+                                .map((module, index) => (
+                                    <ModuleItem key={index} module={module} />
+                                ))}
+                    </div>
                 </div>
             )}
             {/* perhaps abstract out the below code? */}
@@ -130,7 +144,7 @@ const SearchModules = () => {
                         </li>
                     ))}
             </ul>
-            {displaySearchResults.length > 0 && (
+            {selection.length > 0 && (
                 <button className='btn btn-light' onClick={onClickConfirm}>
                     Add to cart
                 </button>

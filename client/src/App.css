@@ -672,7 +672,7 @@ table th {
 }
 
 /* CSS Transitions for dropdown */
-.menu-primary-enter {
+/* .menu-primary-enter {
     position: absolute;
     transform: translateX(110%);
 }
@@ -686,24 +686,32 @@ table th {
 .menu-primary-exit-active {
     transform: translateX(40%);
     transition: all 300ms ease;
-}
+} */
 
-/* .menu-primary-enter {
+.menu-primary-enter {
     position: absolute;
-    height: 0;
+    opacity: 0.5;
+    max-height: 0;
+    /* transform: translate(-80%, -30%); */
 }
 .menu-primary-enter-active {
-    height: 100%;
-    transition: all 300ms ease;
+    /* transform: translate(-80%, 0%); */
+    opacity: 1;
+    max-height: 500px;
+    transition: all 500ms ease;
 }
 .menu-primary-exit {
-    height: 100%;
     position: absolute;
+    /* opacity: 1; */
+    max-height: 500px;
+    /* transform: translate(-80%, 0%); */
 }
 .menu-primary-exit-active {
-    height: 0;
+    /* transform: translate(-80%, -50%); */
+    /* opacity: 0.5; */
+    max-height: 0px;
     transition: all 300ms ease;
-} */
+}
 
 .menu-item {
     height: 50px;
@@ -963,6 +971,59 @@ img#nus-logo {
     grid-area: search;
 }
 
+.result-card {
+    font-size: 0.85vw;
+}
+
+#class-info {
+    width: 100%;
+    height: 9vh;
+    padding: 1px;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* #class-info:first-child {
+    margin: auto;
+} */
+
+.search-results-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px;
+
+    /* overflow: auto; */
+}
+
+.search-results-content {
+    width: 100%;
+    height: 290px;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+#search-header {
+    height: 90%;
+    border-right: solid 1px rgb(204, 204, 204);
+    margin-right: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-border {
+    border: solid 1px rgb(204, 204, 204);
+    box-shadow: var(--thin-shadow);
+}
+
 .unselected {
     border: 3px solid rgb(124, 124, 124);
     border-radius: 15px;
@@ -1002,5 +1063,5 @@ img#nus-logo {
     padding: 0;
     font-size: 20px;
     text-align: start;
-    background: rgba(255, 255, 255, 0.8)
+    background: rgba(255, 255, 255, 0.8);
 }
