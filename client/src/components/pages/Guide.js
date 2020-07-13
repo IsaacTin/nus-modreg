@@ -1,11 +1,7 @@
 import React from 'react';
 
 const Guide = () => {
-    return ( 
-        <div>
-            This is guide page
-        </div>
-     );
-}
- 
+    return <div className='container'>This is guide page</div>;
+};
+
 export default Guide;

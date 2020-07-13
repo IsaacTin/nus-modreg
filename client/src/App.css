@@ -531,7 +531,8 @@ table th {
     display: flex;
     height: var(--nav-size);
     /* eventually, i want the navbar to be in a fixed pos */
-    /* position: fixed; */
+    position: fixed;
+    /* margin-bottom: var(--nav-size); */
     justify-content: space-between;
     align-items: center;
     padding: 0.7rem 1.5rem 0.7rem 0.8rem;
@@ -557,6 +558,10 @@ table th {
     box-shadow: var(--thick-shadow);
     opacity: 1;
     /* margin-bottom: 1rem; */
+}
+
+#spacer {
+    margin-top: calc(var(--nav-size) / 2);
 }
 
 .navbar-nav {
@@ -655,7 +660,7 @@ table th {
     position: absolute;
     margin: 0;
     top: 58px;
-    width: 20vw;
+    width: 37vh;
     transform: translateX(-80%);
     background-color: #c2c2c2b7;
     border-radius: 10px;
