@@ -22,6 +22,7 @@ const SearchModules = () => {
     const {
         filtered,
         clearFilter,
+        timeFilter,
         selection,
         deleteSelection,
         clearSelection,
@@ -33,7 +34,17 @@ const SearchModules = () => {
         if (filtered !== null) {
             setSearching(true);
             const fetchSearch = async () => {
-                setDisplaySearchResults(await moduleArrayConverter(filtered));
+                const results = await moduleArrayConverter(filtered);
+                setDisplaySearchResults(
+                    filterByTime(
+                        results.filter(
+                            (module) =>
+                                module !== null &&
+                                module.semesterData.length > 0 &&
+                                module.semesterData[0].timetable.length > 0
+                        )
+                    )
+                );
                 setSearching(false);
             };
             fetchSearch();
@@ -42,7 +53,58 @@ const SearchModules = () => {
             setDisplaySearchResults([]);
         }
         // eslint-disable-next-line
-    }, [filtered, selection]);
+    }, [filtered, selection, JSON.stringify(timeFilter)]);
+
+    const filterByTime = (searchResults) => {
+        console.log('hellox2');
+        // if all filters are empty, then just return the searchResults
+        if (
+            timeFilter.filter((day) => day.startTime.length !== 0).length === 0
+        ) {
+            return searchResults;
+        }
+
+        const result = searchResults.filter(
+            (module) =>
+                module.semesterData[0].timetable.filter((lesson) => {
+                    const startTime = lesson.startTime;
+                    const endTime = lesson.endTime;
+
+                    // check whether a single time slot exists for this one
+                    timeFilter.forEach((day) => {
+                        const filteredDayResults = day.startTime.filter(
+                            (dayStartTime, index) =>
+                                dayStartTime <= startTime &&
+                                day.endTime[index] >= endTime
+                        );
+                        if (filteredDayResults.length > 0) {
+                            console.log('hello');
+                            return true;
+                        }
+                    });
+                    return false;
+                }).length > 0
+        );
+        console.log(result);
+        return result;
+    };
+
+    // useEffect(() => {
+    //     if (filtered !== null) {
+    //         const fetchSearch = async () => {
+    //             const results = await moduleArrayConverter(filtered);
+    //             return results.filter(
+    //                 (module) =>
+    //                     module !== null &&
+    //                     module.semesterData.length > 0 &&
+    //                     module.semesterData[0].timetable.length > 0
+    //             );
+    //         };
+    //         const results = fetchSearch();
+    //         setDisplaySearchResults(filterByTime(results));
+    //     }
+    //     // eslint-disable-next-line
+    // }, [JSON.stringify(timeFilter), filtered]);
 
     if (filtered !== null && displaySearchResults.length === 0 && !searching) {
         return <h4>No module found.</h4>;
@@ -112,17 +174,9 @@ const SearchModules = () => {
                     )}
                     <div className='search-results-content grid-4'>
                         {displaySearchResults.length !== 0 &&
-                            displaySearchResults
-                                .filter(
-                                    (module) =>
-                                        module !== null &&
-                                        module.semesterData.length > 0 &&
-                                        module.semesterData[0].timetable
-                                            .length > 0
-                                )
-                                .map((module, index) => (
-                                    <ModuleItem key={index} module={module} />
-                                ))}
+                            displaySearchResults.map((module, index) => (
+                                <ModuleItem key={index} module={module} />
+                            ))}
                     </div>
                 </div>
             )}

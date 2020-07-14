@@ -10,7 +10,8 @@ import {
     ADD_TIME_FILTER,
     DELETE_TIME_FILTER,
     CLEAR_ALL_TIME_FILTERS,
-    CLEAR_TIME_FILTER_BY_DAY
+    CLEAR_TIME_FILTER_BY_DAY,
+    FILTER_BY_TIME
 } from '../types';
 
 const getDayIndex = (day) => {
@@ -169,6 +170,31 @@ const clearTimeFilterByDay = (day, timeFilter) => {
     return timeFilter;
 };
 
+// const filterByTime = (searchResults, timeFilter) => {
+//     // if all filters are empty, then just return the searchResults
+//     if (timeFilter.filter((day) => day.startTime.length !== 0).length === 0) {
+//         return searchResults;
+//     }
+//     const result = [...searchResults];
+//     result.semesterData[0].timetable.filter((lesson) => {
+//         const startTime = lesson.startTime;
+//         const endTime = lesson.endTime;
+
+//         // check whether a single time slot exists for this one
+//         timeFilter.forEach((day) => {
+//             const filteredDayResults = day.startTime.filter(
+//                 (dayStartTime, index) =>
+//                     dayStartTime <= startTime && day.endTime[index] >= endTime
+//             );
+//             if (filteredDayResults.length > 0) {
+//                 return true;
+//             }
+//         });
+//         return false;
+//     });
+//     return result;
+// };
+
 export default (state, action) => {
     switch (action.type) {
         case FILTER_MODULES:
@@ -182,6 +208,11 @@ export default (state, action) => {
                 ...state,
                 error: action.payload
             };
+        // case FILTER_BY_TIME:
+        //     return {
+        //         ...state,
+        //         filtered: filterByTime(action.payload, state.timeFilter)
+        //     };
         case ADD_TIME_FILTER:
             return {
                 ...state,

@@ -2,6 +2,7 @@ import React, { useContext, useState, Fragment } from 'react';
 import Select from 'react-select';
 import AlertContext from '../../context/alert/alertContext';
 import SearchContext from '../../context/search/searchContext';
+import arrayMove from 'array-move';
 import PropTypes from 'prop-types';
 
 const ModuleItem = (props) => {
@@ -140,30 +141,65 @@ const ModuleItem = (props) => {
             }
         });
 
-        mergedTimetable
-            .sort((firstClass, secondClass) => {
-                const convertDayToNumber = (day) => {
-                    switch (day) {
-                        case 'Monday':
-                            return 1;
-                        case 'Tuesday':
-                            return 2;
-                        case 'Wednesday':
-                            return 3;
-                        case 'Thursday':
-                            return 4;
-                        case 'Friday':
-                            return 5;
+        mergedTimetable.sort((firstClass, secondClass) => {
+            return firstClass.classNo - secondClass.classNo;
+        });
+        // .sort((firstClass, secondClass) => {
+        //     const convertDayToNumber = (day) => {
+        //         switch (day) {
+        //             case 'Monday':
+        //                 return 1;
+        //             case 'Tuesday':
+        //                 return 2;
+        //             case 'Wednesday':
+        //                 return 3;
+        //             case 'Thursday':
+        //                 return 4;
+        //             case 'Friday':
+        //                 return 5;
+        //         }
+        //     };
+        //     return (
+        //         convertDayToNumber(firstClass) -
+        //         convertDayToNumber(secondClass)
+        //     );
+        // });
+        const convertDayToNumber = (day) => {
+            switch (day) {
+                case 'Monday':
+                    return 1;
+                case 'Tuesday':
+                    return 2;
+                case 'Wednesday':
+                    return 3;
+                case 'Thursday':
+                    return 4;
+                case 'Friday':
+                    return 5;
+            }
+        };
+        console.log(mergedTimetable);
+        mergedTimetable.forEach((lesson) => {
+            for (let i = 0; i < lesson.day.length - 1; i++) {
+                for (let j = i + 1; j < lesson.day.length; j++) {
+                    if (
+                        convertDayToNumber(lesson.day[i]) -
+                            convertDayToNumber(lesson.day[j]) >
+                        0
+                    ) {
+                        const tempDay = lesson.day[i];
+                        const tempStartTime = lesson.startTime[i];
+                        const tempEndTime = lesson.endTime[i];
+                        lesson.day[i] = lesson.day[j];
+                        lesson.day[j] = tempDay;
+                        lesson.startTime[i] = lesson.startTime[j];
+                        lesson.startTime[j] = tempStartTime;
+                        lesson.endTime[i] = lesson.endTime[j];
+                        lesson.endTime[j] = tempEndTime;
                     }
-                };
-                return (
-                    convertDayToNumber(firstClass) -
-                    convertDayToNumber(secondClass)
-                );
-            })
-            .sort((firstClass, secondClass) => {
-                return firstClass.classNo - secondClass.classNo;
-            });
+                }
+            }
+        });
     }
 
     // useEffect(() => {
