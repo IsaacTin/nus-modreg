@@ -9,15 +9,21 @@ import {
     SET_SECOND_LOCATION,
     SET_DAY,
     GET_BUS_STOPS,
+    SET_FIRST_NEAREST,
+    SET_SECOND_NEAREST,
+    SET_LOADED
 } from '../types';
 
 const MapState = (props) => {
     const initialState = {
         currentCoords: [],
         firstLocation: null,
+        firstNearest: null,
         secondLocation: null,
+        secondNearest: null,
         busStops: [],
-        day: null
+        day: null,
+        loaded: false
     }
 
     const [state, dispatch] = useReducer(mapReducer, initialState);
@@ -59,19 +65,46 @@ const MapState = (props) => {
         })
     }
 
+    const setFirstNearest = (BusStop) => {
+        dispatch({
+            type: SET_FIRST_NEAREST,
+            payload: BusStop
+        })
+    }
+
+    const setSecondNearest = (BusStop) => {
+        dispatch({
+            type: SET_SECOND_NEAREST,
+            payload: BusStop
+        })
+    }
+
+    const setLoaded = (Boolean) => {
+        dispatch({
+            type: SET_LOADED,
+            payload: Boolean
+        })
+    }
+
     return (
         <MapContext.Provider
             value={{
                 currentCoords: state.currentCoords,
                 firstLocation: state.firstLocation,
+                firstNearest: state.firstNearest,
                 secondLocation: state.secondLocation,
+                secondNearest: state.secondNearest,
                 busStops: state.busStops,
                 day: state.day,
+                loaded: state.loaded,
                 setCoords,
                 setFirstLocation,
                 setSecondLocation,
                 setDay,
-                getBusStops
+                getBusStops,
+                setFirstNearest,
+                setSecondNearest,
+                setLoaded
             }}
         >
         {props.children}

@@ -22,7 +22,7 @@ const MapTable = () => {
                     End Point
                 </Table.HeaderCell>
                 <Table.HeaderCell>
-                    Distance
+                    Buses
                 </Table.HeaderCell>
             </Table.Header>
 

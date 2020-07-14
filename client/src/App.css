@@ -1004,3 +1004,37 @@ img#nus-logo {
     text-align: start;
     background: rgba(255, 255, 255, 0.8)
 }
+
+.bus-stop {
+    margin: 0px;
+    padding: 0px;
+    height: 60px;
+    width: 60px;
+    vertical-align: middle;
+}
+
+.blue-marker {
+    margin: 0px;
+    padding: 0px;
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
+
+.brown-marker {
+    margin: 0px;
+    padding: 0px;
+    height: 40px;
+    width: 25px;
+    vertical-align: middle;
+}
+
+.map h2 {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.busstop {
+    background-color: white;
+    color: orange;
+}
