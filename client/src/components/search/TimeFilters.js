@@ -39,7 +39,6 @@ const TimeFilters = () => {
                 (day) => day.startTime.length !== 0 && day.endTime.length !== 0
             ).length > 0 && (
                 <div>
-                    Time Filters
                     <br />
                     <button
                         className='btn btn-light'

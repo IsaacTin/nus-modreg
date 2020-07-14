@@ -29,6 +29,7 @@ const SearchModuleFilter = () => {
 
     return (
         <div className='searchbar'>
+            <TimeFilters />
             <form onSubmit={onSubmit}>
                 {/* <input
                     name='text'
@@ -49,7 +50,6 @@ const SearchModuleFilter = () => {
                     <Icon name='search' />
                     <input />
                 </Input>
-                <TimeFilters />
                 <br />
                 <input type='submit' value='Search' className='btn btn-dark' />
                 <button className='btn btn-light' onClick={() => setText('')}>
