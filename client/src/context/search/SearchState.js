@@ -14,7 +14,8 @@ import {
     ADD_TIME_FILTER,
     DELETE_TIME_FILTER,
     CLEAR_ALL_TIME_FILTERS,
-    CLEAR_TIME_FILTER_BY_DAY
+    CLEAR_TIME_FILTER_BY_DAY,
+    FILTER_BY_TIME
 } from '../types';
 
 const SearchState = (props) => {
@@ -51,6 +52,13 @@ const SearchState = (props) => {
             });
         }
     };
+
+    // const filterByTime = (searchResults) => {
+    //     dispatch({
+    //         type: FILTER_BY_TIME,
+    //         payload: searchResults
+    //     });
+    // };
 
     const addTimeFilter = (day, startTime, endTime) => {
         dispatch({

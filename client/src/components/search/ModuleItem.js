@@ -2,6 +2,7 @@ import React, { useContext, useState, Fragment } from 'react';
 import Select from 'react-select';
 import AlertContext from '../../context/alert/alertContext';
 import SearchContext from '../../context/search/searchContext';
+import arrayMove from 'array-move';
 import PropTypes from 'prop-types';
 
 const ModuleItem = (props) => {
@@ -84,26 +85,26 @@ const ModuleItem = (props) => {
                 };
 
                 // sort according to days
-                result[existingIndex].day.sort((classDayA, classDayB) => {
-                    const sortByDay = (day) => {
-                        switch (day) {
-                            case 'Monday':
-                                return 1;
-                            case 'Tuesday':
-                                return 2;
-                            case 'Wednesday':
-                                return 3;
-                            case 'Thursday':
-                                return 4;
-                            case 'Friday':
-                                return 5;
-                            default:
-                                return 0;
-                        }
-                    };
-                    console.log('wassup im sorting');
-                    return sortByDay(classDayA) - sortByDay(classDayB);
-                });
+                // result[existingIndex].day.sort((classDayA, classDayB) => {
+                //     const sortByDay = (day) => {
+                //         switch (day) {
+                //             case 'Monday':
+                //                 return 1;
+                //             case 'Tuesday':
+                //                 return 2;
+                //             case 'Wednesday':
+                //                 return 3;
+                //             case 'Thursday':
+                //                 return 4;
+                //             case 'Friday':
+                //                 return 5;
+                //             default:
+                //                 return 0;
+                //         }
+                //     };
+                //     console.log('wassup im sorting');
+                //     return sortByDay(classDayA) - sortByDay(classDayB);
+                // });
             } else {
                 // if not, then convert all of them into arrays
                 const formattedLesson = {
@@ -137,6 +138,66 @@ const ModuleItem = (props) => {
                     lesson.lessonType === 'Recitation' ||
                     lesson.lessonType === 'Tutorial'
                 );
+            }
+        });
+
+        mergedTimetable.sort((firstClass, secondClass) => {
+            return firstClass.classNo - secondClass.classNo;
+        });
+        // .sort((firstClass, secondClass) => {
+        //     const convertDayToNumber = (day) => {
+        //         switch (day) {
+        //             case 'Monday':
+        //                 return 1;
+        //             case 'Tuesday':
+        //                 return 2;
+        //             case 'Wednesday':
+        //                 return 3;
+        //             case 'Thursday':
+        //                 return 4;
+        //             case 'Friday':
+        //                 return 5;
+        //         }
+        //     };
+        //     return (
+        //         convertDayToNumber(firstClass) -
+        //         convertDayToNumber(secondClass)
+        //     );
+        // });
+        const convertDayToNumber = (day) => {
+            switch (day) {
+                case 'Monday':
+                    return 1;
+                case 'Tuesday':
+                    return 2;
+                case 'Wednesday':
+                    return 3;
+                case 'Thursday':
+                    return 4;
+                case 'Friday':
+                    return 5;
+            }
+        };
+        console.log(mergedTimetable);
+        mergedTimetable.forEach((lesson) => {
+            for (let i = 0; i < lesson.day.length - 1; i++) {
+                for (let j = i + 1; j < lesson.day.length; j++) {
+                    if (
+                        convertDayToNumber(lesson.day[i]) -
+                            convertDayToNumber(lesson.day[j]) >
+                        0
+                    ) {
+                        const tempDay = lesson.day[i];
+                        const tempStartTime = lesson.startTime[i];
+                        const tempEndTime = lesson.endTime[i];
+                        lesson.day[i] = lesson.day[j];
+                        lesson.day[j] = tempDay;
+                        lesson.startTime[i] = lesson.startTime[j];
+                        lesson.startTime[j] = tempStartTime;
+                        lesson.endTime[i] = lesson.endTime[j];
+                        lesson.endTime[j] = tempEndTime;
+                    }
+                }
             }
         });
     }
@@ -185,45 +246,17 @@ const ModuleItem = (props) => {
     });
 
     return (
-        <div className='card text-left'>
-            <div>{`${title} (${moduleCode})`}</div>
-            <div>{`${moduleCredit} MCs`}</div>
+        <div className='card text-left result-card'>
+            <div id='class-info'>
+                {`${title} (${moduleCode})`}
+                {/* <br /> */}
+                <div style={{ fontWeight: '900' }}>{`${moduleCredit} MCs`}</div>
+            </div>
+
             {mergedTimetable && (
                 <Fragment>
-                    {/* might wanna change the word 'classes' to a conditional */}
                     <label>{`Timeslot for classes:`}</label>
                     <form onSubmit={onSubmit}>
-                        {/* <select value={selectedModule} onChange={onChange}>
-                            {mergedTimetable.map((timeslot) => (
-                                <option
-                                    key={timeslot.classNo}
-                                    value={JSON.stringify(timeslot)}
-                                >
-                                    {`${
-                                        timeslot.lessonType === 'Tutorial'
-                                            ? 'TUT'
-                                            : timeslot.lessonType ===
-                                              'Laboratory'
-                                            ? 'LAB'
-                                            : timeslot.lessonType === 'Lecture'
-                                            ? 'LEC'
-                                            : timeslot.lessonType ===
-                                              'Recitation'
-                                            ? 'REC'
-                                            : ''
-                                    } [${timeslot.classNo}]`}
-                                    {timeslot.venue.map((venue, index) => {
-                                        let separator;
-
-                                        index !== timeslot.venue.length - 1
-                                            ? (separator = ';')
-                                            : (separator = '');
-
-                                        return ` ${venue} ${timeslot.day[index]} ${timeslot.startTime[index]} - ${timeslot.endTime[index]}${separator}`;
-                                    })}
-                                </option>
-                            ))}
-                        </select> */}
                         <Select
                             placeholder='Select Class Slot'
                             defaultValue={selectedModule}
@@ -234,6 +267,7 @@ const ModuleItem = (props) => {
                             type='submit'
                             value='Add module'
                             className='btn btn-light'
+                            style={{ margin: '0.5rem 0' }}
                         />
                     </form>
                 </Fragment>

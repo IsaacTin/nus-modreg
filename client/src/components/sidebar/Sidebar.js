@@ -68,7 +68,7 @@ const Sidebar = () => {
                     overlayClassName='ranking-overlay'
                 >
                     <div className='ranking-container'>
-                        <h2>Rankings</h2>
+                        <h2>Module Rankings</h2>
                         <Ranking
                             axis='xy'
                             onSortEnd={onSortEnd}
