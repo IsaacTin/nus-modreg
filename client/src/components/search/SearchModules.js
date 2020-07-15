@@ -67,36 +67,17 @@ const SearchModules = () => {
 
         const result = searchResults.filter(
             (module) =>
-                module.semesterData[0].timetable.filter((lesson) =>
-                    // const startTime = lesson.startTime;
-                    // const endTime = lesson.endTime;
-
-                    // check whether a single time slot exists for this one
-                    // timeFilter.forEach((day) => {
-                    //     const filteredDayResults = day.startTime.filter(
-                    //         (dayStartTime, index) =>
-                    //             dayStartTime <= startTime &&
-                    //             day.endTime[index] >= endTime
-                    //     );
-                    //     if (filteredDayResults.length > 0) {
-                    //         console.log('hello');
-                    //         return true;
-                    //     }
-                    // });
-
-                    // check whether a single time slot exists for this particular day
-                    {
-                        const dayIndex = dayToIndex(lesson.day);
-                        return (
-                            timeFilter[dayIndex].startTime.filter(
-                                (dayStartTime, index) =>
-                                    dayStartTime <= lesson.startTime &&
-                                    timeFilter[dayIndex].endTime[index] >=
-                                        lesson.endTime
-                            ).length > 0
-                        );
-                    }
-                ).length > 0
+                module.semesterData[0].timetable.filter((lesson) => {
+                    const dayIndex = dayToIndex(lesson.day);
+                    return (
+                        timeFilter[dayIndex].startTime.filter(
+                            (dayStartTime, index) =>
+                                dayStartTime <= lesson.startTime &&
+                                timeFilter[dayIndex].endTime[index] >=
+                                    lesson.endTime
+                        ).length > 0
+                    );
+                }).length > 0
         );
         console.log(result);
         return result;
