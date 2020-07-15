@@ -169,7 +169,8 @@ const SearchModules = () => {
                 >
                     {displaySearchResults.length !== 0 && (
                         <div id='search-header'>
-                            <h4>Search results</h4>
+                            <h4>Search results</h4>{' '}
+                            <i className='fas fa-search'></i>
                         </div>
                     )}
                     <div className='search-results-content grid-4'>

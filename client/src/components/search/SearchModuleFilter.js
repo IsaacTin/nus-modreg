@@ -21,7 +21,7 @@ const SearchModuleFilter = () => {
         isSearchedTrue();
         if (text !== '') {
             filterModules(text);
-            setText('');
+            // setText('');
         } else {
             // throw alert
         }
@@ -53,7 +53,7 @@ const SearchModuleFilter = () => {
                 <br />
                 <input type='submit' value='Search' className='btn btn-dark' />
                 <button className='btn btn-light' onClick={() => setText('')}>
-                    Clear
+                    Clear Search
                 </button>
             </form>
         </div>
