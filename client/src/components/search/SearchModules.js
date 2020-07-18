@@ -57,7 +57,6 @@ const SearchModules = () => {
     }, [filtered, selection, JSON.stringify(timeFilter)]);
 
     const filterByTime = (searchResults) => {
-        console.log('hellox2');
         // if all filters are empty, then just return the searchResults
         if (
             timeFilter.filter((day) => day.startTime.length !== 0).length === 0
@@ -65,22 +64,71 @@ const SearchModules = () => {
             return searchResults;
         }
 
-        const result = searchResults.filter(
-            (module) =>
-                module.semesterData[0].timetable.filter((lesson) => {
+        // console.log statement
+        searchResults.forEach((module) => {
+            module.semesterData[0].timetable.forEach((lesson) => {
+                console.log(lesson);
+            });
+        });
+
+        const results = searchResults.filter((module) => {
+            module.semesterData[0].timetable = module.semesterData[0].timetable.filter(
+                (lesson) => {
+                    // what is lesson actually? --> contains the timetable data for each lesson slot
                     const dayIndex = dayToIndex(lesson.day);
+                    // denotes other possible time slots for this same lesson
+                    // assuming that the other time slots are not on the same day, then it will filter for this time slot
+                    const otherTimeSlots = module.semesterData[0].timetable.filter(
+                        (otherLesson) =>
+                            lesson.classNo === otherLesson.classNo &&
+                            lesson.lessonType === otherLesson.lessonType &&
+                            lesson.day !== otherLesson.day
+                    );
+                    console.log('otherTimeSlots:');
+                    console.log(otherTimeSlots);
                     return (
+                        (lesson.lessonType === 'Lecture' ||
+                            lesson.lessonType === 'Sectional Teaching') &&
+                        // return if the start time and end time match that of the filters present
                         timeFilter[dayIndex].startTime.filter(
                             (dayStartTime, index) =>
                                 dayStartTime <= lesson.startTime &&
                                 timeFilter[dayIndex].endTime[index] >=
                                     lesson.endTime
-                        ).length > 0
+                        ).length > 0 &&
+                        // does this specific class slot still have other timings? if have, then do the slots fulfill the filter criteria?
+                        (otherTimeSlots.length > 0
+                            ? otherTimeSlots.filter((timeslot) => {
+                                  console.log('timeslot:');
+                                  console.log(timeslot);
+                                  const otherDayIndex = dayToIndex(
+                                      timeslot.day
+                                  );
+                                  console.log(`startTime`);
+                                  return (
+                                      timeFilter[
+                                          otherDayIndex
+                                      ].startTime.filter(
+                                          (otherDayStartTime, otherIndex) =>
+                                              otherDayStartTime <=
+                                                  timeslot.startTime &&
+                                              timeFilter[otherDayIndex].endTime[
+                                                  otherIndex
+                                              ] >= timeslot.endTime
+                                      ).length > 0
+                                  );
+                              }).length > 0
+                            : true)
                     );
-                }).length > 0
-        );
-        console.log(result);
-        return result;
+                }
+            );
+            return module.semesterData[0].timetable.length > 0;
+        });
+
+        console.log('results:');
+        console.log(results);
+
+        return results;
     };
 
     // useEffect(() => {

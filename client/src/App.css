@@ -863,14 +863,16 @@ img#nus-logo {
 }
 
 .cart-item {
-    border: 3px solid rgb(124, 124, 124);
+    border: 1px solid rgb(124, 124, 124);
     border-radius: 15px;
     margin: 3px;
-    padding: 6px;
+    padding: 0.8rem;
     text-align: left;
     font-size: 0.9rem;
+    /* font-weight: 700; */
     width: var(--sidebar-width);
     background-color: rgb(189, 189, 189);
+    box-shadow: var(--thick-shadow);
 }
 
 .cart-item button {

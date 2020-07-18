@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import classNameConverter from '../../../utils/classNameConverter';
 import ModuleContext from '../../../context/module/moduleContext';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -10,7 +11,7 @@ const CartItem = ({ module, rank }) => {
     const moduleContext = useContext(ModuleContext);
     const { deleteModule } = moduleContext;
 
-    const { title, moduleCode, classNo, timing } = module;
+    const { title, moduleCode, lessonType, classNo, timing } = module;
 
     const onDelete = () => {
         deleteModule(module);
@@ -20,20 +21,9 @@ const CartItem = ({ module, rank }) => {
         <div className='cart-item'>
             Rank: {rank}
             <br />
-            Module Name: {title}
+            {`${title} (${moduleCode})`}
             <br />
-            Module Code: {moduleCode}
-            <br />
-            {module.lessonType === 'Tutorial'
-                ? 'TUT'
-                : module.lessonType === 'Laboratory'
-                ? 'LAB'
-                : module.lessonType === 'Lecture'
-                ? 'LEC'
-                : module.lessonType === 'Recitation'
-                ? 'REC'
-                : ''}
-            {` [${classNo}]`}
+            {`Slot: ${classNameConverter(lessonType)} [${classNo}]`}
             <div style={{ fontSize: '0.85rem', marginTop: 5, marginBottom: 8 }}>
                 <ExpansionPanel component={Paper}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
