@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://admin:admin@module-registration-xxt14.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "orbital-project-NUSModReg-UI-idkIfItWillWorkLOL123"
+}

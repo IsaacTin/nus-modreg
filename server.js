@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const path = require('path');
 
 const app = express();
 
@@ -9,7 +10,7 @@ connectDB();
 // init middleware - allows application to accept JSON data
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) => res.json({ msg: 'Welcome to NUS ModReg!' }));
+// app.get('/', (req, res) => res.json({ msg: 'Welcome to NUS ModReg!' }));
 
 // define routes
 app.use('/api/users', require('./routes/users'));
@@ -18,6 +19,15 @@ app.use('/api/search-modules', require('./routes/search-modules'));
 app.use('/api/user-modules', require('./routes/user-modules'));
 app.use('/api/venues', require('./routes/venues'));
 app.use('/api/bus-stops', require('./routes/bus-stops'));
+
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) =>
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    );
+}
 
 // look for an environment variable called PORT first, if not then use port 5000
 const PORT = process.env.PORT || 5000;
