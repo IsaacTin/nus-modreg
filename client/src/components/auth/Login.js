@@ -46,38 +46,41 @@ const Login = (props) => {
     };
 
     return (
-        <div className='form-container'>
-            <h1>
-                ModReg <span className='text-primary'>Login</span>
-            </h1>
-            <form onSubmit={onSubmit}>
-                <div className='form-group'>
-                    <label htmlFor='nusnetID'>NUSNET ID</label>
-                    <input
-                        type='text'
-                        name='nusnetID'
-                        value={nusnetID}
-                        onChange={onChange}
-                        required
-                    />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='password'>Password</label>
-                    <input
-                        type='password'
-                        name='password'
-                        value={password}
-                        onChange={onChange}
-                        required
-                    />
-                </div>
+        <div>
+            <div id='spacer' />
+            <div className='form-container'>
+                <h1>
+                    ModReg <span className='text-primary'>Login</span>
+                </h1>
+                <form onSubmit={onSubmit}>
+                    <div className='form-group'>
+                        <label htmlFor='nusnetID'>NUSNET ID</label>
+                        <input
+                            type='text'
+                            name='nusnetID'
+                            value={nusnetID}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor='password'>Password</label>
+                        <input
+                            type='password'
+                            name='password'
+                            value={password}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
 
-                <input
-                    type='submit'
-                    value='Login'
-                    className='btn btn-primary btn-block'
-                />
-            </form>
+                    <input
+                        type='submit'
+                        value='Login'
+                        className='btn btn-primary btn-block'
+                    />
+                </form>
+            </div>
         </div>
     );
 };
