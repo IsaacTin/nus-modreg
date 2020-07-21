@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import TimeFilters from './TimeFilters';
 import SearchContext from '../../context/search/searchContext';
 import { Input, Icon } from 'semantic-ui-react';
-import IconButton from '@material-ui/core/IconButton';
 
 const SearchModuleFilter = () => {
     const searchContext = useContext(SearchContext);
@@ -21,7 +20,7 @@ const SearchModuleFilter = () => {
         isSearchedTrue();
         if (text !== '') {
             filterModules(text);
-            setText('');
+            // setText('');
         } else {
             // throw alert
         }
@@ -53,7 +52,7 @@ const SearchModuleFilter = () => {
                 <br />
                 <input type='submit' value='Search' className='btn btn-dark' />
                 <button className='btn btn-light' onClick={() => setText('')}>
-                    Clear
+                    Clear Search
                 </button>
             </form>
         </div>
