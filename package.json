@@ -2,6 +2,9 @@
     "name": "modreg",
     "version": "1.0.0",
     "description": "NUS Module Registration platform prototype",
+    "engines": {
+        "node": "12.x"
+    },
     "main": "server.js",
     "scripts": {
         "start": "node server.js",
