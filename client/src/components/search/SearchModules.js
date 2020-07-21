@@ -64,13 +64,6 @@ const SearchModules = () => {
             return searchResults;
         }
 
-        // console.log statement
-        searchResults.forEach((module) => {
-            module.semesterData[0].timetable.forEach((lesson) => {
-                console.log(lesson);
-            });
-        });
-
         const results = searchResults.filter((module) => {
             module.semesterData[0].timetable = module.semesterData[0].timetable.filter(
                 (lesson) => {
