@@ -48,9 +48,35 @@ const MapRow = ({index, coords}) => {
                         {index + 1}
                     </Table.Cell>
                     <Table.Cell>
+                        {`${currentCoords[index].moduleCode}, 
+                        ${currentCoords[index].lessonType === 'Tutorial'
+                            ? 'TUT'
+                            : currentCoords[index].lessonType === 'Laboratory'
+                            ? 'LAB'
+                            : currentCoords[index].lessonType === 'Lecture'
+                            ? 'LEC'
+                            : currentCoords[index].lessonType === 'Recitation'
+                            ? 'REC'
+                            : ''
+                        }
+                        ${currentCoords[index].classNo}`}
+                        <br/>
                         {currentCoords[index].venue}
                     </Table.Cell>
                     <Table.Cell>
+                        {`${currentCoords[index + 1].moduleCode}, 
+                        ${currentCoords[index + 1].lessonType === 'Tutorial'
+                            ? 'TUT'
+                            : currentCoords[index + 1] === 'Laboratory'
+                            ? 'LAB'
+                            : currentCoords[index + 1] === 'Lecture'
+                            ? 'LEC'
+                            : currentCoords[index + 1] === 'Recitation'
+                            ? 'REC'
+                            : ''
+                        } 
+                        ${currentCoords[index].classNo}`}
+                        <br/>
                         {currentCoords[index + 1].venue}
                     </Table.Cell>
                     <Table.Cell>

@@ -62,46 +62,8 @@ const MainMap = () => {
             )
         }
     }
-    //for multiple routes
-    /*const directionsCallback = (response1, route) => {
-        console.log(response1)
-        if(response1 !== null) {
-            if(response1.status === 'OK') {
-                const temp = routes.map((route1) => route === route1 ? 
-                    {
-                        origin: route.origin, 
-                        destination: route.destination,
-                        travelMode: route.travelMode,
-                        response: response1
-                    } : route1)
-                setRoutes(() => temp)
-            } else {
-                console.log('response: ', response1)
-            }
-        }
-    }*/
 
     let center = firstLocation === null || secondLocation === null ? {lat: 1.296643, lng: 103.776398} : {lat: (firstLocation.y + secondLocation.y)/2 , lng: (firstLocation.x +secondLocation.x)/2}
-
-    /*useEffect(() => {
-        if (displayedModules.length !== 0 && day !== null) {
-            let temp = [];
-            displayedModules.forEach((module) => {
-                if (
-                    module.timing.filter((timeslot) => timeslot.day === day)
-                        .length !== 0
-                ) {
-                    temp.push(module);
-                }
-            });
-            console.log(temp);
-            const fetchCoords = async () => {
-                setCoords(await coordsArrayConverter(temp, day));
-            };
-            fetchCoords();
-        }
-        // eslint-disable-next-line
-    }, [displayedModules, day]);*/
 
     useEffect(() => {
         let temp = [];
@@ -109,6 +71,7 @@ const MainMap = () => {
             temp.push(firstLocation)
             temp.push(secondLocation)
             setMarkers(temp)
+            setSelectedMarkers(temp)
             const nearest = checker(firstLocation, secondLocation, busStops);
             if(nearest !== null) {
                 setFirstNearest(nearest[0]);
@@ -240,27 +203,6 @@ const MainMap = () => {
                         }}
                     />
                 }
-                {/*routes && routes.map((route, index) => {
-                    console.log(route.origin)
-                    return (
-                        <div>
-                            <DirectionsService
-                                options={{
-                                    destination: route.destination,
-                                    origin: route.origin,
-                                    travelMode: route.travelMode
-                                }}
-                                callback={directionsCallback}
-                                key={index}
-                            />
-                            {route.response !== null && <DirectionsRenderer
-                                options={{directions: routes[index].response}}
-                            />}
-                        </div>
-                    )
-                })*/}
-
-
                 {selectedMarkers ? selectedMarkers.map((marker) => {
                     return (
                         <InfoWindow 

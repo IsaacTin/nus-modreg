@@ -22,7 +22,6 @@ const Location = () => {
         <div>
             <Sidebar />
             <div className={isSidebarOpen ? 'main-shift' : 'main'}>
-                Location planning with Google Maps API
             </div>
             <MainMap />
             <MapMenu />

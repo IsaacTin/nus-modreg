@@ -35,12 +35,39 @@ const checker = (location_1, location_2, busStops) => {
             )
             if(firstNearest === secondNearest) {
                 return null;
-            } else {
+            } else if (checkSimilar(firstNearest[0], secondNearest[0])) {
                 return [firstNearest[0], secondNearest[0]];
+            } else {
+                const distance1 = getPreciseDistance(
+                    {latitude: location_1.y, longitude: location_1.x},
+                    {latitude: firstNearest[0].location[0], longitude: firstNearest[0].location[0]}
+                )
+                const distance2 = getPreciseDistance(
+                    {latitude: location_2.y, longitude: location_2.x},
+                    {latitude: secondNearest[0].location[0], longitude: secondNearest[0].location[0]}
+                )
+                if (distance1 <= distance2) {
+                    const filteredBusStops = busStops.filter((stop) => stop !== firstNearest)
+                    return checker(location_1, location_2, filteredBusStops);
+                } else {
+                    const filteredBusStops = busStops.filter((stop) => stop !== secondNearest) 
+                    return checker(location_1, location_2, filteredBusStops)
+                }
             }
     } else {
         return null;
     }
+}
+
+const checkSimilar = (NearestFirst, NearestSecond) => {
+    for (let i = 0; i < NearestFirst.routes.length; i++) {
+        for(let k = 0; k < NearestSecond.routes.length; k++) {
+            if (NearestFirst.routes[i] === NearestSecond.routes[k]) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 export default checker;

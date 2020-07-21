@@ -1058,9 +1058,12 @@ img#nus-logo {
     opacity: 0.8;
 }
 
+.map {
+    margin-top: 7rem;
+}
 .map h1 {
     position: absolute;
-    top: 12rem;
+    top: 7rem;
     left: 8rem;
     color: #281414;
     z-index: 10;
