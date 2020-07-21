@@ -8,6 +8,8 @@ import ModuleContext from '../../context/module/moduleContext';
 import moduleArrayConverter from '../../utils/moduleArrayConverter';
 import classNameConverter from '../../utils/classNameConverter';
 import dayToIndex from '../../utils/dayToIndex';
+import IconButton from '@material-ui/core/IconButton';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const SearchModules = () => {
     const alertContext = useContext(AlerContext);
@@ -217,23 +219,75 @@ const SearchModules = () => {
                 </div>
             )}
             {/* perhaps abstract out the below code? */}
-            <ul className='container grid-4'>
-                {selection.length !== 0 &&
-                    selection.map((module, index) => (
-                        <li key={index} className='card text-left'>
-                            {`${module.moduleCode}: ${classNameConverter(
-                                module.lessonType
-                            )} [${module.classNo}]`}
-                            <br />
-                            <button
-                                className='btn btn-sm btn-danger'
-                                onClick={(e) => onDelete(e, module)}
+            <div className='selection-container'>
+                <ul className='grid-6'>
+                    {selection.length !== 0 &&
+                        selection.map((module, index) => (
+                            <li
+                                key={index}
+                                className='selection-card text-left'
                             >
-                                <i className='fas fa-times-circle'></i>
-                            </button>
-                        </li>
-                    ))}
-            </ul>
+                                <div style={{ fontWeight: 600 }}>
+                                    {`${
+                                        module.moduleCode
+                                    }: ${classNameConverter(
+                                        module.lessonType
+                                    )} [${module.classNo}]`}
+                                </div>
+                                {/* <br /> */}
+                                <div
+                                    style={{
+                                        fontSize: '0.8rem',
+                                        margin: '0.5rem 0.2rem'
+                                    }}
+                                >
+                                    {module.timing.map((timeslot) => {
+                                        const dayShorthand = (day) => {
+                                            switch (day) {
+                                                case 'Monday':
+                                                    return 'MON';
+                                                case 'Tuesday':
+                                                    return 'TUES';
+                                                case 'Wednesday':
+                                                    return 'WED';
+                                                case 'Thursday':
+                                                    return 'THURS';
+                                                case 'Friday':
+                                                    return 'FRI';
+                                                default:
+                                                    return '';
+                                            }
+                                        };
+                                        return (
+                                            <div>
+                                                {`${dayShorthand(
+                                                    timeslot.day
+                                                )}, ${timeslot.startTime} - ${
+                                                    timeslot.endTime
+                                                }`}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+
+                                <button
+                                    className='btn btn-sm btn-danger'
+                                    onClick={(e) => onDelete(e, module)}
+                                >
+                                    <i className='fas fa-times-circle'></i>
+                                </button>
+                                {/* <IconButton
+                                    size='small'
+                                    edge='end'
+                                    onClick={(e) => onDelete(e, module)}
+                                >
+                                    <CancelIcon />
+                                </IconButton> */}
+                            </li>
+                        ))}
+                </ul>
+            </div>
+
             {selection.length > 0 && (
                 <button className='btn btn-light' onClick={onClickConfirm}>
                     Add to cart
