@@ -69,6 +69,7 @@ const MainMap = () => {
         let temp = [];
         if(firstLocation !== null && secondLocation !== null && !loaded && day !== null) {
             setSelectedBusStops(null);
+            setSelectedMarkers(null);
             temp.push(firstLocation)
             temp.push(secondLocation)
             setMarkers(temp)
@@ -78,6 +79,7 @@ const MainMap = () => {
                 setSecondNearest(nearest[1]);
                 setSelectedBusStops([nearest[0], nearest[1]])
             } else {
+                setSelectedMarkers(temp)
                 setFirstNearest(null);
                 setSecondNearest(null);
             }
@@ -114,20 +116,7 @@ const MainMap = () => {
         }
     }, [filteredMarker, filteredBusStop])
 
-    /*useEffect(() => {
-        if(firstNearest !== null && secondNearest !== null && firstLocation !== null && secondLocation !== null) {
-            console.log(firstNearest)
-            setRoutes([
-                {origin: {lat: firstLocation.y, lng: firstLocation.x}, destination: {lat: firstNearest[0].location[0], lng: firstNearest[0].location[1]}, travelMode: 'WALKING', response: null},
-                {origin: {lat: firstNearest[0].location[0], lng: firstNearest[0].location[1]}, destination: {lat: secondNearest[0].location[0], lng: secondNearest[0].location[1]}, travelMode: 'DRIVING', response: null},
-                {origin: {lat: secondNearest[0].location[0], lng: secondNearest[0].location[0]}, destination: {lat: secondLocation.y, lng: secondLocation.x}, travelMode: 'WALKING', response: null}
-            ])
-        } else if (firstLocation !== null && secondLocation !== null) {
-            setRoutes([
-                {origin: {lat: firstLocation.y, lng: firstLocation.x}, destination: {lat: secondLocation.y, lng: secondLocation.x}, travelMode: 'WALKING', response: null}
-            ])
-        }
-    }, [firstNearest, secondNearest])*/
+    
 
 
     if(loadError) return "Error loading maps";
@@ -202,7 +191,7 @@ const MainMap = () => {
                         }}
                     />
                 }
-                {selectedMarkers.length !== 0 ? selectedMarkers.map((marker) => {
+                {selectedMarkers ? selectedMarkers.map((marker) => {
                     return (
                         <InfoWindow 
                             position = {{lat: marker.y, lng: marker.x}}
