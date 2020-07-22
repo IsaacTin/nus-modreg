@@ -47,7 +47,7 @@ const Login = (props) => {
 
     return (
         <div>
-            <div id='spacer' />
+            <div id='login-spacer' />
             <div className='form-container'>
                 <h1>
                     ModReg <span className='text-primary'>Login</span>

@@ -570,6 +570,10 @@ table th {
     margin-top: calc(var(--nav-size) / 2);
 }
 
+#login-spacer {
+    margin-top: calc(var(--nav-size) * 2);
+}
+
 .navbar-nav {
     max-width: 100%;
     height: 100%;
