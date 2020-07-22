@@ -46,15 +46,18 @@ const checker = (location_1, location_2, busStops) => {
                     {latitude: location_2.y, longitude: location_2.x},
                     {latitude: secondNearest[0].location[0], longitude: secondNearest[0].location[0]}
                 )
-                if (distance1 <= distance2) {
-                    const filteredBusStops = busStops.filter((stop) => stop !== firstNearest)
+                console.log(busStops);
+                if (busStops.length === 0) {
+                    return null;
+                } else if (distance1 <= distance2) {
+                    const filteredBusStops = busStops.filter((stop) => stop !== firstNearest[0])
                     return checker(location_1, location_2, filteredBusStops);
                 } else {
-                    const filteredBusStops = busStops.filter((stop) => stop !== secondNearest) 
-                    return checker(location_1, location_2, filteredBusStops)
+                    const filteredBusStops = busStops.filter((stop) => stop !== secondNearest[0]) 
+                    return checker(location_1, location_2, filteredBusStops);
                 }
             }
-    } else {
+        } else {
         return null;
     }
 }
