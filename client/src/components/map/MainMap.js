@@ -68,14 +68,15 @@ const MainMap = () => {
     useEffect(() => {
         let temp = [];
         if(firstLocation !== null && secondLocation !== null && !loaded && day !== null) {
+            setSelectedBusStops(null);
             temp.push(firstLocation)
             temp.push(secondLocation)
             setMarkers(temp)
-            setSelectedMarkers(temp)
             const nearest = checker(firstLocation, secondLocation, busStops);
             if(nearest !== null) {
                 setFirstNearest(nearest[0]);
                 setSecondNearest(nearest[1]);
+                setSelectedBusStops([nearest[0], nearest[1]])
             } else {
                 setFirstNearest(null);
                 setSecondNearest(null);
@@ -105,13 +106,11 @@ const MainMap = () => {
     }, [firstNearest, secondNearest])
   
     useEffect(() => {
-        if (filteredMarker !== null) {
+        if (filteredMarker !== null && filteredMarker.length !== 0) {
             setSelectedMarkers(filteredMarker)
-            filteredMarker = null;
         }
-        if (filteredBusStop !== null) {
+        if (filteredBusStop !== null && filteredBusStop.length !== 0) {
             setSelectedBusStops(filteredBusStop)
-            filteredBusStop = null;
         }
     }, [filteredMarker, filteredBusStop])
 
@@ -203,13 +202,13 @@ const MainMap = () => {
                         }}
                     />
                 }
-                {selectedMarkers ? selectedMarkers.map((marker) => {
+                {selectedMarkers.length !== 0 ? selectedMarkers.map((marker) => {
                     return (
                         <InfoWindow 
                             position = {{lat: marker.y, lng: marker.x}}
-                            onCloseClick={async () => {
-                                filteredMarker = await selectedMarkers.filter((marker1) => marker.venue !== marker1.venue)
-                            }}
+                            onCloseClick={
+                                filteredMarker = selectedMarkers.filter((marker1) => marker.venue !== marker1.venue)
+                            }
                         >
                             <div>
                                 <h2>{marker.venue}</h2>
@@ -224,7 +223,7 @@ const MainMap = () => {
                         <InfoWindow
                             key={index}
                             className="busstop"
-                            position = {{lat: busStop.location[0] + 0.00020, lng: busStop.location[1]}}
+                            position = {{lat: busStop.location[0] + 0.00040, lng: busStop.location[1] - 0.000001}}
                             onCloseClick={async () => {
                                 filteredBusStop = await selectedBusStops.filter((busStop1) => busStop.name !== busStop1.name)
                             }}
