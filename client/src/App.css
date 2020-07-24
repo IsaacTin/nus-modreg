@@ -1163,3 +1163,20 @@ img#nus-logo {
     background-color: white;
     color: orange;
 }
+
+.guide {
+    margin-top: 8rem;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.guidepage .guide-photos {
+    height: 700px;
+    width: 1200px;
+    margin-bottom: 20px;
+}
+
+.guidepage header {
+    font-weight: bolder;
+    font-size: large;
+}
