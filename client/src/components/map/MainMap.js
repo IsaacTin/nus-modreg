@@ -63,7 +63,9 @@ const MainMap = () => {
         }
     }
 
-    let center = firstLocation === null || secondLocation === null ? {lat: 1.296643, lng: 103.776398} : {lat: (firstLocation.y + secondLocation.y)/2 , lng: (firstLocation.x +secondLocation.x)/2}
+    let center = firstLocation === null && secondLocation === null ? 
+                    {lat: 1.296643, lng: 103.776398} : secondLocation === null ?
+                        {lat: firstLocation.y, lng: firstLocation.x} : {lat: (firstLocation.y + secondLocation.y)/2 , lng: (firstLocation.x +secondLocation.x)/2}
 
     useEffect(() => {
         let temp = [];
@@ -83,6 +85,9 @@ const MainMap = () => {
                 setFirstNearest(null);
                 setSecondNearest(null);
             }
+        } else if (firstLocation !== null) {
+            temp.push(firstLocation);
+            setMarkers(temp);
         } else if (markers.length === 0) {
             temp.push({y: 1.296643, x: 103.776398, venue: "National University Of Singapore"})
             setMarkers(temp)

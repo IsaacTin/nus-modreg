@@ -15,6 +15,14 @@ const MapRow = ({index, coords}) => {
         setSecondNearest(null);
     }
 
+    const handleClickSingle = (index) => {
+        setFirstLocation(currentCoords[index]);
+        setSecondLocation(null)
+        setLoaded(false)
+        setFirstNearest(null);
+        setSecondNearest(null);
+    }
+
     const findBuses = (buses) => {
         let info = "";
         const firstBuses = buses[0].routes;
@@ -84,8 +92,43 @@ const MapRow = ({index, coords}) => {
                     </Table.Cell>
                 </Table.Row>
             );
+    } else if (index === 0) {
+        return ( 
+            <Table.Row
+                onClick={() => handleClickSingle(index)}
+                active={coords === firstLocation}
+            >
+                <Table.Cell>
+                    {index + 1}
+                </Table.Cell>
+                <Table.Cell>
+                    {`${currentCoords[index].moduleCode}, 
+                    ${currentCoords[index].lessonType === 'Tutorial'
+                        ? 'TUT'
+                        : currentCoords[index].lessonType === 'Laboratory'
+                        ? 'LAB'
+                        : currentCoords[index].lessonType === 'Lecture'
+                        ? 'LEC'
+                        : currentCoords[index].lessonType === 'Recitation'
+                        ? 'REC'
+                        : ''
+                    }
+                    ${currentCoords[index].classNo}`}
+                    <br/>
+                    {currentCoords[index].venue}
+                </Table.Cell>
+                <Table.Cell>
+                    -
+                </Table.Cell>
+                <Table.Cell>
+                    -
+                </Table.Cell>
+            </Table.Row>
+        );
     } else {
-        return null;
+        return (
+            null
+        );
     }
 }
  

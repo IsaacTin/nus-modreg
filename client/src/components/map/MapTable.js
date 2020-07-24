@@ -6,6 +6,14 @@ import MapRow from './MapRow';
 const MapTable = () => {
     const { currentCoords } = useContext(MapContext);
 
+    if (currentCoords.length === 0) {
+        return (
+            <div>
+                <h1>No Lessons Today</h1>
+            </div>
+        )
+    } 
+
     return ( 
         <Table
             textAlign='center'
