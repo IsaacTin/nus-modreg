@@ -47,3 +47,7 @@ export const GET_BUS_STOPS = 'GET_BUS_STOPS';
 export const SET_FIRST_NEAREST = 'SET_FIRST_NEAREST';
 export const SET_SECOND_NEAREST = 'SET_SECOND_NEAREST';
 export const SET_LOADED = 'SET_LOADED';
+// modalert types
+export const SET_CONFLICT = 'SET_CONFLICT';
+export const REMOVE_CONFLICT = 'REMOVE_CONFLICT';
+export const GET_CONFLICTS = 'GET_CONFLICTS';

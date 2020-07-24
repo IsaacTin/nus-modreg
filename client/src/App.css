@@ -863,6 +863,22 @@ img#nus-logo {
     margin: 0;
 }
 
+.module-alert-card {
+    border-radius: 8px;
+    background-color: #ffb647;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: left; */
+    /* align-items: center; */
+    text-align: left;
+    font-size: 0.7rem;
+    padding: 0.6rem;
+    border-bottom: solid 3px #ba8432;
+    /* border: solid 1px rgb(124, 124, 124); */
+    box-shadow: var(--thick-shadow);
+    /* margin: auto; */
+}
+
 .cart {
     overflow: auto;
     padding: 0;
@@ -969,6 +985,7 @@ img#nus-logo {
 .home-grid {
     display: grid;
     grid-template-areas:
+        'modalert'
         'timetable'
         'timetable'
         'search';
@@ -982,6 +999,10 @@ img#nus-logo {
 
 .ui.table {
     width: 100%;
+}
+
+.mod-alert {
+    grid-area: modalert;
 }
 
 .search {

@@ -3,6 +3,7 @@ import SearchModuleFilter from '../search/SearchModuleFilter';
 import Sidebar from '../sidebar/Sidebar';
 import SearchModules from '../search/SearchModules';
 import Nusmods from '../nusmods/Nusmods';
+import ModAlert from '../layout/ModAlert';
 import AuthContext from '../../context/auth/authContext';
 import LayoutContext from '../../context/layout/layoutContext';
 
@@ -29,6 +30,7 @@ const Home = () => {
             <div className={isSidebarOpen ? 'shift' : ''}>
                 <div className='home-grid'>
                     <Nusmods className='timetable' />
+                    <ModAlert className='mod-alert' />
                     <div className='search'>
                         <SearchModuleFilter />
                         <SearchModules />
