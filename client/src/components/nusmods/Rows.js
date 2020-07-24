@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
 import RowItem from './RowItem';
 import EmptySlot from './EmptySlot';
+import ModalertContext from '../../context/modalert/modalertContext';
 
 const Rows = ({ modules, day }) => {
+    const modalertContext = useContext(ModalertContext);
+    const { conflicts, setConflict, getConflicts } = modalertContext;
+
+    useEffect(() => {
+        getConflicts(modules, day);
+        // eslint-disable-next-line
+    }, [modules, day]);
+
+    console.log('conflicts');
+    console.log(conflicts);
+
     const dayShorthand = (day) => {
         switch (day) {
             case 'Monday':
@@ -21,40 +33,40 @@ const Rows = ({ modules, day }) => {
         }
     };
 
-    const getRows = () => {
-        const modulesByDay = [];
-        modules.forEach((module) => {
-            module.timing
-                .filter((time) => time.day === day)
-                .forEach((module) => modulesByDay.push(module));
-        });
+    // const getRows = () => {
+    //     const modulesByDay = [];
+    //     modules.forEach((module) => {
+    //         module.timing
+    //             .filter((time) => time.day === day)
+    //             .forEach((module) => modulesByDay.push(module));
+    //     });
 
-        const conflictSlots = [];
-        console.log(`modulesByDay for ${day}`);
-        console.log(modulesByDay);
+    //     const conflictSlots = [];
+    //     console.log(`modulesByDay for ${day}`);
+    //     console.log(modulesByDay);
 
-        for (let i = 0; i < modulesByDay.length; i++) {
-            for (let j = i + 1; j < modulesByDay.length; j++) {
-                const firstModule = modulesByDay[i];
-                const secondModule = modulesByDay[j];
+    //     for (let i = 0; i < modulesByDay.length; i++) {
+    //         for (let j = i + 1; j < modulesByDay.length; j++) {
+    //             const firstModule = modulesByDay[i];
+    //             const secondModule = modulesByDay[j];
 
-                if (
-                    firstModule.startTime <= secondModule.startTime &&
-                    firstModule.endTime >= secondModule.endTime
-                ) {
-                    // can carry on here
-                    conflictSlots.push({
-                        slot1: firstModule,
-                        slot2: secondModule
-                    });
-                }
-            }
-        }
+    //             if (
+    //                 firstModule.startTime <= secondModule.startTime &&
+    //                 firstModule.endTime >= secondModule.endTime
+    //             ) {
+    //                 // can carry on here
+    //                 conflictSlots.push({
+    //                     first: firstModule,
+    //                     second: secondModule
+    //                 });
+    //             }
+    //         }
+    //     }
 
-        console.log(conflictSlots);
-    };
+    //     console.log(conflictSlots);
+    // };
 
-    getRows();
+    // getRows();
 
     const getTableCells = () => {
         let numColumns = 10;

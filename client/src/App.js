@@ -19,6 +19,7 @@ import AlertState from './context/alert/AlertState';
 import SearchState from './context/search/SearchState';
 import LayoutState from './context/layout/LayoutState';
 import MapState from './context/map/MapState';
+import ModalertState from './context/modalert/ModalertState';
 
 import './App.css';
 
@@ -27,54 +28,60 @@ const App = () => {
         <AuthState>
             <ModuleState>
                 <AlertState>
-                    <SearchState>
-                        <LayoutState>
-                            <MapState>
-                                <DndProvider backend={HTML5Backend}>
-                                    <Router>
-                                        <Fragment>
-                                            <Navbar />
-                                            <div className='container'>
-                                                <div id='spacer' />
-                                                <Switch>
-                                                    <PrivateRoute
-                                                        exact
-                                                        path='/'
-                                                        component={Home}
-                                                    />
-                                                    <Route
-                                                        exact
-                                                        path='/guide'
-                                                        component={Guide}
-                                                    />
-                                                    <PrivateRoute
-                                                        exact
-                                                        path='/confirmation'
-                                                        component={Confirmation}
-                                                    />
-                                                    <PrivateRoute
-                                                        exact
-                                                        path='/confirmed'
-                                                        component={Confirmed}
-                                                    />
-                                                    <Route
-                                                        exact
-                                                        path='/login'
-                                                        component={Login}
-                                                    />
-                                                    <PrivateRoute
-                                                        exact
-                                                        path='/location'
-                                                        component={Location}
-                                                    />
-                                                </Switch>
-                                            </div>
-                                        </Fragment>
-                                    </Router>
-                                </DndProvider>
-                            </MapState>
-                        </LayoutState>
-                    </SearchState>
+                    <ModalertState>
+                        <SearchState>
+                            <LayoutState>
+                                <MapState>
+                                    <DndProvider backend={HTML5Backend}>
+                                        <Router>
+                                            <Fragment>
+                                                <Navbar />
+                                                <div className='container'>
+                                                    <div id='spacer' />
+                                                    <Switch>
+                                                        <PrivateRoute
+                                                            exact
+                                                            path='/'
+                                                            component={Home}
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path='/guide'
+                                                            component={Guide}
+                                                        />
+                                                        <PrivateRoute
+                                                            exact
+                                                            path='/confirmation'
+                                                            component={
+                                                                Confirmation
+                                                            }
+                                                        />
+                                                        <PrivateRoute
+                                                            exact
+                                                            path='/confirmed'
+                                                            component={
+                                                                Confirmed
+                                                            }
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path='/login'
+                                                            component={Login}
+                                                        />
+                                                        <PrivateRoute
+                                                            exact
+                                                            path='/location'
+                                                            component={Location}
+                                                        />
+                                                    </Switch>
+                                                </div>
+                                            </Fragment>
+                                        </Router>
+                                    </DndProvider>
+                                </MapState>
+                            </LayoutState>
+                        </SearchState>
+                    </ModalertState>
                 </AlertState>
             </ModuleState>
         </AuthState>
