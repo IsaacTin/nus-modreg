@@ -5,7 +5,7 @@ import { SET_CONFLICT, REMOVE_CONFLICT, GET_CONFLICTS } from '../types';
 
 const ModalertState = (props) => {
     const initialState = {
-        conflicts: []
+        conflicts: [[], [], [], [], []]
     };
 
     const [state, dispatch] = useReducer(modalertReducer, initialState);

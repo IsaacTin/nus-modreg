@@ -44,7 +44,7 @@ const TimeFilters = () => {
                         className='btn btn-light'
                         onClick={clearAllTimeFilters}
                     >
-                        Clear filters
+                        Clear time filters
                     </button>
                 </div>
             )}

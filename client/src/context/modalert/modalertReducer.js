@@ -1,8 +1,10 @@
 import { SET_CONFLICT, REMOVE_CONFLICT, GET_CONFLICTS } from '../types';
+import dayToIndex from '../../utils/dayToIndex';
 
 export default (state, action) => {
     const getConflicts = (modules, day, conflicts) => {
         console.log(modules);
+        const dayIndex = dayToIndex(day);
         const modulesByDay = [];
         modules.forEach((module) => {
             module.timing
@@ -20,7 +22,7 @@ export default (state, action) => {
         console.log(`modulesByDay for ${day}`);
         console.log(modulesByDay);
 
-        console.log(conflicts);
+        const dayConflicts = [];
 
         for (let i = 0; i < modulesByDay.length; i++) {
             for (let j = i + 1; j < modulesByDay.length; j++) {
@@ -32,7 +34,7 @@ export default (state, action) => {
                         firstModule.endTime >= secondModule.endTime) ||
                     (firstModule.startTime >= secondModule.startTime &&
                         firstModule.endTime <= secondModule.endTime &&
-                        conflicts.filter(
+                        dayConflicts.filter(
                             (slot) =>
                                 slot.first.startTime ===
                                     firstModule.startTime &&
@@ -43,7 +45,7 @@ export default (state, action) => {
                         ).length === 0)
                 ) {
                     // can carry on here
-                    conflicts.push({
+                    dayConflicts.push({
                         first: firstModule,
                         second: secondModule
                     });
@@ -51,8 +53,7 @@ export default (state, action) => {
             }
         }
 
-        conflicts = [...new Set(conflicts)];
-        console.log(conflicts);
+        conflicts[dayIndex] = dayConflicts;
         return conflicts;
     };
 

@@ -208,6 +208,12 @@ img {
 .m-3 {
     margin: 3rem;
 }
+.mx {
+    margin: 0 0.5rem;
+}
+.mx-1 {
+    margin: 0 1rem;
+}
 .my {
     margin: 0.5rem 0;
 }
@@ -863,22 +869,6 @@ img#nus-logo {
     margin: 0;
 }
 
-.module-alert-card {
-    border-radius: 8px;
-    background-color: #ffb647;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: left; */
-    /* align-items: center; */
-    text-align: left;
-    font-size: 0.7rem;
-    padding: 0.6rem;
-    border-bottom: solid 3px #ba8432;
-    /* border: solid 1px rgb(124, 124, 124); */
-    box-shadow: var(--thick-shadow);
-    /* margin: auto; */
-}
-
 .cart {
     overflow: auto;
     padding: 0;
@@ -903,6 +893,12 @@ img#nus-logo {
 
 .cart-item button {
     float: right;
+}
+
+.cart-item-dropdown {
+    background: #a1a1a1;
+    display: flex;
+    flex-direction: column;
 }
 
 .current {
@@ -1068,6 +1064,33 @@ img#nus-logo {
     margin: 2rem 0;
     padding: 2rem;
     overflow: auto;
+}
+
+.conflict-container {
+    width: 100%;
+    /* height: 100px; */
+    display: flex;
+}
+
+.module-alert-card {
+    border-radius: 8px;
+    background-color: #ffb647;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    font-size: 0.7rem;
+    padding: 1rem;
+    border-bottom: solid 3px #ba8432;
+    /* border: solid 1px rgb(124, 124, 124); */
+    box-shadow: var(--thin-shadow);
+    /* margin: auto; */
+}
+
+.module-alert-card h5 {
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
 }
 
 #search-header {
