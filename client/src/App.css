@@ -1108,33 +1108,24 @@ img#nus-logo {
     box-shadow: var(--thin-shadow);
 }
 
-.unselected {
-    border: 3px solid rgb(124, 124, 124);
-    border-radius: 15px;
-    margin: 3px;
-    padding: 6px;
+.select-slot-card {
+    border-bottom: 2px solid rgb(124, 124, 124);
+    border-radius: 10px;
+    margin: 0.5rem;
+    padding: 1rem;
     text-align: left;
-    width: 75%;
-    background-color: rgb(189, 189, 189);
+    font-size: 0.8rem;
+    width: 200px;
+    background-color: #bdbdbd;
 }
 
 .selected {
-    border: 3px solid rgb(124, 124, 124);
-    border-radius: 15px;
-    margin: 3px;
-    padding: 6px;
-    text-align: left;
-    width: 75%;
-    background-color: rgb(189, 189, 189);
+    background-color: #dbdbdb;
+}
+
+.select-slot-card:hover {
+    transition: filter 300ms;
     filter: brightness(1.2);
-}
-
-.selected:hover {
-    opacity: 0.8;
-}
-
-.unselected:hover {
-    opacity: 0.8;
 }
 
 .map {
