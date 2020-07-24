@@ -1115,12 +1115,12 @@ img#nus-logo {
 }
 
 .map {
-    margin-top: 7rem;
+    margin-top: 10%;
 }
 .map h1 {
     position: absolute;
-    top: 7rem;
-    left: 8rem;
+    top: 17%;
+    left: 10%;
     color: #281414;
     z-index: 10;
     margin: 0;
@@ -1171,8 +1171,8 @@ img#nus-logo {
 }
 
 .guidepage .guide-photos {
-    height: 700px;
-    width: 1200px;
+    height: 100%;
+    width: 100%;
     margin-bottom: 20px;
 }
 
