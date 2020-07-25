@@ -69,6 +69,10 @@ const Sidebar = () => {
                 >
                     <div className='ranking-container'>
                         <h2>Module Rankings</h2>
+                        <div style={{ textAlign: 'center' }}>
+                            Drag and drop to rearrange and rank modules
+                        </div>
+                        <br />
                         <Ranking
                             axis='xy'
                             onSortEnd={onSortEnd}

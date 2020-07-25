@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
 import ModuleContext from '../../context/module/moduleContext';
+import classNameConverter from '../../utils/classNameConverter';
 
 const RowItem = ({ module, day }) => {
     const [ModalIsOpen, setModalIsOpen] = useState(false);
@@ -67,27 +68,8 @@ const RowItem = ({ module, day }) => {
         }
     };
 
-    const getLessonType = (lessonName) => {
-        switch (lessonName) {
-            case 'Tutorial':
-                return 'TUT';
-            case 'Laboratory':
-                return 'LAB';
-            case 'Lecture':
-                return 'LEC';
-            case 'Sectional Teaching':
-                return 'SEC';
-            case 'Recitation':
-                return 'REC';
-            case 'Seminar-Style Module Class':
-                return 'SEM';
-            default:
-                return '';
-        }
-    };
-
     const selected = (module) => {
-        const color =
+        const color = `select-slot-card ${
             displayedModules.filter((module1) => {
                 return (
                     module.moduleCode === module1.moduleCode &&
@@ -96,7 +78,8 @@ const RowItem = ({ module, day }) => {
                 );
             }).length > 0
                 ? 'selected'
-                : 'unselected';
+                : ''
+        }`;
         return color;
     };
 
@@ -108,7 +91,7 @@ const RowItem = ({ module, day }) => {
             >
                 {module.moduleCode}
                 <br />
-                {`${getLessonType(module.lessonType)} [${module.classNo}]`}
+                {`${classNameConverter(module.lessonType)} [${module.classNo}]`}
                 <br />
                 {module.timing[0].venue}
             </button>
@@ -126,10 +109,11 @@ const RowItem = ({ module, day }) => {
                                             onClick={() => onChange(module1)}
                                             className={selected(module1)}
                                         >
-                                            {module1.moduleCode}
-                                            <br />
-                                            {getLessonType(module1.lessonType)}[
-                                            {module1.classNo}]
+                                            {`${
+                                                module1.moduleCode
+                                            }: ${classNameConverter(
+                                                module1.lessonType
+                                            )} [${module1.classNo}]`}
                                             <br />
                                             {module1.timing.map(
                                                 (timeslot, index) => (

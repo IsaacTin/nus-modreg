@@ -30,13 +30,6 @@ const SearchModuleFilter = () => {
         <div className='searchbar'>
             <TimeFilters />
             <form onSubmit={onSubmit}>
-                {/* <input
-                    name='text'
-                    type='text'
-                    placeholder='Search for modules by name or module code...'
-                    value={text}
-                    onChange={onChange}
-                /> */}
                 <br />
                 <Input
                     fluid
