@@ -70,8 +70,8 @@ const MainMap = () => {
     useEffect(() => {
         let temp = [];
         if(firstLocation !== null && secondLocation !== null && !loaded && day !== null) {
-            setSelectedBusStops(null);
-            setSelectedMarkers(null);
+            setSelectedBusStops([]);
+            setSelectedMarkers([]);
             temp.push(firstLocation)
             temp.push(secondLocation)
             setMarkers(temp)
@@ -89,7 +89,7 @@ const MainMap = () => {
             temp.push(firstLocation);
             setMarkers(temp);
             setSelectedMarkers(temp);
-            setSelectedBusStops(null);
+            setSelectedBusStops([]);
         } else if (markers.length === 0) {
             temp.push({y: 1.296643, x: 103.776398, venue: "National University Of Singapore"})
             setMarkers(temp)
@@ -201,7 +201,7 @@ const MainMap = () => {
                 {selectedMarkers ? selectedMarkers.map((marker) => {
                     return (
                         <InfoWindow 
-                            position = {{lat: marker.y, lng: marker.x}}
+                            position = {{lat: marker.y + 0.00040, lng: marker.x}}
                             onCloseClick={
                                 filteredMarker = selectedMarkers.filter((marker1) => marker.venue !== marker1.venue)
                             }
