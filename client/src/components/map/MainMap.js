@@ -85,9 +85,11 @@ const MainMap = () => {
                 setFirstNearest(null);
                 setSecondNearest(null);
             }
-        } else if (firstLocation !== null) {
+        } else if (firstLocation !== null && !loaded) {
             temp.push(firstLocation);
             setMarkers(temp);
+            setSelectedMarkers(temp);
+            setSelectedBusStops(null);
         } else if (markers.length === 0) {
             temp.push({y: 1.296643, x: 103.776398, venue: "National University Of Singapore"})
             setMarkers(temp)

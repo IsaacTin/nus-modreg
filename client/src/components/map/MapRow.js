@@ -75,11 +75,11 @@ const MapRow = ({index, coords}) => {
                         {`${currentCoords[index + 1].moduleCode}, 
                         ${currentCoords[index + 1].lessonType === 'Tutorial'
                             ? 'TUT'
-                            : currentCoords[index + 1] === 'Laboratory'
+                            : currentCoords[index + 1].lessonType === 'Laboratory'
                             ? 'LAB'
-                            : currentCoords[index + 1] === 'Lecture'
+                            : currentCoords[index + 1].lessonType  === 'Lecture'
                             ? 'LEC'
-                            : currentCoords[index + 1] === 'Recitation'
+                            : currentCoords[index + 1].lessonType  === 'Recitation'
                             ? 'REC'
                             : ''
                         } 
