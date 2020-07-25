@@ -49,11 +49,11 @@ const Sidebar = () => {
             transitionDuration={300}
             variant={'persistent'}
         >
-            <div className='text-center'>
-                <h3>Your modules:</h3>
+            <div className='text-center p m'>
+                <h2>Your Modules:</h2>
             </div>
             <button
-                className='btn btn-dark'
+                className='btn btn-dark my'
                 onClick={() => setModalIsOpen(true)}
             >
                 Rank Modules

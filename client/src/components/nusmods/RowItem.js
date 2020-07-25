@@ -5,6 +5,7 @@ import classNameConverter from '../../utils/classNameConverter';
 
 const RowItem = ({ module, day }) => {
     const [ModalIsOpen, setModalIsOpen] = useState(false);
+    // const [selected, setSelected] = useState(false);
 
     const moduleContext = useContext(ModuleContext);
 
@@ -83,57 +84,59 @@ const RowItem = ({ module, day }) => {
         return color;
     };
 
+    const moduleButton = (
+        <button
+            className={setColor(module)}
+            onClick={() => setModalIsOpen(true)}
+        >
+            {module.moduleCode}
+            <br />
+            {`${classNameConverter(module.lessonType)} [${module.classNo}]`}
+            <br />
+            {module.timing[0].venue}
+        </button>
+    );
+
     return (
         <div>
-            <button
-                className={setColor(module)}
-                onClick={() => setModalIsOpen(true)}
-            >
-                {module.moduleCode}
-                <br />
-                {`${classNameConverter(module.lessonType)} [${module.classNo}]`}
-                <br />
-                {module.timing[0].venue}
-            </button>
-            <Modal isOpen={ModalIsOpen} className='main ranking'>
-                <div>
-                    {currentModules !== null &&
-                        currentModules.map((module1, index) => {
-                            if (
-                                module1.lessonType === module.lessonType &&
-                                module1.moduleCode === module.moduleCode
-                            )
-                                return (
-                                    <div key={index}>
-                                        <button
-                                            onClick={() => onChange(module1)}
-                                            className={selected(module1)}
-                                        >
-                                            {`${
-                                                module1.moduleCode
-                                            }: ${classNameConverter(
-                                                module1.lessonType
-                                            )} [${module1.classNo}]`}
-                                            <br />
-                                            {module1.timing.map(
-                                                (timeslot, index) => (
-                                                    <div key={index}>
-                                                        {`${timeslot.day}, ${timeslot.startTime} - ${timeslot.endTime}`}
-                                                    </div>
-                                                )
-                                            )}
-                                            {`Module rank: ${index + 1}`}
-                                        </button>
-                                    </div>
-                                );
-                        })}
-                    <button
-                        className='btn btn-dark'
-                        onClick={() => setModalIsOpen(false)}
-                    >
-                        Close
-                    </button>
-                </div>
+            {moduleButton}
+            <Modal isOpen={ModalIsOpen} className='select-slot-modal'>
+                {currentModules !== null &&
+                    currentModules.map((module1, index) => {
+                        if (
+                            module1.lessonType === module.lessonType &&
+                            module1.moduleCode === module.moduleCode
+                        )
+                            return (
+                                <div key={index}>
+                                    <button
+                                        onClick={() => onChange(module1)}
+                                        className={selected(module1)}
+                                    >
+                                        {`${
+                                            module1.moduleCode
+                                        }: ${classNameConverter(
+                                            module1.lessonType
+                                        )} [${module1.classNo}]`}
+                                        <br />
+                                        {module1.timing.map(
+                                            (timeslot, index) => (
+                                                <div key={index}>
+                                                    {`${timeslot.day}, ${timeslot.startTime} - ${timeslot.endTime}`}
+                                                </div>
+                                            )
+                                        )}
+                                        {`Module rank: ${index + 1}`}
+                                    </button>
+                                </div>
+                            );
+                    })}
+                <button
+                    className='btn btn-dark m-1'
+                    onClick={() => setModalIsOpen(false)}
+                >
+                    Close
+                </button>
             </Modal>
         </div>
     );
