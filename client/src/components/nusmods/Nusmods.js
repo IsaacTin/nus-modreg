@@ -38,22 +38,6 @@ const Nusmods = () => {
         // eslint-disable-next-line
     }, [currentModules]);
 
-    useEffect(() => {
-        if (currentModules !== null) {
-            let temp = [];
-            currentModules.forEach((module1) =>
-                temp.filter(
-                    (module2) =>
-                        module1.moduleCode === module2.moduleCode &&
-                        module1.lessonType === module2.lessonType
-                ).length !== 0
-                    ? module1
-                    : temp.push(module1)
-            );
-            setDisplayedModules(temp);
-        }
-        // eslint-disable-next-line
-    }, []);
 
     const onClick = () => {
         clearAllTimeFilters();
