@@ -18,12 +18,14 @@ const Location = () => {
 
     useEffect(() => {
         getBusStops();
+            if(day === null) {
+                setDay("Monday");
+            }
     // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
-        if (displayedModules.length !== 0 && day === null && currentCoords.length === 0) {
-            setDay("Monday");
+        if (displayedModules.length !== 0 && day !== null && currentCoords.length === 0) {
             let temp = [];
             displayedModules.forEach((module) => {
                 if (
@@ -33,13 +35,14 @@ const Location = () => {
                     temp.push(module);
                 }
             });
+            console.log(day)
             console.log(temp);
             const fetchCoords = async () => {
                 setCoords(await coordsArrayConverter(temp, day));
             };
             fetchCoords();
         }
-    },[])
+    },[currentCoords, day])
 
 
     return (
