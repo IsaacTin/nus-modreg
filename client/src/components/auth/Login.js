@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
+import Alert from '../layout/Alert';
 
 const Login = (props) => {
     const alertContext = useContext(AlertContext);
@@ -48,6 +49,7 @@ const Login = (props) => {
     return (
         <div>
             <div id='login-spacer' />
+            <Alert />
             <div className='form-container'>
                 <h1>
                     ModReg <span className='text-primary'>Login</span>
